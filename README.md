@@ -59,37 +59,37 @@ $ ./app
 2. Display all the traditional food items for any given city.
 
 3. Provide the capability to visit the initial 11 European cities starting at Berlin.
-  - a. Plan the trip starting at Berlin then visit each of the other European cities in the most efficient order (recursively choose the city closest to the previous city)
-  - b. Display the total distance traveled
+    - a. Plan the trip starting at Berlin then visit each of the other European cities in the most efficient order (recursively choose the city closest to the previous city)
+    - b. Display the total distance traveled
   
 4. Offer the option to plan the shortest trip starting at Paris
-  - a. Obtain the “number” of European cities to visit
-  - b. Visit the “number” of cities specified (including Paris)
-  - c. Plan the trip starting at Paris then visit the closest city to Paris, then visit the closest city to that city and so on (recursively choose the city closest to the previous city)
-  - d. Display the total distance traveled
-  - e. Allow the traveler to purchase multiple traditional food items when visiting the European cities
+    - a. Obtain the “number” of European cities to visit
+    - b. Visit the “number” of cities specified (including Paris)
+    - c. Plan the trip starting at Paris then visit the closest city to Paris, then visit the closest city to that city and so on (recursively choose the city closest to the previous city)
+    - d. Display the total distance traveled
+    - e. Allow the traveler to purchase multiple traditional food items when visiting the European cities
   
 5. Offer the option to plan a custom trip
-  - a. Allow a traveler to select the starting European city they wish to visit
-  - b. Then allow a traveler to select all other European cities they wish to visit
-  - c. Plan the trip starting with the selected city then visit each of the other European cities in the most efficient order (recursively choose the city closest to the previous city).
-  - d. Display the total distance traveled
-  - e. Allow the traveler to purchase multiple traditional food items when visiting the European cities
+    - a. Allow a traveler to select the starting European city they wish to visit
+    - b. Then allow a traveler to select all other European cities they wish to visit
+    - c. Plan the trip starting with the selected city then visit each of the other European cities in the most efficient order (recursively choose the city closest to the previous city).
+    - d. Display the total distance traveled
+    - e. Allow the traveler to purchase multiple traditional food items when visiting the European cities
 
 6. When taking any trip:
-  - a. A traveler can purchase multiple traditional food items
-  - b. Your team must keep track of the number of traditional food items purchased at each city
-  - c. Display the total amount spent at each European city and a grand total for all cities visited
+    - a. A traveler can purchase multiple traditional food items
+    - b. Your team must keep track of the number of traditional food items purchased at each city
+    - c. Display the total amount spent at each European city and a grand total for all cities visited
 
 7. Maintenance (administrator only - requires a password to gain access)
-  - a. Provide the capability to add new European cities and their corresponding food items by having your program read from the input file given to the class
-  - b. Provide the capability to change the prices of the traditional food items
-  - c. Provide the capability to add new traditional food items
-  - d. Provide the capability to delete traditional food items
+    - a. Provide the capability to add new European cities and their corresponding food items by having your program read from the input file given to the class
+    - b. Provide the capability to change the prices of the traditional food items
+    - c. Provide the capability to add new traditional food items
+    - d. Provide the capability to delete traditional food items
   
 8. Provide the capability to visit the 13 European cities starting at Berlin.
-  - a. Plan the trip starting at Berlin then visit each of the other European cities in the most efficient order (recursively choose the city closest to the previous city)
-  - b. Allow the traveler to purchase multiple traditional food items when visiting the European cities
+    - a. Plan the trip starting at Berlin then visit each of the other European cities in the most efficient order (recursively choose the city closest to the previous city)
+    - b. Allow the traveler to purchase multiple traditional food items when visiting the European cities
   
 ---
   
