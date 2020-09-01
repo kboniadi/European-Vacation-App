@@ -31,7 +31,7 @@ item, or deleting a food item).
 
 - Download Qt from https://www.qt.io/download
 
-> make a build directory and then cd into it
+> while in the project root directory, make a build directory within qt/ and then cd into it
 
 ```shell
 $ mkdir qt/_build
@@ -94,10 +94,10 @@ $ ./app
 ---
   
 ## Team
-- **Kord Boniadi** - something
-- **Weston Mathews** - something else
-- **Noah Vaks** - another thing
-- **Bryson Bisuno** - one more thing
+- **Noah Vaks** - Product Owner - [noahvaks](https://github.com/noahvaks)
+- **Weston Mathews** - Scrum Master - [bigverl](https://github.com/bigverl)
+- **Kord Boniadi** - Developer - [kboniadi](https://github.com/kboniadi)
+- **Bryson Bisuno** - Developer - [brysonvb](https://github.com/brysonvb)
 
 ---
 
@@ -113,4 +113,4 @@ $ ./app
 
 [![License](http://img.shields.io/:license-mit-blue.svg?style=flat-square)](http://badges.mit-license.org)
 - **[MIT license](http://opensource.org/licenses/mit-license.php)**
-- Copyright 2020 © *Team name*
+- Copyright 2020 © ye bois
