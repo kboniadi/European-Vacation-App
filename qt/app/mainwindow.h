@@ -33,9 +33,9 @@ public:
         ADMIN
     };
 
-
 private slots:
-    void on_pushButton_home_cities_clicked();
+    /*----NAVIGATION----*/
+    void on_pushButton_home_cities_clicked(); // home
 
     void on_pushButton_home_food_clicked();
 
@@ -45,9 +45,24 @@ private slots:
 
     void on_pushButton_home_custom_clicked();
 
-    void on_pushButton_cities_back_clicked();
+    void on_pushButton_cities_back_clicked(); // cities
 
-    void on_pushButton_food_back_clicked();
+    void on_pushButton_food_back_clicked(); // food
+
+    void on_pushButton_paris_back_clicked(); //paris
+
+    void on_pushButton_paris_continue_clicked();
+
+    void on_pushButton_custom_back_clicked(); // custom
+
+    void on_pushButton_custom_continue_clicked();
+
+    void on_pushButton_purchase_back_clicked(); // purchase
+
+    void on_pushButton_purchase_continue_clicked();
+
+    void on_pushButton_receipt_back_clicked(); // receipt
+    /*----END NAVIGATION----*/
 
 private:
 	Ui::MainWindow *ui;

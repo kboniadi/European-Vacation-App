@@ -15,6 +15,11 @@ MainWindow::~MainWindow()
 	delete ui;
 }
 
+void clearFields() // method to clear all tables and user input
+{
+
+}
+
 /*----PAGE NAVIGATION----*/
 /*----HOME----*/
 void MainWindow::on_pushButton_home_cities_clicked()
@@ -29,7 +34,7 @@ void MainWindow::on_pushButton_home_food_clicked()
 
 void MainWindow::on_pushButton_home_berlin_clicked()
 {
-    ui->stackedWidget_pages->setCurrentIndex(BERLIN);
+    ui->stackedWidget_pages->setCurrentIndex(PURCHASE);
 }
 
 void MainWindow::on_pushButton_home_paris_clicked()
@@ -50,6 +55,45 @@ void MainWindow::on_pushButton_cities_back_clicked()
 
 /*----FOOD----*/
 void MainWindow::on_pushButton_food_back_clicked()
+{
+    ui->stackedWidget_pages->setCurrentIndex(HOME);
+}
+
+/*----PARIS----*/
+void MainWindow::on_pushButton_paris_back_clicked()
+{
+    ui->stackedWidget_pages->setCurrentIndex(HOME);
+}
+
+void MainWindow::on_pushButton_paris_continue_clicked()
+{
+    ui->stackedWidget_pages->setCurrentIndex(PURCHASE);
+}
+
+/*----CUSTOM-----*/
+void MainWindow::on_pushButton_custom_back_clicked()
+{
+    ui->stackedWidget_pages->setCurrentIndex(HOME);
+}
+
+void MainWindow::on_pushButton_custom_continue_clicked()
+{
+    ui->stackedWidget_pages->setCurrentIndex(PURCHASE);
+}
+
+/*----PURCHASE----*/
+void MainWindow::on_pushButton_purchase_back_clicked()
+{
+    ui->stackedWidget_pages->setCurrentIndex(HOME);
+}
+
+void MainWindow::on_pushButton_purchase_continue_clicked()
+{
+    ui->stackedWidget_pages->setCurrentIndex(RECEIPT);
+}
+
+/*----RECEIPT----*/
+void MainWindow::on_pushButton_receipt_back_clicked()
 {
     ui->stackedWidget_pages->setCurrentIndex(HOME);
 }

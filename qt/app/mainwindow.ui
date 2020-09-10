@@ -24,7 +24,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>2</number>
+     <number>6</number>
     </property>
     <widget class="QWidget" name="page_home">
      <widget class="QWidget" name="gridLayoutWidget">
@@ -36,7 +36,7 @@
         <height>81</height>
        </rect>
       </property>
-      <layout class="QGridLayout" name="gridLayout">
+      <layout class="QGridLayout" name="gridLayout_home_menu">
        <item row="0" column="2">
         <widget class="QPushButton" name="pushButton_home_food">
          <property name="text">
@@ -82,7 +82,7 @@
         <height>231</height>
        </rect>
       </property>
-      <layout class="QGridLayout" name="gridLayout_2">
+      <layout class="QGridLayout" name="gridLayout_home_trips">
        <item row="0" column="0">
         <widget class="QPushButton" name="pushButton_home_berlin">
          <property name="text">
@@ -109,8 +109,8 @@
      <widget class="QLabel" name="label_home_title">
       <property name="geometry">
        <rect>
-        <x>580</x>
-        <y>40</y>
+        <x>20</x>
+        <y>20</y>
         <width>71</width>
         <height>16</height>
        </rect>
@@ -121,7 +121,7 @@
      </widget>
     </widget>
     <widget class="QWidget" name="page_cities">
-     <widget class="QTableView" name="tableView_cities">
+     <widget class="QTableView" name="tableView_cities_view">
       <property name="geometry">
        <rect>
         <x>300</x>
@@ -135,7 +135,7 @@
       <property name="geometry">
        <rect>
         <x>80</x>
-        <y>60</y>
+        <y>80</y>
         <width>80</width>
         <height>25</height>
        </rect>
@@ -147,8 +147,8 @@
      <widget class="QLabel" name="label_cities_title">
       <property name="geometry">
        <rect>
-        <x>560</x>
-        <y>40</y>
+        <x>20</x>
+        <y>20</y>
         <width>91</width>
         <height>16</height>
        </rect>
@@ -159,7 +159,7 @@
      </widget>
     </widget>
     <widget class="QWidget" name="page_food">
-     <widget class="QTableView" name="tableView_food">
+     <widget class="QTableView" name="tableView_food_view">
       <property name="geometry">
        <rect>
         <x>300</x>
@@ -173,7 +173,7 @@
       <property name="geometry">
        <rect>
         <x>80</x>
-        <y>60</y>
+        <y>80</y>
         <width>80</width>
         <height>25</height>
        </rect>
@@ -185,8 +185,8 @@
      <widget class="QLabel" name="label_food_title">
       <property name="geometry">
        <rect>
-        <x>540</x>
-        <y>40</y>
+        <x>20</x>
+        <y>20</y>
         <width>81</width>
         <height>16</height>
        </rect>
@@ -196,11 +196,295 @@
       </property>
      </widget>
     </widget>
-    <widget class="QWidget" name="page_berlin"/>
-    <widget class="QWidget" name="page_paris"/>
-    <widget class="QWidget" name="page_custom"/>
-    <widget class="QWidget" name="page_purchase"/>
-    <widget class="QWidget" name="page_receipt"/>
+    <widget class="QWidget" name="page_paris">
+     <widget class="QSpinBox" name="spinBox_paris_select">
+      <property name="geometry">
+       <rect>
+        <x>100</x>
+        <y>220</y>
+        <width>71</width>
+        <height>25</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_paris_select">
+      <property name="geometry">
+       <rect>
+        <x>100</x>
+        <y>200</y>
+        <width>281</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Select the number of cities you want to travel to</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_paris_title">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>20</y>
+        <width>81</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>PARIS PAGE</string>
+      </property>
+     </widget>
+     <widget class="QTableView" name="tableView_paris_cities">
+      <property name="geometry">
+       <rect>
+        <x>450</x>
+        <y>100</y>
+        <width>600</width>
+        <height>600</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pushButton_paris_back">
+      <property name="geometry">
+       <rect>
+        <x>80</x>
+        <y>80</y>
+        <width>80</width>
+        <height>25</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Back</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pushButton_paris_continue">
+      <property name="geometry">
+       <rect>
+        <x>100</x>
+        <y>300</y>
+        <width>80</width>
+        <height>25</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Continue</string>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="page_custom">
+     <widget class="QPushButton" name="pushButton_custom_back">
+      <property name="geometry">
+       <rect>
+        <x>80</x>
+        <y>80</y>
+        <width>80</width>
+        <height>25</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Back</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_custom_title">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>20</y>
+        <width>91</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>CUSTOM PAGE</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pushButton_custom_continue">
+      <property name="geometry">
+       <rect>
+        <x>100</x>
+        <y>300</y>
+        <width>80</width>
+        <height>25</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Continue</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_custom_selectstart">
+      <property name="geometry">
+       <rect>
+        <x>100</x>
+        <y>200</y>
+        <width>141</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Select your starting city</string>
+      </property>
+     </widget>
+     <widget class="QComboBox" name="comboBox_custom_select">
+      <property name="geometry">
+       <rect>
+        <x>100</x>
+        <y>220</y>
+        <width>75</width>
+        <height>24</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QTableWidget" name="tableWidget_custom_select">
+      <property name="geometry">
+       <rect>
+        <x>450</x>
+        <y>100</y>
+        <width>600</width>
+        <height>600</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_custom_selectcities">
+      <property name="geometry">
+       <rect>
+        <x>450</x>
+        <y>80</y>
+        <width>121</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Select cities to visit</string>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="page_purchase">
+     <widget class="QLabel" name="label_purchase_title">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>20</y>
+        <width>101</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>PURCHASE PAGE</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pushButton_purchase_back">
+      <property name="geometry">
+       <rect>
+        <x>80</x>
+        <y>80</y>
+        <width>80</width>
+        <height>25</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Exit</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pushButton_purchase_continue">
+      <property name="geometry">
+       <rect>
+        <x>560</x>
+        <y>650</y>
+        <width>120</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Confirm Purchase</string>
+      </property>
+     </widget>
+     <widget class="QTableWidget" name="tableWidget_purchase_pos">
+      <property name="geometry">
+       <rect>
+        <x>80</x>
+        <y>120</y>
+        <width>1040</width>
+        <height>500</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_purchase_total">
+      <property name="geometry">
+       <rect>
+        <x>80</x>
+        <y>650</y>
+        <width>111</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Total: </string>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="page_receipt">
+     <widget class="QLabel" name="label_receipt_title">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>20</y>
+        <width>91</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>RECEIPT PAGE</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pushButton_receipt_back">
+      <property name="geometry">
+       <rect>
+        <x>560</x>
+        <y>650</y>
+        <width>120</width>
+        <height>25</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Back to Home</string>
+      </property>
+     </widget>
+     <widget class="QTableView" name="tableView_receipt_view">
+      <property name="geometry">
+       <rect>
+        <x>80</x>
+        <y>120</y>
+        <width>1040</width>
+        <height>500</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_receipt_distance">
+      <property name="geometry">
+       <rect>
+        <x>80</x>
+        <y>650</y>
+        <width>200</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Total Distance: </string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_receipt_spent">
+      <property name="geometry">
+       <rect>
+        <x>80</x>
+        <y>680</y>
+        <width>200</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Total Spent:</string>
+      </property>
+     </widget>
+    </widget>
     <widget class="QWidget" name="page_login"/>
     <widget class="QWidget" name="page_admin"/>
    </widget>
