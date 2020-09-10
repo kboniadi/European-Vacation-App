@@ -74,5 +74,4 @@ moc_*.h
 # --------
 *.dll
 *.exe
-app
-
+build-app-Desktop_Qt_5_15_0_GCC_64bit-Debug/app
