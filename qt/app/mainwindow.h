@@ -15,11 +15,19 @@ public:
 	MainWindow(QWidget *parent = nullptr);
 	~MainWindow();
 
+    /*----FUNCTIONS----*/
+    // insert any functions for mainwindow into this block
+
     void clearFields() // function to reset all tables and user inputs
     {
 
     }
 
+
+
+    /*----END FUNCTIONS----*/
+
+    /*----ENUMS----*/
     enum page // enums for navigation through stackedwidget
     {
         HOME,
@@ -33,6 +41,8 @@ public:
         ADMIN
     };
 
+    /*----END ENUMS----*/
+
 private slots:
     /*----NAVIGATION----*/
     void on_pushButton_home_cities_clicked(); // home
@@ -44,6 +54,10 @@ private slots:
     void on_pushButton_home_paris_clicked();
 
     void on_pushButton_home_custom_clicked();
+
+    void on_pushButton_home_exit_clicked();
+
+    void on_pushButton_home_login_clicked();
 
     void on_pushButton_cities_back_clicked(); // cities
 
@@ -62,6 +76,12 @@ private slots:
     void on_pushButton_purchase_continue_clicked();
 
     void on_pushButton_receipt_back_clicked(); // receipt
+
+    void on_pushButton_login_back_clicked(); // login
+
+    void on_pushButton_login_continue_clicked();
+
+    void on_pushButton_admin_back_clicked(); // admin
     /*----END NAVIGATION----*/
 
 private:
