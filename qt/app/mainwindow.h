@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QStackedWidget>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -30,14 +31,11 @@ public:
     /*----ENUMS----*/
     enum page // enums for navigation through stackedwidget
     {
-        HOME,
-        CITIES,
-        FOOD,
+		HOME,
         PARIS,
         CUSTOM,
         PURCHASE,
         RECEIPT,
-        LOGIN,
         ADMIN
     };
 
@@ -45,10 +43,6 @@ public:
 
 private slots:
     /*----NAVIGATION----*/
-    void on_pushButton_home_cities_clicked(); // home
-
-    void on_pushButton_home_food_clicked();
-
     void on_pushButton_home_berlin_clicked();
 
     void on_pushButton_home_paris_clicked();
@@ -56,12 +50,6 @@ private slots:
     void on_pushButton_home_custom_clicked();
 
     void on_pushButton_home_exit_clicked();
-
-    void on_pushButton_home_login_clicked();
-
-    void on_pushButton_cities_back_clicked(); // cities
-
-    void on_pushButton_food_back_clicked(); // food
 
     void on_pushButton_paris_back_clicked(); //paris
 
@@ -77,12 +65,10 @@ private slots:
 
     void on_pushButton_receipt_back_clicked(); // receipt
 
-    void on_pushButton_login_back_clicked(); // login
-
-    void on_pushButton_login_continue_clicked();
-
     void on_pushButton_admin_back_clicked(); // admin
     /*----END NAVIGATION----*/
+
+	void on_pushButton_login_continue_clicked();
 
 private:
 	Ui::MainWindow *ui;

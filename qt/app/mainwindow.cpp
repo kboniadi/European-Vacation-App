@@ -6,8 +6,7 @@ MainWindow::MainWindow(QWidget *parent)
 	, ui(new Ui::MainWindow)
 {
 	ui->setupUi(this);
-
-    ui->stackedWidget_pages->setCurrentIndex(HOME); // setCurrentIndex cycles through the stackedwidget
+	ui->stackedWidget_pages->setCurrentIndex(HOME); // setCurrentIndex cycles through the stackedwidget
 }
 
 MainWindow::~MainWindow()
@@ -31,16 +30,6 @@ void clearFields() // proposed method to clear all tables and user input.
 
 
 /*----PAGE NAVIGATION----*/
-/*----HOME----*/
-void MainWindow::on_pushButton_home_cities_clicked()
-{
-    ui->stackedWidget_pages->setCurrentIndex(CITIES);
-}
-
-void MainWindow::on_pushButton_home_food_clicked()
-{
-    ui->stackedWidget_pages->setCurrentIndex(FOOD);
-}
 
 void MainWindow::on_pushButton_home_berlin_clicked()
 {
@@ -57,26 +46,9 @@ void MainWindow::on_pushButton_home_custom_clicked()
     ui->stackedWidget_pages->setCurrentIndex(CUSTOM);
 }
 
-void MainWindow::on_pushButton_home_login_clicked()
-{
-    ui->stackedWidget_pages->setCurrentIndex(LOGIN);
-}
-
 void MainWindow::on_pushButton_home_exit_clicked()
 {
     QCoreApplication::quit();
-}
-
-/*----CITIES----*/
-void MainWindow::on_pushButton_cities_back_clicked()
-{
-    ui->stackedWidget_pages->setCurrentIndex(HOME);
-}
-
-/*----FOOD----*/
-void MainWindow::on_pushButton_food_back_clicked()
-{
-    ui->stackedWidget_pages->setCurrentIndex(HOME);
 }
 
 /*----PARIS----*/
@@ -118,15 +90,9 @@ void MainWindow::on_pushButton_receipt_back_clicked()
     ui->stackedWidget_pages->setCurrentIndex(HOME);
 }
 
-/*----LOGIN----*/
-void MainWindow::on_pushButton_login_back_clicked()
-{
-    ui->stackedWidget_pages->setCurrentIndex(HOME);
-}
-
 void MainWindow::on_pushButton_login_continue_clicked()
 {
-    ui->stackedWidget_pages->setCurrentIndex(ADMIN);
+	ui->stackedWidget_pages->setCurrentIndex(ADMIN);
 }
 
 /*----ADMIN----*/
@@ -136,4 +102,6 @@ void MainWindow::on_pushButton_admin_back_clicked()
     ui->stackedWidget_pages->setCurrentIndex(HOME);
 }
 /*----END NAVIGATION----*/
+
+
 

@@ -19,197 +19,152 @@
      <rect>
       <x>0</x>
       <y>0</y>
-      <width>1200</width>
-      <height>800</height>
+      <width>1201</width>
+      <height>761</height>
      </rect>
     </property>
     <property name="currentIndex">
-     <number>8</number>
+     <number>2</number>
     </property>
     <widget class="QWidget" name="page_home">
-     <widget class="QWidget" name="gridLayoutWidget">
-      <property name="geometry">
-       <rect>
-        <x>0</x>
-        <y>40</y>
-        <width>1201</width>
-        <height>81</height>
-       </rect>
-      </property>
-      <layout class="QGridLayout" name="gridLayout_home_menu">
-       <property name="leftMargin">
-        <number>200</number>
-       </property>
-       <property name="rightMargin">
-        <number>200</number>
-       </property>
-       <property name="horizontalSpacing">
-        <number>40</number>
-       </property>
-       <item row="0" column="2">
-        <widget class="QPushButton" name="pushButton_home_food">
-         <property name="text">
-          <string>Food Options</string>
-         </property>
+     <layout class="QHBoxLayout" name="horizontalLayout_5">
+      <item>
+       <widget class="QTabWidget" name="tabWidget">
+        <property name="currentIndex">
+         <number>0</number>
+        </property>
+        <widget class="QWidget" name="Home">
+         <attribute name="title">
+          <string>Home</string>
+         </attribute>
+         <widget class="QWidget" name="gridLayoutWidget_2">
+          <property name="geometry">
+           <rect>
+            <x>-30</x>
+            <y>190</y>
+            <width>1201</width>
+            <height>331</height>
+           </rect>
+          </property>
+          <layout class="QGridLayout" name="gridLayout_home_trips">
+           <property name="leftMargin">
+            <number>500</number>
+           </property>
+           <property name="rightMargin">
+            <number>500</number>
+           </property>
+           <item row="2" column="0">
+            <widget class="QPushButton" name="pushButton_home_custom">
+             <property name="text">
+              <string>Custom Trip</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="0">
+            <widget class="QPushButton" name="pushButton_home_paris">
+             <property name="text">
+              <string>Paris Trip</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="0">
+            <widget class="QPushButton" name="pushButton_home_berlin">
+             <property name="text">
+              <string>Berlin Trip</string>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="0">
+            <widget class="QPushButton" name="pushButton_home_exit">
+             <property name="text">
+              <string>Exit</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
         </widget>
-       </item>
-       <item row="0" column="1">
-        <widget class="QPushButton" name="pushButton_home_cities">
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
-         <property name="text">
+        <widget class="QWidget" name="Available_Cities">
+         <attribute name="title">
           <string>Available Cities</string>
-         </property>
+         </attribute>
+         <layout class="QVBoxLayout" name="verticalLayout_3">
+          <item>
+           <widget class="QTableView" name="tableView"/>
+          </item>
+         </layout>
         </widget>
-       </item>
-       <item row="0" column="3">
-        <widget class="QPushButton" name="pushButton_home_login">
-         <property name="text">
+        <widget class="QWidget" name="Food_Options">
+         <attribute name="title">
+          <string>Food Options</string>
+         </attribute>
+         <layout class="QVBoxLayout" name="verticalLayout_2">
+          <item>
+           <widget class="QTableView" name="tableView_2"/>
+          </item>
+         </layout>
+        </widget>
+        <widget class="QWidget" name="Admin_Login">
+         <attribute name="title">
           <string>Admin Login</string>
-         </property>
+         </attribute>
+         <widget class="QWidget" name="layoutWidget">
+          <property name="geometry">
+           <rect>
+            <x>430</x>
+            <y>290</y>
+            <width>241</width>
+            <height>71</height>
+           </rect>
+          </property>
+          <layout class="QVBoxLayout" name="verticalLayout_4">
+           <item>
+            <layout class="QHBoxLayout" name="horizontalLayout_3">
+             <item>
+              <widget class="QLabel" name="label_login_username_2">
+               <property name="text">
+                <string>Username:</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLineEdit" name="lineEdit_login_username_2"/>
+             </item>
+            </layout>
+           </item>
+           <item>
+            <layout class="QHBoxLayout" name="horizontalLayout_4">
+             <item>
+              <widget class="QLabel" name="label_login_password_2">
+               <property name="text">
+                <string>Password:</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLineEdit" name="lineEdit_username_password_2"/>
+             </item>
+            </layout>
+           </item>
+          </layout>
+         </widget>
+         <widget class="QPushButton" name="pushButton_login_continue">
+          <property name="geometry">
+           <rect>
+            <x>590</x>
+            <y>370</y>
+            <width>80</width>
+            <height>25</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string>Login</string>
+          </property>
+         </widget>
         </widget>
-       </item>
-       <item row="0" column="0">
-        <widget class="QPushButton" name="pushButton_home_exit">
-         <property name="text">
-          <string>Exit</string>
-         </property>
-        </widget>
-       </item>
-      </layout>
-     </widget>
-     <widget class="QWidget" name="gridLayoutWidget_2">
-      <property name="geometry">
-       <rect>
-        <x>0</x>
-        <y>300</y>
-        <width>1201</width>
-        <height>231</height>
-       </rect>
-      </property>
-      <layout class="QGridLayout" name="gridLayout_home_trips">
-       <property name="leftMargin">
-        <number>500</number>
-       </property>
-       <property name="rightMargin">
-        <number>500</number>
-       </property>
-       <item row="0" column="0">
-        <widget class="QPushButton" name="pushButton_home_berlin">
-         <property name="text">
-          <string>Berlin Trip</string>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="0">
-        <widget class="QPushButton" name="pushButton_home_paris">
-         <property name="text">
-          <string>Paris Trip</string>
-         </property>
-        </widget>
-       </item>
-       <item row="2" column="0">
-        <widget class="QPushButton" name="pushButton_home_custom">
-         <property name="text">
-          <string>Custom Trip</string>
-         </property>
-        </widget>
-       </item>
-      </layout>
-     </widget>
-     <widget class="QLabel" name="label_home_title">
-      <property name="geometry">
-       <rect>
-        <x>20</x>
-        <y>20</y>
-        <width>71</width>
-        <height>16</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>HOME PAGE</string>
-      </property>
-     </widget>
-    </widget>
-    <widget class="QWidget" name="page_cities">
-     <widget class="QTableView" name="tableView_cities_view">
-      <property name="geometry">
-       <rect>
-        <x>300</x>
-        <y>100</y>
-        <width>600</width>
-        <height>600</height>
-       </rect>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="pushButton_cities_back">
-      <property name="geometry">
-       <rect>
-        <x>80</x>
-        <y>80</y>
-        <width>80</width>
-        <height>25</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Back</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="label_cities_title">
-      <property name="geometry">
-       <rect>
-        <x>20</x>
-        <y>20</y>
-        <width>91</width>
-        <height>16</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>CITIES PAGE</string>
-      </property>
-     </widget>
-    </widget>
-    <widget class="QWidget" name="page_food">
-     <widget class="QTableView" name="tableView_food_view">
-      <property name="geometry">
-       <rect>
-        <x>300</x>
-        <y>100</y>
-        <width>600</width>
-        <height>600</height>
-       </rect>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="pushButton_food_back">
-      <property name="geometry">
-       <rect>
-        <x>80</x>
-        <y>80</y>
-        <width>80</width>
-        <height>25</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Back</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="label_food_title">
-      <property name="geometry">
-       <rect>
-        <x>20</x>
-        <y>20</y>
-        <width>81</width>
-        <height>16</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>FOOD PAGE</string>
-      </property>
-     </widget>
+       </widget>
+      </item>
+     </layout>
     </widget>
     <widget class="QWidget" name="page_paris">
      <widget class="QSpinBox" name="spinBox_paris_select">
@@ -227,7 +182,7 @@
        <rect>
         <x>100</x>
         <y>200</y>
-        <width>281</width>
+        <width>341</width>
         <height>16</height>
        </rect>
       </property>
@@ -304,7 +259,7 @@
        <rect>
         <x>20</x>
         <y>20</y>
-        <width>91</width>
+        <width>111</width>
         <height>16</height>
        </rect>
       </property>
@@ -330,7 +285,7 @@
        <rect>
         <x>100</x>
         <y>200</y>
-        <width>141</width>
+        <width>171</width>
         <height>16</height>
        </rect>
       </property>
@@ -363,7 +318,7 @@
        <rect>
         <x>450</x>
         <y>80</y>
-        <width>121</width>
+        <width>141</width>
         <height>16</height>
        </rect>
       </property>
@@ -378,7 +333,7 @@
        <rect>
         <x>20</x>
         <y>20</y>
-        <width>101</width>
+        <width>131</width>
         <height>16</height>
        </rect>
       </property>
@@ -404,7 +359,7 @@
        <rect>
         <x>560</x>
         <y>650</y>
-        <width>120</width>
+        <width>131</width>
         <height>31</height>
        </rect>
       </property>
@@ -442,7 +397,7 @@
        <rect>
         <x>20</x>
         <y>20</y>
-        <width>91</width>
+        <width>111</width>
         <height>16</height>
        </rect>
       </property>
@@ -500,113 +455,13 @@
       </property>
      </widget>
     </widget>
-    <widget class="QWidget" name="page_login">
-     <widget class="QPushButton" name="pushButton_login_continue">
-      <property name="geometry">
-       <rect>
-        <x>560</x>
-        <y>410</y>
-        <width>80</width>
-        <height>25</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Login</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="label_login_username">
-      <property name="geometry">
-       <rect>
-        <x>420</x>
-        <y>300</y>
-        <width>60</width>
-        <height>16</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Username:</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="label_login_password">
-      <property name="geometry">
-       <rect>
-        <x>420</x>
-        <y>350</y>
-        <width>60</width>
-        <height>16</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Password:</string>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="pushButton_login_back">
-      <property name="geometry">
-       <rect>
-        <x>80</x>
-        <y>80</y>
-        <width>80</width>
-        <height>25</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Home</string>
-      </property>
-     </widget>
-     <widget class="QLineEdit" name="lineEdit_username_password">
-      <property name="geometry">
-       <rect>
-        <x>500</x>
-        <y>350</y>
-        <width>200</width>
-        <height>24</height>
-       </rect>
-      </property>
-     </widget>
-     <widget class="QLineEdit" name="lineEdit_login_username">
-      <property name="geometry">
-       <rect>
-        <x>500</x>
-        <y>300</y>
-        <width>200</width>
-        <height>24</height>
-       </rect>
-      </property>
-     </widget>
-     <widget class="QLabel" name="label_login_error">
-      <property name="geometry">
-       <rect>
-        <x>500</x>
-        <y>260</y>
-        <width>191</width>
-        <height>16</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>username/password incorrect :)</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="label_login_title">
-      <property name="geometry">
-       <rect>
-        <x>20</x>
-        <y>20</y>
-        <width>71</width>
-        <height>16</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>LOGIN PAGE</string>
-      </property>
-     </widget>
-    </widget>
     <widget class="QWidget" name="page_admin">
      <widget class="QLabel" name="label_admin_title">
       <property name="geometry">
        <rect>
         <x>20</x>
         <y>20</y>
-        <width>81</width>
+        <width>101</width>
         <height>16</height>
        </rect>
       </property>
@@ -633,7 +488,7 @@
         <x>80</x>
         <y>270</y>
         <width>291</width>
-        <height>86</height>
+        <height>89</height>
        </rect>
       </property>
       <layout class="QGridLayout" name="gridLayout">
@@ -684,7 +539,7 @@
        <rect>
         <x>100</x>
         <y>170</y>
-        <width>254</width>
+        <width>266</width>
         <height>80</height>
        </rect>
       </property>
@@ -728,17 +583,6 @@
     </widget>
    </widget>
   </widget>
-  <widget class="QMenuBar" name="menubar">
-   <property name="geometry">
-    <rect>
-     <x>0</x>
-     <y>0</y>
-     <width>1200</width>
-     <height>25</height>
-    </rect>
-   </property>
-  </widget>
-  <widget class="QStatusBar" name="statusbar"/>
  </widget>
  <resources/>
  <connections/>
