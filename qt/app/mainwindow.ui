@@ -24,16 +24,16 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>2</number>
+     <number>0</number>
     </property>
     <widget class="QWidget" name="page_home">
      <layout class="QHBoxLayout" name="horizontalLayout_5">
       <item>
-       <widget class="QTabWidget" name="tabWidget">
+       <widget class="QTabWidget" name="tabWidget_pages">
         <property name="currentIndex">
-         <number>0</number>
+         <number>3</number>
         </property>
-        <widget class="QWidget" name="Home">
+        <widget class="QWidget" name="tab_home">
          <attribute name="title">
           <string>Home</string>
          </attribute>
@@ -84,27 +84,27 @@
           </layout>
          </widget>
         </widget>
-        <widget class="QWidget" name="Available_Cities">
+        <widget class="QWidget" name="tab_cities">
          <attribute name="title">
           <string>Available Cities</string>
          </attribute>
          <layout class="QVBoxLayout" name="verticalLayout_3">
           <item>
-           <widget class="QTableView" name="tableView"/>
+           <widget class="QTableView" name="tableView_cities_view"/>
           </item>
          </layout>
         </widget>
-        <widget class="QWidget" name="Food_Options">
+        <widget class="QWidget" name="tab_food">
          <attribute name="title">
           <string>Food Options</string>
          </attribute>
          <layout class="QVBoxLayout" name="verticalLayout_2">
           <item>
-           <widget class="QTableView" name="tableView_2"/>
+           <widget class="QTableView" name="tableView_food_view"/>
           </item>
          </layout>
         </widget>
-        <widget class="QWidget" name="Admin_Login">
+        <widget class="QWidget" name="tab_login">
          <attribute name="title">
           <string>Admin Login</string>
          </attribute>
@@ -117,32 +117,32 @@
             <height>71</height>
            </rect>
           </property>
-          <layout class="QVBoxLayout" name="verticalLayout_4">
+          <layout class="QVBoxLayout" name="verticalLayout_login">
            <item>
-            <layout class="QHBoxLayout" name="horizontalLayout_3">
+            <layout class="QHBoxLayout" name="horizontalLayout_login_username">
              <item>
-              <widget class="QLabel" name="label_login_username_2">
+              <widget class="QLabel" name="label_login_username">
                <property name="text">
                 <string>Username:</string>
                </property>
               </widget>
              </item>
              <item>
-              <widget class="QLineEdit" name="lineEdit_login_username_2"/>
+              <widget class="QLineEdit" name="lineEdit_login_username"/>
              </item>
             </layout>
            </item>
            <item>
-            <layout class="QHBoxLayout" name="horizontalLayout_4">
+            <layout class="QHBoxLayout" name="horizontalLayout_login_password">
              <item>
-              <widget class="QLabel" name="label_login_password_2">
+              <widget class="QLabel" name="label_login_password">
                <property name="text">
                 <string>Password:</string>
                </property>
               </widget>
              </item>
              <item>
-              <widget class="QLineEdit" name="lineEdit_username_password_2"/>
+              <widget class="QLineEdit" name="lineEdit_username_password"/>
              </item>
             </layout>
            </item>
@@ -491,7 +491,7 @@
         <height>89</height>
        </rect>
       </property>
-      <layout class="QGridLayout" name="gridLayout">
+      <layout class="QGridLayout" name="gridLayout_admin_labels">
        <item row="2" column="0">
         <widget class="QLabel" name="label_admin_city">
          <property name="text">
@@ -524,7 +524,7 @@
        </item>
       </layout>
      </widget>
-     <widget class="QTableWidget" name="tableWidget">
+     <widget class="QTableWidget" name="tableWidget_admin_edit">
       <property name="geometry">
        <rect>
         <x>450</x>
@@ -543,7 +543,7 @@
         <height>80</height>
        </rect>
       </property>
-      <layout class="QGridLayout" name="gridLayout_2">
+      <layout class="QGridLayout" name="gridLayout_admin_edit">
        <item row="0" column="0">
         <widget class="QPushButton" name="pushButton_admin_add">
          <property name="text">
@@ -567,7 +567,7 @@
        </item>
       </layout>
      </widget>
-     <widget class="QPushButton" name="pushButton">
+     <widget class="QPushButton" name="pushButton_admin_import">
       <property name="geometry">
        <rect>
         <x>100</x>

@@ -7,6 +7,7 @@ MainWindow::MainWindow(QWidget *parent)
 {
 	ui->setupUi(this);
 	ui->stackedWidget_pages->setCurrentIndex(HOME); // setCurrentIndex cycles through the stackedwidget
+    ui->tabWidget_pages->setCurrentIndex(HOME); // setCurrentIndex cycles through the tabWidget
 }
 
 MainWindow::~MainWindow()
@@ -30,7 +31,7 @@ void clearFields() // proposed method to clear all tables and user input.
 
 
 /*----PAGE NAVIGATION----*/
-
+/*----HOME----*/
 void MainWindow::on_pushButton_home_berlin_clicked()
 {
     ui->stackedWidget_pages->setCurrentIndex(PURCHASE);
@@ -96,10 +97,10 @@ void MainWindow::on_pushButton_login_continue_clicked()
 }
 
 /*----ADMIN----*/
-
 void MainWindow::on_pushButton_admin_back_clicked()
 {
     ui->stackedWidget_pages->setCurrentIndex(HOME);
+    ui->tabWidget_pages->setCurrentIndex(HOME);
 }
 /*----END NAVIGATION----*/
 

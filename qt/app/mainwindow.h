@@ -43,7 +43,7 @@ public:
 
 private slots:
     /*----NAVIGATION----*/
-    void on_pushButton_home_berlin_clicked();
+    void on_pushButton_home_berlin_clicked(); // home
 
     void on_pushButton_home_paris_clicked();
 
@@ -51,7 +51,7 @@ private slots:
 
     void on_pushButton_home_exit_clicked();
 
-    void on_pushButton_paris_back_clicked(); //paris
+    void on_pushButton_paris_back_clicked(); // paris
 
     void on_pushButton_paris_continue_clicked();
 
@@ -65,10 +65,10 @@ private slots:
 
     void on_pushButton_receipt_back_clicked(); // receipt
 
+    void on_pushButton_login_continue_clicked(); // login
+
     void on_pushButton_admin_back_clicked(); // admin
     /*----END NAVIGATION----*/
-
-	void on_pushButton_login_continue_clicked();
 
 private:
 	Ui::MainWindow *ui;
