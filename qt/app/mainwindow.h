@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include <QStackedWidget>
+#include <dbmanager.h>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
