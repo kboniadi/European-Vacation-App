@@ -1,7 +1,7 @@
 #include <QApplication>
 #include "mainwindow.h"
 
-#define Debug 0
+#define Debug 1
 
 #if Debug == 0
 
@@ -15,7 +15,12 @@ int main(int argc, char *argv[])
 
 #else
 
-int main(int argc, char *argv[]) {
+#include <QDebug>
+#define print qDebug()
+
+int main() {
+	DBManager::instance();
+	DBManager::instance()->addFood("Amsterdam", "pizza", "1000.20");
 	return 0;
 }
 
