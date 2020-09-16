@@ -19,11 +19,13 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
     dbmanager.cpp \
     main.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    tablemanager.cpp
 
 HEADERS += \
     dbmanager.h \
-    mainwindow.h
+    mainwindow.h \
+    tablemanager.h
 
 FORMS += \
     mainwindow.ui

@@ -1,11 +1,98 @@
 #ifndef TABLEMANAGER_H
 #define TABLEMANAGER_H
-
+#include <QDebug>
+#include <QSpinBox>
 
 class TableManager
 {
 public:
     static TableManager* instance();
+    TableManager(const TableManager&) = delete;
+    TableManager& operator=(const TableManager&) = delete;
+
+    // ********************************** Cities Table **********************************
+
+        // Number of columns in cities table
+    const int CITIES_TABLE_COL_COUNT = 2;
+        // Positions of cities table columns by name
+    enum CitiesTableColPositions { C_CITYNAME, C_DISTANCE };
+        // Names of cities table column headers
+    QStringList citiesTableColNames	= { "City Name", "Distance from Berlin" };
+
+    // ********************************** Food Table **********************************
+        // Number of columns in food table
+    const int FOOD_TABLE_COL_COUNT = 2;
+        // Positions of food table positions name
+    enum FoodTableColPositions { F_CITYNAME, F_FOODNAME, F_PRICE };
+        // Names of food table column headers
+    QStringList foodTableColNames = { "City Name", "Food Available", "Price" };
+
+    // ********************************** Trip Planning Table **********************************
+
+        // Number of columns in trip planning table. Used for all trips
+    const int TRIP_TABLE_COL_COUNT = 2;
+        // Positions of trip planning table positions name
+    enum TripTableColPositions { T_CITYNAME, T_DISTANCE };
+        // Names of trip planning table column headers
+    QStringList tripTableColNames = { "City Name", "Distance" };
+        // List of cities for custom trip. Needs to be set on program start and each time cities are imported
+    QStringList CustomTripComboBoxLabels;
+        // Minimum value for paris trip spinbox.
+    const int PARIS_TRIP_SPINBOX_MIN = 1;
+        // Maximum value for paris trip spinbox. Needs to be set on program start and each time cities are imported
+    int PARIS_TRIP_SPINBOX_MAX;
+
+    // ********************************** Food Purchasing Table **********************************
+        // Number of columns in food-purchasing table
+    const int PURCHASE_TABLE_COL_COUNT = 0;
+        // Positions of food purchase table columns by name
+    enum PurchaseTableColPositions { P_CITYNAME, P_FOOD, P_PRICE, P_QTY };
+        // Names of purchase table column headers
+    QStringList purchaseTableColNames = {"City Name", "Food Available", "Price", "Quantity Desired" };
+        // Minimum value for food purchase spinbox
+    const int PURCHASE_SPINBOX_MIN = 0;
+        // Maximum value for food purchase spinbox
+    const int PURCHASE_SPINBOX_MAX = 20;
+        // Vector of pointers to spinbox pointers. Needed for dynamically creating spinboxes on purchase page
+    QVector<QSpinBox*>* PurchaseTableSpinBoxes = nullptr;
+
+    // ********************************** Receipt Table **********************************
+
+        // Number of columns in receipt table
+    const int RECEIPT_TABLE_COL_COUNT = 0;
+        // Positions of receipt table columns by name
+    enum ReceiptTableColPositions { R_CITYNAME, R_FOOD, R_PRICE, R_QTY, R_TOTAL };
+        // Names of receipt table column headers
+    QStringList receiptTableColNames = {"City Name", "Food Available", "Price", "Quantity Purchased", "Total Charges" };
+
+    // ********************************** Admin Table **********************************
+
+        // Number of columns in table
+    const int ADMIN_TABLE_COL_COUNT = 0;
+        // positions of admin table columns by name
+    enum AdminTableColPositions	{ A_CITYNAME, A_FOOD, A_PRICE };
+        // Names of admin table column headers
+    QStringList adminTableColNames= {"City Name", "Food Available", "Price" };
+
+
+//    InitializeCitiesTable		QTableWidget* table, int cols, QStringList headers	void	intializes cities table to blank
+//    InitializeFoodTable		QTableWidget* table, int cols, QStringList headers	void	intializes foods table to blank
+//    InitializeTripTable		QTableWidget* table, int cols, QStringList headers	void	intializes trip planning table to blank. used for multiple
+//    InitializePurchaseTable		QTableWidget* table, int cols, QStringList headers	void	intializes purchase table to blank
+//    InitializeReceiptTable		QTableWidget* table, int cols, QStringList headers	void	intializes receipt table to blank
+//    InitializeAdminTable		QTableWidget* table, int cols, QStringList headers	void	intializes admin table to blank
+
+//    PopulateCitiesTable		QTableWidget* table, vector<City>* cites	void	populates cities table with relevant information
+//    PopulateFoodTable		QTableWidget* table, vector<City>* cites	void	populates food table with relevant information
+//    PopulateTripTable		QTableWidget* table, vector<City>* cites	void	populates trip planning table with relevant information
+//    PopulatePurchaseTable		QTableWidget* table, vector<City>* cites	void	populates purchase table with relevant information
+//    PopulateReceiptTable		QTableWidget* table, vector<City>* cites	void	populates receipt table with relevant information
+//    PopulateAdminTable		QTableWidget* table, vector<City>* cites	void	populates admin table with relevant information
+
+//    InsertSpinBoxCol		QTableWidget* table, int min, int max, int col	void	inserts a dynamic spinbox in table at specific column
+
+//    CopyXTableToOther		QTableWidget* origin, QTableWidget* destination	void	copy/paste contents of one table to another
+
 
 private:
     TableManager();
