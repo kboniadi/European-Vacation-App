@@ -2,7 +2,8 @@
 
 TableManager::TableManager()
 {
-
+    int PARIS_TRIP_SPINBOX_MAX = 0;
+    PurchaseTableSpinBoxes = nullptr;
 }
 
 TableManager* TableManager::instance()

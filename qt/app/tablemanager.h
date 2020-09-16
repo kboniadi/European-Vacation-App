@@ -44,7 +44,7 @@ public:
         // Minimum value for paris trip spinbox.
     const int PARIS_TRIP_SPINBOX_MIN = 1;
         // Maximum value for paris trip spinbox. Needs to be set on program start and each time cities are imported
-    int PARIS_TRIP_SPINBOX_MAX;
+    int parisTripSpinBoxMax;
 
     // **************** Food Purchasing Table Attributes ***********************
 
@@ -59,7 +59,7 @@ public:
         // Maximum value for food purchase spinbox
     const int PURCHASE_SPINBOX_MAX = 20;
         // Vector of pointers to spinbox pointers. Needed for dynamically creating spinboxes on purchase page
-    QVector<QSpinBox*>* PurchaseTableSpinBoxes = nullptr;
+    QVector<QSpinBox*>* PurchaseTableSpinBoxes;
 
     // ************************ Receipt Table Attributes ***********************
 
