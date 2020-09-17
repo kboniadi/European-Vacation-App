@@ -30,4 +30,4 @@ jobs:
     
     # Navigate to project files and compile program
     - name: Run make
-      run: cd Dnd-Combat-Tracker && make
+      run: cd qt && cd app && make
