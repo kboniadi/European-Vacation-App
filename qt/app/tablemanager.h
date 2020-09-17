@@ -25,7 +25,7 @@ public:
 
     // ************************** Food Table Attributes ************************
         // Number of columns in food table
-    const int FOOD_TABLE_COL_COUNT = 2;
+    const int FOOD_TABLE_COL_COUNT = 3;
         // Positions of food table positions name
     enum FoodTableColPositions { F_CITYNAME, F_FOODNAME, F_PRICE };
         // Names of food table column headers
@@ -49,7 +49,7 @@ public:
     // **************** Food Purchasing Table Attributes ***********************
 
         // Number of columns in food-purchasing table
-    const int PURCHASE_TABLE_COL_COUNT = 0;
+    const int PURCHASE_TABLE_COL_COUNT = 4;
         // Positions of food purchase table columns by name
     enum PurchaseTableColPositions { P_CITYNAME, P_FOOD, P_PRICE, P_QTY };
         // Names of purchase table column headers
@@ -64,7 +64,7 @@ public:
     // ************************ Receipt Table Attributes ***********************
 
         // Number of columns in receipt table
-    const int RECEIPT_TABLE_COL_COUNT = 0;
+    const int RECEIPT_TABLE_COL_COUNT = 5;
         // Positions of receipt table columns by name
     enum ReceiptTableColPositions { R_CITYNAME, R_FOOD, R_PRICE, R_QTY, R_TOTAL };
         // Names of receipt table column headers
@@ -73,7 +73,7 @@ public:
     // ************************* Admin Table Attributes ************************
 
         // Number of columns in table
-    const int ADMIN_TABLE_COL_COUNT = 0;
+    const int ADMIN_TABLE_COL_COUNT = 3;
         // positions of admin table columns by name
     enum AdminTableColPositions	{ A_CITYNAME, A_FOOD, A_PRICE };
         // Names of admin table column headers
@@ -126,30 +126,6 @@ public:
 
         // TODO copy/paste contents of one table to another
     // void CopyXTableToOther(QTableWidget* origin, QTableWidget* destination);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    /*
-     *
-     */
-    //void CopyXTableToOther		QTableWidget* origin, QTableWidget* destination	void	copy/paste contents of one table to another
-
 
 private:
     TableManager();
