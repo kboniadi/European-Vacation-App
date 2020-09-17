@@ -8,9 +8,11 @@ TableManager::TableManager()
 
 TableManager* TableManager::instance()
 {
-    static TableManager instance;
-    return &instance;
+	TableManager instance;
+	return &instance;
 }
+
+TableManager::~TableManager() {}
 
 // *********************** Cities Table Methods ****************************
 

@@ -11,7 +11,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->tabWidget_pages->setCurrentIndex(HOME); // setCurrentIndex cycles through the tabWidget
     
 	DBManager::instance();
-    TableManager::instance();
+    TableManager::instance();	
 }
 
 MainWindow::~MainWindow()
