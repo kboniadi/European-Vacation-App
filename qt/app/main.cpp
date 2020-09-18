@@ -19,8 +19,7 @@ int main(int argc, char *argv[])
 #define print qDebug()
 
 int main() {
-	DBManager::instance();
-	DBManager::instance()->addFood("Amsterdam", "pizza", "1000.20");
+
 	return 0;
 }
 
