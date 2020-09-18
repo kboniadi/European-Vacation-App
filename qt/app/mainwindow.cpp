@@ -38,6 +38,7 @@ void clearFields() // proposed method to clear all tables and user input.
 void MainWindow::on_pushButton_home_berlin_clicked()
 {
     ui->stackedWidget_pages->setCurrentIndex(PURCHASE);
+	DBManager::instance()->ImportCities();
 }
 
 void MainWindow::on_pushButton_home_paris_clicked()

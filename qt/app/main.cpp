@@ -1,7 +1,7 @@
 #include <QApplication>
 #include "mainwindow.h"
 
-#define Debug 1
+#define Debug 0
 
 #if Debug == 0
 
