@@ -15,7 +15,11 @@ int main(int argc, char *argv[])
 
 #else
 
-int main(int argc, char *argv[]) {
+#include <QDebug>
+#define print qDebug()
+
+int main() {
+
 	return 0;
 }
 

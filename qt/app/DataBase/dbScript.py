@@ -88,7 +88,7 @@ if __name__ == "__main__":
     # DropTable('New_Cities')
 
     ImportCityTemplate('cities.csv')
-    ImportFile('Dist_&_Foods-Distances.csv', 'Distance', 'end', 'distance')
+    ImportFile('Dist_&_Foods-Distances.csv', 'Distance', 'endCity', 'distance')
     ImportFile('Dist_&_Foods-Foods.csv', 'Food', 'food', 'price')
     # ImportFile('Dist_&_Foods-New_Cities.csv', 'New_Cities', 'start', 'end', 'distance')
     # getData()
