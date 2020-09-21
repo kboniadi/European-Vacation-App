@@ -8,9 +8,10 @@ MainWindow::MainWindow(QWidget *parent)
 	ui->setupUi(this);
 
 	ui->stackedWidget_pages->setCurrentIndex(HOME); // setCurrentIndex cycles through the stackedwidget
-  ui->tabWidget_pages->setCurrentIndex(HOME); // setCurrentIndex cycles through the tabWidget
+    ui->tabWidget_pages->setCurrentIndex(HOME); // setCurrentIndex cycles through the tabWidget
     
 	DBManager::instance();
+    TableManager::instance();	
 }
 
 MainWindow::~MainWindow()
