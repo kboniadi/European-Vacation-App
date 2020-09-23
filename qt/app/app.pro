@@ -21,12 +21,14 @@ SOURCES += \
     dbmanager.cpp \
     main.cpp \
     mainwindow.cpp \
+    sortalgorithm.cpp \
     tablemanager.cpp
 
 HEADERS += \
     City.h \
     dbmanager.h \
     mainwindow.h \
+    sortalgorithm.h \
     tablemanager.h
 
 FORMS += \

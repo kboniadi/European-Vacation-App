@@ -27,7 +27,7 @@ DBManager* DBManager::instance()
 	return &instance;
 }
 
-void DBManager::addFood(const QString &city, const QString &food,
+void DBManager::AddFood(const QString &city, const QString &food,
 						const QString &price)
 {
 	query.prepare("SELECT id FROM Parent WHERE city = :city");
@@ -58,7 +58,7 @@ void DBManager::ImportCities()
 													QDir::homePath(), filter);
 	QFile file(fileName);
 
-	getCities(cities);
+	GetCities(cities);
 
 	if (!file.open(QFile::ReadOnly)) {
 			qDebug() << "error openning the file";
@@ -79,7 +79,7 @@ void DBManager::ImportCities()
 					return;
 				}
 				query.finish();
-				getCities(cities);
+				GetCities(cities);
 			}
 
 			query.prepare("SELECT id FROM Parent WHERE city = :city");
@@ -103,7 +103,7 @@ void DBManager::ImportCities()
 	}
 }
 
-void DBManager::updateFoodPrice(const QString &foodName, const QString &price)
+void DBManager::UpdateFoodPrice(const QString &foodName, const QString &price)
 {
 	query.prepare("UPDATE Food SET price = :price WHERE Food.food = :foodName");
 	query.bindValue(":price", price);
@@ -113,7 +113,7 @@ void DBManager::updateFoodPrice(const QString &foodName, const QString &price)
 	query.finish();
 }
 
-void DBManager::deleteFood(const QString &foodName)
+void DBManager::DeleteFood(const QString &foodName)
 {
 	query.prepare("DELETE FROM Food WHERE Food.food = :foodName");
 	query.bindValue(":foodName", foodName);
@@ -123,7 +123,7 @@ void DBManager::deleteFood(const QString &foodName)
 
 }
 
-void DBManager::cityToFoodNames(const QString &city, QVector<QString> &foods)
+void DBManager::CityToFoodNames(const QString &city, QVector<QString> &foods)
 {
 	query.prepare("SELECT food FROM Food, Parent WHERE Parent.city = :city AND "
 				  "Parent.id = Food.id");
@@ -137,7 +137,7 @@ void DBManager::cityToFoodNames(const QString &city, QVector<QString> &foods)
 	}
 }
 
-QString DBManager::foodNameToPrice(const QString &food)
+QString DBManager::FoodNameToPrice(const QString &food)
 {
 	query.prepare("SELECT price FROM Food WHERE Food.food = :food");
 	query.bindValue(":food", food);
@@ -150,7 +150,7 @@ QString DBManager::foodNameToPrice(const QString &food)
 	return QString("Error");
 }
 
-void DBManager::getCities(QStringList &cities)
+void DBManager::GetCities(QStringList &cities)
 {
 	query.prepare("SELECT city FROM Parent");
 	if (query.exec()) {
@@ -162,7 +162,7 @@ void DBManager::getCities(QStringList &cities)
 	}
 }
 
-int DBManager::getDistances(const QString &city1, const QString &city2)
+int DBManager::GetDistances(const QString &city1, const QString &city2)
 {
 	query.prepare("SELECT distance FROM Distance, Parent WHERE "
 				  "Parent.city = :city1 AND Parent.id = Distance.id AND "
