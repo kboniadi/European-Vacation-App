@@ -34,6 +34,7 @@ public:
     enum page // enums for navigation through stackedwidget
     {
 		HOME,
+        BERLIN,
         PARIS,
         CUSTOM,
         PURCHASE,
