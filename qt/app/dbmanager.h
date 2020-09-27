@@ -19,7 +19,7 @@ public:
 	DBManager& operator=(const DBManager&) = delete;
 	void AddFood(const QString &city, const QString &food,
 				 const QString &price);
-	void ImportCities(QWidget *parent);
+	void ImportCities(QWidget *parent = nullptr);
 	void UpdateFoodPrice(const QString &foodName, const QString &price);
 	void DeleteFood(const QString &foodName);
 //	void CreateTrip(const QVector<QString>&);
