@@ -38,7 +38,7 @@ void clearFields() // proposed method to clear all tables and user input.
 /*----HOME----*/
 void MainWindow::on_pushButton_home_berlin_clicked()
 {
-    ui->stackedWidget_pages->setCurrentIndex(PURCHASE);
+    ui->stackedWidget_pages->setCurrentIndex(BERLIN);
 }
 
 void MainWindow::on_pushButton_home_paris_clicked()
@@ -54,6 +54,17 @@ void MainWindow::on_pushButton_home_custom_clicked()
 void MainWindow::on_pushButton_home_exit_clicked()
 {
     QCoreApplication::quit();
+}
+
+/*----BERLIN----*/
+void MainWindow::on_pushButton_berlin_back_clicked()
+{
+    ui->stackedWidget_pages->setCurrentIndex(HOME);
+}
+
+void MainWindow::on_pushButton_berin_continue_clicked()
+{
+    ui->stackedWidget_pages->setCurrentIndex(PURCHASE);
 }
 
 /*----PARIS----*/
@@ -107,6 +118,7 @@ void MainWindow::on_pushButton_admin_back_clicked()
     ui->tabWidget_pages->setCurrentIndex(HOME);
 }
 /*----END NAVIGATION----*/
+
 
 
 

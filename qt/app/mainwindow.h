@@ -34,6 +34,7 @@ public:
     enum page // enums for navigation through stackedwidget
     {
 		HOME,
+        BERLIN,
         PARIS,
         CUSTOM,
         PURCHASE,
@@ -53,6 +54,10 @@ private slots:
 
     void on_pushButton_home_exit_clicked();
 
+    void on_pushButton_berlin_back_clicked(); // berlin
+
+    void on_pushButton_berin_continue_clicked();
+
     void on_pushButton_paris_back_clicked(); // paris
 
     void on_pushButton_paris_continue_clicked();
@@ -71,6 +76,7 @@ private slots:
 
     void on_pushButton_admin_back_clicked(); // admin
     /*----END NAVIGATION----*/
+
 
 private:
 	Ui::MainWindow *ui;
