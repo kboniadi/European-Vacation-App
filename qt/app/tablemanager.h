@@ -3,7 +3,10 @@
 #include <QDebug>
 #include <QSpinBox>
 #include <QTableWidget>
+#include <QTableView>
 #include <QVector>
+#include <QHeaderView>
+#include "dbmanager.h"
 
 class City;
 
@@ -102,7 +105,7 @@ public:
         // Initializes trip planning table to blank. Used for all types of trips
     void InitializeTripTable(QTableWidget* table, const int &cols, const QStringList &headers);
         // Populates trip planning table with relevant information
-    void PopulateTripTable(QTableWidget* table, QVector<City>* cites);
+	void PopulateTripTable(QTableWidget* table, QStringList& cites);
 
     // ************** Food Purchasing Table Methods ****************************
         // Initializes purchase table to blank
@@ -120,7 +123,7 @@ public:
 
     // ****************** Admin Table Table Methods ****************************
         // Intializes admin table to blank
-    void InitializeAdminTable(QTableWidget* table, const int &cols, const QStringList &headers);
+	void InitializeAdminTable(QTableView* table);
         // Populates admin table with relevant information
     void PopulateAdminTable(QTableWidget* table, QVector<City>* cites);
 
@@ -128,8 +131,8 @@ public:
     // void CopyXTableToOther(QTableWidget* origin, QTableWidget* destination);
 
 private:
-    TableManager();
-    ~TableManager();
+	TableManager();
+	~TableManager();
 };
 
 #endif // TABLEMANAGER_H

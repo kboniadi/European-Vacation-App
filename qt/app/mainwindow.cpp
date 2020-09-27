@@ -11,7 +11,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->tabWidget_pages->setCurrentIndex(HOME); // setCurrentIndex cycles through the tabWidget
     
 	DBManager::instance();
-    TableManager::instance();	
+	TableManager::instance();
 }
 
 MainWindow::~MainWindow()
@@ -39,6 +39,14 @@ void clearFields() // proposed method to clear all tables and user input.
 void MainWindow::on_pushButton_home_berlin_clicked()
 {
     ui->stackedWidget_pages->setCurrentIndex(BERLIN);
+	QStringList unsorted;
+	QStringList sorted;
+	DBManager::instance()->GetCities(unsorted);
+	unsorted.removeAll("Berlin");
+	unsorted.push_front("Berlin");
+
+	algorithm::sort(unsorted, sorted);
+//	TableManager::instance()->PopulateTripTable(ui->tableView_cities_view)
 }
 
 void MainWindow::on_pushButton_home_paris_clicked()
@@ -106,19 +114,22 @@ void MainWindow::on_pushButton_receipt_back_clicked()
     ui->stackedWidget_pages->setCurrentIndex(HOME);
 }
 
+/*----ADMIN----*/
 void MainWindow::on_pushButton_login_continue_clicked()
 {
 	ui->stackedWidget_pages->setCurrentIndex(ADMIN);
+	TableManager::instance()->InitializeAdminTable(ui->tableView_database);
 }
 
-/*----ADMIN----*/
 void MainWindow::on_pushButton_admin_back_clicked()
 {
     ui->stackedWidget_pages->setCurrentIndex(HOME);
     ui->tabWidget_pages->setCurrentIndex(HOME);
 }
+
+void MainWindow::on_pushButton_admin_import_clicked()
+{
+	DBManager::instance()->ImportCities(this);
+	TableManager::instance()->InitializeAdminTable(ui->tableView_database);
+}
 /*----END NAVIGATION----*/
-
-
-
-

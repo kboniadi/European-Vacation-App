@@ -7,8 +7,9 @@
 #include <QtSql/QSqlQueryModel>
 #include <QDir>
 #include <QString>
-#include <QVector>
 #include <QDebug>
+#include <QMessageBox>
+#include <QTime>
 
 class DBManager: public QWidget, public QSqlDatabase {
 	Q_OBJECT;
@@ -18,11 +19,11 @@ public:
 	DBManager& operator=(const DBManager&) = delete;
 	void AddFood(const QString &city, const QString &food,
 				 const QString &price);
-	void ImportCities();
+	void ImportCities(QWidget *parent);
 	void UpdateFoodPrice(const QString &foodName, const QString &price);
 	void DeleteFood(const QString &foodName);
 //	void CreateTrip(const QVector<QString>&);
-	void CityToFoodNames(const QString &city, QVector<QString> &foods);
+	void CityToFoodNames(const QString &city, QStringList &foods);
 	QString FoodNameToPrice(const QString &food);
 	void GetCities(QStringList &cities);
 	int GetDistances(const QString &city1, const QString &city2);
@@ -31,8 +32,7 @@ public:
 //	void getCustomTripCities(QVector<QString>&);
 private:
 	QSqlQuery query;
-
-	DBManager(QWidget *parent = nullptr);
+	explicit DBManager(QWidget *parent = nullptr);
 	~DBManager();
 };
 

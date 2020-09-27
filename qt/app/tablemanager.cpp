@@ -1,14 +1,11 @@
 #include "tablemanager.h"
 
 TableManager::TableManager()
-{
-    int parisTripSpinBoxMax = 0;
-    PurchaseTableSpinBoxes = nullptr;
-}
+	: parisTripSpinBoxMax{0}, PurchaseTableSpinBoxes{nullptr} {}
 
 TableManager* TableManager::instance()
 {
-	TableManager instance;
+	static TableManager instance;
 	return &instance;
 }
 
@@ -51,7 +48,7 @@ void TableManager::InitializeTripTable(QTableWidget* table, const int &cols, con
 }
 
     // Populates trip planning table with relevant information
-void TableManager::PopulateTripTable(QTableWidget* table, QVector<City>* cites)
+void TableManager::PopulateTripTable(QTableWidget* table, QStringList& cites)
 {
 
 }
@@ -90,9 +87,22 @@ void TableManager::PopulateReceiptTable(QTableWidget* table, QVector<City>* cite
 
 // ****************** Admin Table Table Methods ****************************
     // Intializes admin table to blank
-void TableManager::InitializeAdminTable(QTableWidget* table, const int &cols, const QStringList &headers)
+void TableManager::InitializeAdminTable(QTableView* table)
 {
+	QSqlQueryModel *model = new QSqlQueryModel;
 
+	model->setQuery("SELECT city, endCity, distance FROM Distance, Parent WHERE"
+					" Parent.id = Distance.id ORDER BY Parent.id");
+
+	if (!model->query().exec())
+		qDebug() << "didn't work";
+
+	model->setHeaderData(0, Qt::Horizontal, QObject::tr("Starting City"), Qt::DisplayRole);
+	model->setHeaderData(1, Qt::Horizontal, QObject::tr("Ending City"), Qt::DisplayRole);
+	model->setHeaderData(2, Qt::Horizontal, QObject::tr("Distance"), Qt::DisplayRole);
+
+	table->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+	table->setModel(model);
 }
     // Populates admin table with relevant information
 void TableManager::PopulateAdminTable(QTableWidget* table, QVector<City>* cites)

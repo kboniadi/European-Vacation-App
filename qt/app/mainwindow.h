@@ -5,6 +5,7 @@
 #include <QStackedWidget>
 #include <dbmanager.h>
 #include <tablemanager.h>
+#include "sortalgorithm.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -41,7 +42,6 @@ public:
         RECEIPT,
         ADMIN
     };
-
     /*----END ENUMS----*/
 
 private slots:
@@ -77,6 +77,7 @@ private slots:
     void on_pushButton_admin_back_clicked(); // admin
     /*----END NAVIGATION----*/
 
+	void on_pushButton_admin_import_clicked();
 
 private:
 	Ui::MainWindow *ui;
