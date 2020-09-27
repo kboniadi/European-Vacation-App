@@ -48,9 +48,16 @@ void TableManager::InitializeTripTable(QTableWidget* table, const int &cols, con
 }
 
     // Populates trip planning table with relevant information
-void TableManager::PopulateTripTable(QTableWidget* table, QStringList& cites)
+void TableManager::PopulateTripTable(QTableView* table, const QStringList& cities)
 {
+	QStringListModel *model = new QStringListModel;
+	model->setStringList(cities);
 
+	table->setEditTriggers(QAbstractItemView::NoEditTriggers);
+	table->verticalHeader()->setVisible(false);
+	table->horizontalHeader()->setVisible(false);
+	table->setGridStyle(Qt::NoPen);
+	table->setModel(model);
 }
 
 // ************** Food Purchasing Table Methods ****************************
@@ -101,6 +108,7 @@ void TableManager::InitializeAdminTable(QTableView* table)
 	model->setHeaderData(1, Qt::Horizontal, QObject::tr("Ending City"), Qt::DisplayRole);
 	model->setHeaderData(2, Qt::Horizontal, QObject::tr("Distance"), Qt::DisplayRole);
 
+	table->setEditTriggers(QAbstractItemView::NoEditTriggers);
 	table->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
 	table->setModel(model);
 }

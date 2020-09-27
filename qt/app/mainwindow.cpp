@@ -46,7 +46,15 @@ void MainWindow::on_pushButton_home_berlin_clicked()
 	unsorted.push_front("Berlin");
 
 	algorithm::sort(unsorted, sorted);
-//	TableManager::instance()->PopulateTripTable(ui->tableView_cities_view)
+	TableManager::instance()->PopulateTripTable(ui->tableView_berlin_cities, sorted);
+
+	int total = 0;
+	for (int i = 0; i < sorted.length() - 1; i++) {
+		total += DBManager::instance()->GetDistances(sorted[i], sorted[i + 1]);
+	}
+
+	ui->label_total_distance->setText("Total Distance(km): " + QString::number(total));
+	ui->label_total_distance->adjustSize();
 }
 
 void MainWindow::on_pushButton_home_paris_clicked()

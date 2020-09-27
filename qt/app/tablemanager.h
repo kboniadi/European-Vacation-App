@@ -1,11 +1,13 @@
 #ifndef TABLEMANAGER_H
 #define TABLEMANAGER_H
+
 #include <QDebug>
 #include <QSpinBox>
 #include <QTableWidget>
 #include <QTableView>
 #include <QVector>
 #include <QHeaderView>
+#include <QStringListModel>
 #include "dbmanager.h"
 
 class City;
@@ -105,7 +107,7 @@ public:
         // Initializes trip planning table to blank. Used for all types of trips
     void InitializeTripTable(QTableWidget* table, const int &cols, const QStringList &headers);
         // Populates trip planning table with relevant information
-	void PopulateTripTable(QTableWidget* table, QStringList& cites);
+	void PopulateTripTable(QTableView* table, const QStringList& cites);
 
     // ************** Food Purchasing Table Methods ****************************
         // Initializes purchase table to blank
