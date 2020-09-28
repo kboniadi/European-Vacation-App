@@ -70,6 +70,8 @@ private slots:
 
     void on_pushButton_custom_continue_clicked();
 
+    void on_comboBox_custom_startingCity_activated(int index);
+
     void on_pushButton_purchase_back_clicked(); // purchase
 
     void on_pushButton_purchase_continue_clicked();
@@ -79,10 +81,9 @@ private slots:
     void on_pushButton_login_continue_clicked(); // login
 
     void on_pushButton_admin_back_clicked(); // admin
+
+    void on_pushButton_admin_import_clicked();
     /*----END NAVIGATION----*/
-
-	void on_pushButton_admin_import_clicked();
-
 
 private:
 	Ui::MainWindow *ui;

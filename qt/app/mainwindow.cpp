@@ -74,6 +74,11 @@ void MainWindow::on_pushButton_home_paris_clicked()
 void MainWindow::on_pushButton_home_custom_clicked()
 {
     ui->stackedWidget_pages->setCurrentIndex(CUSTOM);
+    // hiding/showing for custom trip page (will move to a tablemanager function)
+    ui->label_custom_otherCities->hide();
+    ui->comboBox_custom_otherCities->hide();
+    ui->pushButton_custom_add->hide();
+
 }
 
 void MainWindow::on_pushButton_home_exit_clicked()
@@ -112,6 +117,14 @@ void MainWindow::on_pushButton_custom_back_clicked()
 void MainWindow::on_pushButton_custom_continue_clicked()
 {
     ui->stackedWidget_pages->setCurrentIndex(PURCHASE);
+}
+
+void MainWindow::on_comboBox_custom_startingCity_activated(int index)
+{
+    // hiding/showing for custom trip page (will move to a tablemanager function)
+    ui->label_custom_otherCities->show();
+    ui->comboBox_custom_otherCities->show();
+    ui->pushButton_custom_add->show();
 }
 
 /*----PURCHASE----*/
