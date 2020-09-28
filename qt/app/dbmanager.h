@@ -30,6 +30,8 @@ public:
 //	void getParisTripCities(QVector<QString>&);
 //	void getBerlinTripCities(QVector<QString>&);
 //	void getCustomTripCities(QVector<QString>&);
+
+//  QVector<City>* CreateShoppingList(QVector<City>* cities);
 private:
 	QSqlQuery query;
 	explicit DBManager(QWidget *parent = nullptr);

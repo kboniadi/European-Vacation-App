@@ -11,6 +11,10 @@ QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
 
+class DBManager;
+class TableManager;
+class City;
+
 class MainWindow : public QMainWindow
 {
 	Q_OBJECT
@@ -22,11 +26,11 @@ public:
     /*----FUNCTIONS----*/
     // insert any functions for mainwindow into this block
 
-    void clearFields() // function to reset all tables and user inputs
-    {
+    // function to reset all tables and user inputs
+    void ClearFields();
 
-    }
-
+    // Destroy list of cities list used in purchasing and receipt
+    void DestroyCities();
 
 
     /*----END FUNCTIONS----*/
@@ -79,7 +83,10 @@ private slots:
 
 	void on_pushButton_admin_import_clicked();
 
+
 private:
 	Ui::MainWindow *ui;
+
+    QVector<City>* cities;
 };
 #endif // MAINWINDOW_H

@@ -194,3 +194,19 @@ int DBManager::GetDistances(const QString &city1, const QString &city2)
 	return -1;
 }
 
+
+//  QVector<City>* CreateShoppingList(QVector<City>* cities);
+/*
+ * remember to make a pointer to vector of foods so i can load that into
+ * each city's pointer to vector of foods (as a temp)
+ *
+ * QVector<Foods>* foods;
+ *
+ * // then delete it at the end? i dunno, pointers.
+ * try to qdebug both the city's food pointer and this food pointer
+ * after deleting it at the end of an iteration.
+ *
+ * If that works, we good. If not, don't delete it and try to point it
+ * at something else i guess?
+ *
+ */
