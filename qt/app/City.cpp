@@ -8,6 +8,12 @@ City::City()
     _foods = nullptr;
 }
 
+// Destructor
+City::~City()
+{
+    delete _foods;
+}
+
 // Accessor: Get name of city
 QString City::GetName() const
 {

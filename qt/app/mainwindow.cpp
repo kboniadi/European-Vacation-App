@@ -136,7 +136,7 @@ void MainWindow::DestroyCities()
 {
     for(int index = 0; index < cities->size(); index++)
     {
-        cities->at(index).DestroyCity();
+        cities->operator[](index).DestroyCity();
     }
 }
 
