@@ -1,5 +1,8 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include "dbmanager.h"
+#include "City.h"
+#include "tablemanager.h"
 
 MainWindow::MainWindow(QWidget *parent)
 	: QMainWindow(parent)
@@ -10,8 +13,14 @@ MainWindow::MainWindow(QWidget *parent)
 	ui->stackedWidget_pages->setCurrentIndex(HOME); // setCurrentIndex cycles through the stackedwidget
     ui->tabWidget_pages->setCurrentIndex(HOME); // setCurrentIndex cycles through the tabWidget
     
+    // Create Database
 	DBManager::instance();
-    TableManager::instance();	
+
+    // Create TableManager
+    TableManager::instance();
+
+    // Create list of cities used in purchasing and receipt pages
+    cities = new QVector<City>;
 }
 
 MainWindow::~MainWindow()
@@ -119,6 +128,23 @@ void MainWindow::on_pushButton_admin_back_clicked()
 }
 /*----END NAVIGATION----*/
 
+
+/*----HELPER FUNCTIONS----*/
+
+// Destroy cities list used in purchasing and receipt page
+void MainWindow::DestroyCities()
+{
+    for(int index = 0; index < cities->size(); index++)
+    {
+        cities->at(index).DestroyCity();
+    }
+}
+
+// Clear fields on admin page for add/edit/remove food items
+void ClearFields()
+{
+
+}
 
 
 

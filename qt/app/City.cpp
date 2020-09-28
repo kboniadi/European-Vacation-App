@@ -1,4 +1,5 @@
 #include "City.h"
+#include "food.h"
 
 // Constructor
 City::City()
@@ -20,13 +21,18 @@ void City::SetName(const QString &name)
 }
 
 // Accessor: Get food list associated with city
-QStringList* City::GetFoods() const
+QVector<Food>* City::GetFoods() const
 {
     return _foods;
 }
 
 // Mutator: Alter/set food list
-void City::SetFoods(QStringList* &foodList)
+void City::SetFoods(QVector<Food>* &foodList)
 {
     _foods = foodList;
+}
+
+void City::DestroyCity()
+{
+    delete _foods;
 }
