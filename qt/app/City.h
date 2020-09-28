@@ -24,6 +24,9 @@ public:
     // Destroy City Object
     void DestroyCity();
 
+    // Destructor
+    ~City();
+
 private:
     QString _name;          // Name of city
     QVector<Food>* _foods;  // List of foods associated with city
