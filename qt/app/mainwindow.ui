@@ -24,7 +24,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>3</number>
     </property>
     <widget class="QWidget" name="page_home">
      <layout class="QHBoxLayout" name="horizontalLayout_5">
@@ -121,7 +121,7 @@
            <string>Login</string>
           </property>
          </widget>
-         <widget class="QWidget" name="">
+         <widget class="QWidget" name="layoutWidget">
           <property name="geometry">
            <rect>
             <x>440</x>
@@ -361,8 +361,8 @@
      <widget class="QPushButton" name="pushButton_custom_continue">
       <property name="geometry">
        <rect>
-        <x>100</x>
-        <y>300</y>
+        <x>180</x>
+        <y>500</y>
         <width>80</width>
         <height>25</height>
        </rect>
@@ -371,7 +371,7 @@
        <string>Continue</string>
       </property>
      </widget>
-     <widget class="QLabel" name="label_custom_selectstart">
+     <widget class="QLabel" name="label_custom_startingCity">
       <property name="geometry">
        <rect>
         <x>100</x>
@@ -384,17 +384,53 @@
        <string>Select your starting city</string>
       </property>
      </widget>
-     <widget class="QComboBox" name="comboBox_custom_select">
+     <widget class="QComboBox" name="comboBox_custom_startingCity">
       <property name="geometry">
        <rect>
         <x>100</x>
         <y>220</y>
-        <width>75</width>
+        <width>200</width>
         <height>24</height>
        </rect>
       </property>
      </widget>
-     <widget class="QTableWidget" name="tableWidget_custom_select">
+     <widget class="QLabel" name="label_custom_otherCities">
+      <property name="geometry">
+       <rect>
+        <x>100</x>
+        <y>300</y>
+        <width>231</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Select the other cities you want to visit</string>
+      </property>
+     </widget>
+     <widget class="QComboBox" name="comboBox_custom_otherCities">
+      <property name="geometry">
+       <rect>
+        <x>100</x>
+        <y>320</y>
+        <width>200</width>
+        <height>24</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pushButton_custom_add">
+      <property name="geometry">
+       <rect>
+        <x>100</x>
+        <y>360</y>
+        <width>80</width>
+        <height>25</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Add City</string>
+      </property>
+     </widget>
+     <widget class="QTableView" name="tableView">
       <property name="geometry">
        <rect>
         <x>450</x>
@@ -402,19 +438,6 @@
         <width>600</width>
         <height>600</height>
        </rect>
-      </property>
-     </widget>
-     <widget class="QLabel" name="label_custom_selectcities">
-      <property name="geometry">
-       <rect>
-        <x>450</x>
-        <y>80</y>
-        <width>141</width>
-        <height>16</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Select cities to visit</string>
       </property>
      </widget>
     </widget>
