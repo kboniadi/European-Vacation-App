@@ -3,12 +3,14 @@
 
 #include <QMainWindow>
 #include <QStackedWidget>
-#include <dbmanager.h>
-#include <tablemanager.h>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
+
+class DBManager;
+class TableManager;
+class City;
 
 class MainWindow : public QMainWindow
 {
@@ -21,11 +23,11 @@ public:
     /*----FUNCTIONS----*/
     // insert any functions for mainwindow into this block
 
-    void clearFields() // function to reset all tables and user inputs
-    {
+    // function to reset all tables and user inputs
+    void ClearFields();
 
-    }
-
+    // Destroy list of cities list used in purchasing and receipt
+    void DestroyCities();
 
 
     /*----END FUNCTIONS----*/
@@ -78,7 +80,10 @@ private slots:
     /*----END NAVIGATION----*/
 
 
+
 private:
 	Ui::MainWindow *ui;
+
+    QVector<City>* cities;
 };
 #endif // MAINWINDOW_H

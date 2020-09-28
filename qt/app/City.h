@@ -3,6 +3,8 @@
 #include <QString>
 #include <QStringList>
 
+class Food;
+
 class City
 {
 public:
@@ -13,13 +15,21 @@ public:
     QString GetName() const;
     // Mutator: Alter/set city name
     void SetName(const QString &name);
+
     // Accessor: Get food list associated with city
-    QStringList* GetFoods() const;
+    QVector<Food>* GetFoods() const;
     // Mutator: Alter/set food list
-    void SetFoods(QStringList* &foodList);
+    void SetFoods(QVector<Food>* &foodList);
+
+    // Destroy City Object
+    void DestroyCity();
+
+    // Destructor
+    ~City();
+
 private:
     QString _name;          // Name of city
-    QStringList* _foods;    // List of foods associated with city
+    QVector<Food>* _foods;  // List of foods associated with city
 };
 
 #endif // CITY_H
