@@ -26,7 +26,9 @@ int main(int argc, char *argv[]) {
 	DBManager::instance();
 
 	// first city is always treated as the starting city!!!
-	QStringList list = {"Berlin", "Amsterdam", "Brussels", "Budapest", "Hamburg", "Lisbon", "London", "Madrid", "Paris", "Prague", "Rome"};
+	QStringList list = {"Berlin", "Amsterdam", "Brussels", "Budapest",
+						"Hamburg", "Lisbon", "London", "Madrid", "Paris",
+						"Prague", "Rome"};
 	QStringList sortedList;
 
 	// list is not modified, sortedList is

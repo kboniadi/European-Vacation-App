@@ -53,7 +53,9 @@ def ImportFile(filename, table, column1, column2):
     # cur.close()
     # conn.close()
 
-
+def ImportAccounts(username, password, accessLevel):
+    cur.execute("CREATE TABLE IF NOT EXISTS Accounts(username TEXT, password TEXT, level TEXT)");
+    cur.execute("INSERT INTO Accounts(username, password, level) VALUES(?, ?, ?)", (username, password, accessLevel));
 
 # def getData():
 #     con = sqlite3.connect('Data.db')
@@ -85,12 +87,14 @@ if __name__ == "__main__":
     DropTable('Distance')
     DropTable('Food')
     DropTable('Parent')
+    DropTable('Accounts');
     # DropTable('New_Cities')
 
     ImportCityTemplate('cities.csv')
     ImportFile('Dist_&_Foods-Distances.csv', 'Distance', 'endCity', 'distance')
     ImportFile('Dist_&_Foods-Foods.csv', 'Food', 'food', 'price')
-    # ImportFile('Dist_&_Foods-New_Cities.csv', 'New_Cities', 'start', 'end', 'distance')
+    ImportAccounts('admin', 'password', 'ADMIN');
+    
     # getData()
 
     conn.commit()

@@ -1,6 +1,6 @@
 #include "dbmanager.h"
 #include <QFileDialog>
-
+#include <QProgressDialog>
 DBManager::DBManager(QWidget *parent)
 	: QWidget{parent}, QSqlDatabase(QSqlDatabase::addDatabase("QSQLITE"))
 {
@@ -49,7 +49,7 @@ void DBManager::AddFood(const QString &city, const QString &food,
 
 }
 
-void DBManager::ImportCities()
+void DBManager::ImportCities(QWidget *parent)
 {
 	QString startCity, endCity, distance;
 	QString filter = "CSV file (*.csv)";
@@ -59,6 +59,16 @@ void DBManager::ImportCities()
 	QFile file(fileName);
 
 	GetCities(cities);
+
+	QProgressDialog progress("Updating db...", "Cancel", 0, 46, parent);
+	progress.setWindowModality(Qt::WindowModal);
+	progress.setCancelButton(0);
+	progress.setWindowTitle("Loader");
+	int count = 0;
+	progress.setMinimumDuration(count);
+	progress.setValue(count);
+
+//	QTime start = QTime::currentTime();
 
 	if (!file.open(QFile::ReadOnly)) {
 			qDebug() << "error openning the file";
@@ -99,8 +109,12 @@ void DBManager::ImportCities()
 			if (!query.exec())
 				qDebug() << "Query didn't execute properly";
 			query.finish();
+			progress.setValue(++count);
 		}
 	}
+
+//	QTime end = QTime::currentTime();
+//	qDebug() << "function took: " << start.msecsTo(end) / 1000.0 << " sec";
 }
 
 void DBManager::UpdateFoodPrice(const QString &foodName, const QString &price)
@@ -123,7 +137,7 @@ void DBManager::DeleteFood(const QString &foodName)
 
 }
 
-void DBManager::CityToFoodNames(const QString &city, QVector<QString> &foods)
+void DBManager::CityToFoodNames(const QString &city, QStringList &foods)
 {
 	query.prepare("SELECT food FROM Food, Parent WHERE Parent.city = :city AND "
 				  "Parent.id = Food.id");
