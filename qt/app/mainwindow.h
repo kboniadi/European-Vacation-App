@@ -62,7 +62,9 @@ private slots:
 
     void on_pushButton_berin_continue_clicked();
 
-    void on_pushButton_paris_back_clicked(); // paris
+    void on_spinBox_paris_select_valueChanged(int citiesToVisit); // paris
+
+    void on_pushButton_paris_back_clicked();
 
     void on_pushButton_paris_continue_clicked();
 
@@ -84,6 +86,7 @@ private slots:
 
     void on_pushButton_admin_import_clicked();
     /*----END NAVIGATION----*/
+
 
 private:
 	Ui::MainWindow *ui;
