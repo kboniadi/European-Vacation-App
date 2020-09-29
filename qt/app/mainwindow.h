@@ -94,6 +94,10 @@ private slots:
     void on_pushButton_admin_food_back_clicked();
 
     void on_pushButton_admin_import_clicked();
+
+    void on_pushButton_custom_add_clicked();
+
+    void on_pushButton_custom_finalize_clicked();
     /*----END NAVIGATION----*/
 
 
@@ -101,5 +105,8 @@ private:
 	Ui::MainWindow *ui;
 
     QVector<City>* cities;
+    QStringList customTripCities;
+    QStringList customTripComboBoxCities;
+
 };
 #endif // MAINWINDOW_H

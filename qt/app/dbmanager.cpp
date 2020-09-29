@@ -9,7 +9,7 @@ DBManager::DBManager(QWidget *parent)
 	if (!open()) {
 		qDebug() << "Connection to database failed";
 	} else {
-		qDebug() << "Connection to database succedded";
+        qDebug() << "Connection to database succeeded";
 	}
 }
 
@@ -166,7 +166,7 @@ QString DBManager::FoodNameToPrice(const QString &food)
 
 void DBManager::GetCities(QStringList &cities)
 {
-	query.prepare("SELECT city FROM Parent");
+    query.prepare("SELECT city FROM Parent");
 	if (query.exec()) {
 		while (query.next())
 			cities.push_back(query.value(0).toString());
