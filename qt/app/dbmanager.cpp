@@ -1,4 +1,6 @@
 #include "dbmanager.h"
+#include "City.h"
+#include "food.h"
 #include <QFileDialog>
 #include <QProgressDialog>
 DBManager::DBManager(QWidget *parent)
@@ -195,7 +197,54 @@ int DBManager::GetDistances(const QString &city1, const QString &city2)
 }
 
 
-//  QVector<City>* CreateShoppingList(QVector<City>* cities);
+void DBManager::CreateShoppingList(QVector<City>* cities)
+{
+    // Prep general query
+    query.prepare("SELECT Food.food, Food.price from Parent, Food where city = :cityName and Parent.id = Food.id;");
+
+    // Run query in a loop
+    for(int index = 0; index < cities->size(); index++)
+    {
+        // DEBUG
+        qDebug() << "Outputting menu for" << cities->at(index).GetName();
+
+        // Bind value
+        query.bindValue(":cityName", cities->at(index).GetName());
+
+        // Execute query
+        if(query.exec())
+        {
+            // While food exists in DB for this specific city
+            while(query.next())
+            {
+                // Create a food item
+                Food temp;
+
+                // Populate it
+                temp.SetName(query.value(0).toString());
+                temp.SetPrice(query.value(1).toFloat());
+
+                // DEBUG
+                qDebug() << "Food item created:" << temp.GetName() << temp.GetPrice();
+
+                // Add it to the object's food vector
+                cities->operator[](index).AddFood(temp);
+
+                // DEBUG
+                qDebug() << "Food items in " << cities->at(index).GetName();
+                for(int index2 = 0; index2 < cities->at(index).GetFoodListSize(); index2++)
+                {
+                    qDebug() << cities->at(index).GetFoodNameAt(index2);
+                    qDebug() << cities->at(index).GetFoodPriceAt(index2);
+                }
+            }
+        }
+        else
+        {
+            qDebug() << "Query didn't execute properly";
+        }
+    }
+}
 /*
  * remember to make a pointer to vector of foods so i can load that into
  * each city's pointer to vector of foods (as a temp)

@@ -64,7 +64,7 @@ public:
         // Maximum value for food purchase spinbox
     const int PURCHASE_SPINBOX_MAX = 20;
         // Vector of pointers to spinbox pointers. Needed for dynamically creating spinboxes on purchase page
-    QVector<QSpinBox*>* PurchaseTableSpinBoxes;
+    QVector<QSpinBox*>* purchaseTableSpinBoxes;
 
     // ************************ Receipt Table Attributes ***********************
 
@@ -129,6 +129,7 @@ public:
         // Populates admin table with relevant information
     void PopulateAdminTable(QTableWidget* table, QVector<City>* cites);
 
+    void DeleteAllTableRows(QTableWidget *table);
         // TODO copy/paste contents of one table to another
     // void CopyXTableToOther(QTableWidget* origin, QTableWidget* destination);
 

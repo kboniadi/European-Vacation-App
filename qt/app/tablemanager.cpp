@@ -1,7 +1,7 @@
 #include "tablemanager.h"
 
 TableManager::TableManager()
-	: parisTripSpinBoxMax{0}, PurchaseTableSpinBoxes{nullptr} {}
+    : parisTripSpinBoxMax{0}, purchaseTableSpinBoxes{nullptr} {}
 
 TableManager* TableManager::instance()
 {
@@ -62,9 +62,15 @@ void TableManager::PopulateTripTable(QTableView* table, const QStringList& citie
 
 // ************** Food Purchasing Table Methods ****************************
     // Initializes purchase table to blank
-void TableManager::InitializePurchaseTable(QTableWidget* table, const int &cols, const QStringList &headers)
+void TableManager::InitializePurchaseTable(QTableWidget* purchaseTable, const int &cols, const QStringList &headers)
 {
+    purchaseTable->clearContents();
+    purchaseTable->setColumnCount(cols);
+    purchaseTable->setHorizontalHeaderLabels(headers);
+    // TODO - Might be a good idea to set column widths here
+    purchaseTable->setEditTriggers(QTableView::NoEditTriggers);
 
+    DeleteAllTableRows(purchaseTable);
 }
 
     // Populates purchase table with relevant information
@@ -76,7 +82,17 @@ void TableManager::PopulatePurchaseTable(QTableWidget* table, QVector<City>* cit
     // Inserts a dynamic spinbox in table at specific column
 void TableManager::InsertSpinBoxCol(QTableWidget* table, const int min, const int max, const int col)
 {
+    QSpinBox *sBox;
 
+    purchaseTableSpinBoxes->clear();
+
+    for(int row = 0; row < table->rowCount(); row++)
+    {
+        sBox = new QSpinBox(table);
+        sBox->setRange(min, max);
+        table->setCellWidget(row, col, sBox);
+        purchaseTableSpinBoxes->append(sBox);
+    }
 }
 
 // ********************** Receipt Table Methods ****************************
@@ -116,6 +132,19 @@ void TableManager::InitializeAdminTable(QTableView* table)
 void TableManager::PopulateAdminTable(QTableWidget* table, QVector<City>* cites)
 {
 
+}
+
+// *************************************************************************************
+// Deletes entire contents of passed in table
+// *************************************************************************************
+void TableManager::DeleteAllTableRows(QTableWidget *table)
+{
+    const int ROW_COUNT = table->rowCount();
+
+    for(int index = 0; index < ROW_COUNT; index++)
+    {
+        table->removeRow(0);
+    }
 }
 
     // TODO copy/paste contents of one table to another
