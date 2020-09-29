@@ -251,8 +251,9 @@ void MainWindow::on_pushButton_admin_food_back_clicked()
 void MainWindow::on_pushButton_admin_import_clicked()
 {
     DBManager::instance()->ImportCities(this);
-    TableManager::instance()->InitializeAdminTable(ui->tableView_database);
+    TableManager::instance()->InitializeAdminTable(ui->tableView_admin_cities);
 }
+
 
 
 void MainWindow::on_pushButton_custom_add_clicked()
@@ -341,11 +342,6 @@ void ClearFields()
 
 }
 
-void MainWindow::on_pushButton_admin_import_clicked()
-{
-	DBManager::instance()->ImportCities(this);
-    TableManager::instance()->InitializeAdminTable(ui->tableView_admin_cities);
-}
 
 
 
