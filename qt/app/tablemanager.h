@@ -113,7 +113,7 @@ public:
         // Initializes purchase table to blank
     void InitializePurchaseTable(QTableWidget* table, const int &cols, const QStringList &headers);
         // Populates purchase table with relevant information
-    void PopulatePurchaseTable(QTableWidget* table, QVector<City>* cites);
+    void PopulatePurchaseTable(QTableWidget* purchaseTable, QVector<City>* cities);
         // Inserts a dynamic spinbox in table at specific column
     void InsertSpinBoxCol(QTableWidget* table, const int min, const int max, const int col);
 

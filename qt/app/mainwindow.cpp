@@ -110,6 +110,15 @@ void MainWindow::on_pushButton_berin_continue_clicked()
 {
     ui->stackedWidget_pages->setCurrentIndex(PURCHASE);
 
+    // Initialize purchase table to blank
+    TableManager::instance()->InitializePurchaseTable(ui->tableWidget_purchase_pos,
+                                                      TableManager::instance()->PURCHASE_TABLE_COL_COUNT,
+                                                      TableManager::instance()->purchaseTableColNames);
+    // Populate purchase table
+
+
+    // Insert spinbox column
+
     DBManager::instance()->CreateShoppingList(cities);
 }
 

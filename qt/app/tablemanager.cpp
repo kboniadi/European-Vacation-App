@@ -1,4 +1,5 @@
 #include "tablemanager.h"
+#include "City.h"
 
 TableManager::TableManager()
     : parisTripSpinBoxMax{0}, purchaseTableSpinBoxes{nullptr} {}
@@ -74,9 +75,32 @@ void TableManager::InitializePurchaseTable(QTableWidget* purchaseTable, const in
 }
 
     // Populates purchase table with relevant information
-void TableManager::PopulatePurchaseTable(QTableWidget* table, QVector<City>* cites)
+void TableManager::PopulatePurchaseTable(QTableWidget* purchaseTable, QVector<City>* cities)
 {
+    QTableWidgetItem* priceItem;
 
+    for(int index = 0; index < cities->size(); index++)
+    {
+        // Create new row
+        purchaseTable->insertRow(index);
+
+        // Convert int values to QString & store into QTableWidgetItems
+        priceItem = new QTableWidgetItem(QString::number(cities->at(index).GetFoodPriceAt(index)));
+
+
+//        // Place items and actor string values into scenarioActorsTable
+//        scenarioActorsTable->setItem(index, SC_ID, idItem);
+//        scenarioActorsTable->setItem(index, SC_NAME, new QTableWidgetItem(scenarioActorList->at(index).GetName()));
+//        scenarioActorsTable->setItem(index, SC_HP, hpItem);
+//        scenarioActorsTable->setItem(index, SC_AC, acItem);
+//        scenarioActorsTable->setItem(index, SC_DC, dcItem);
+//        scenarioActorsTable->setItem(index, SC_NOTES, new QTableWidgetItem(scenarioActorList->at(index).GetNotes()));
+//        scenarioActorsTable->setItem(index, SC_TYPE, new QTableWidgetItem(scenarioActorList->at(index).GetType()));
+
+//        // Probably gonna need another loop here for the remaining food items
+
+
+    } // END for
 }
 
     // Inserts a dynamic spinbox in table at specific column
