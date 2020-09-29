@@ -21,6 +21,9 @@ MainWindow::MainWindow(QWidget *parent)
 
     // Create list of cities used in purchasing and receipt pages
     cities = new QVector<City>;
+
+    // initialize paris trip spinbox (will be moved to tablemanager)
+    ui->spinBox_paris_select->setMinimum(1);
 }
 
 MainWindow::~MainWindow()
@@ -35,9 +38,6 @@ void clearFields() // proposed method to clear all tables and user input.
 {
 
 }
-
-
-
 
 
 /*----END FUNCTIONS----*/
@@ -62,13 +62,14 @@ void MainWindow::on_pushButton_home_berlin_clicked()
 		total += DBManager::instance()->GetDistances(sorted[i], sorted[i + 1]);
 	}
 
-	ui->label_total_distance->setText("Total Distance(km): " + QString::number(total));
-	ui->label_total_distance->adjustSize();
+    ui->label_berlin_total_distance->setText("Total Distance(km): " + QString::number(total));
+    ui->label_berlin_total_distance->adjustSize();
 }
 
 void MainWindow::on_pushButton_home_paris_clicked()
 {
     ui->stackedWidget_pages->setCurrentIndex(PARIS);
+    ui->spinBox_paris_select->setValue(1);
 }
 
 void MainWindow::on_pushButton_home_custom_clicked()
@@ -78,7 +79,6 @@ void MainWindow::on_pushButton_home_custom_clicked()
     ui->label_custom_otherCities->hide();
     ui->comboBox_custom_otherCities->hide();
     ui->pushButton_custom_add->hide();
-
 }
 
 void MainWindow::on_pushButton_home_exit_clicked()
@@ -98,6 +98,36 @@ void MainWindow::on_pushButton_berin_continue_clicked()
 }
 
 /*----PARIS----*/
+void MainWindow::on_spinBox_paris_select_valueChanged(int citiesToVisit)
+{
+    // kord's berlin trip code unless commented
+    QStringList unsorted;
+    QStringList sorted;
+    QStringList trip; // list of cities included in trip
+    DBManager::instance()->GetCities(unsorted);
+    unsorted.removeAll("Paris");
+    unsorted.push_front("Paris");
+    algorithm::sort(unsorted, sorted);
+
+    ui->spinBox_paris_select->setMaximum(sorted.length() - 1); // fills the spinbox with max number of cities to visit
+
+    for (int i = 0; i < citiesToVisit + 1; i++) // fills trip list with sorted list
+    {
+        trip.push_back(sorted.front());
+        sorted.pop_front();
+    }
+
+    TableManager::instance()->PopulateTripTable(ui->tableView_paris_cities, trip);
+
+    int total = 0;
+    for (int i = 0; i < trip.length() - 1; i++) {
+        total += DBManager::instance()->GetDistances(trip[i], trip[i + 1]);
+    }
+
+    ui->label_paris_total_distance->setText("Total Distance(km): " + QString::number(total));
+    ui->label_paris_total_distance->adjustSize();
+}
+
 void MainWindow::on_pushButton_paris_back_clicked()
 {
     ui->stackedWidget_pages->setCurrentIndex(HOME);
