@@ -90,6 +90,8 @@ void MainWindow::on_pushButton_home_custom_clicked()
     ui->label_custom_otherCities->hide();
     ui->comboBox_custom_otherCities->hide();
     ui->pushButton_custom_add->hide();
+    ui->label_custom_distance->clear();
+    ui->comboBox_custom_otherCities->clear();
 
     // Reset table
     QSqlQueryModel* reset = new QSqlQueryModel;
