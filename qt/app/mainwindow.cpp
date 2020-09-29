@@ -11,7 +11,7 @@ MainWindow::MainWindow(QWidget *parent)
 	ui->setupUi(this);
 
 	ui->stackedWidget_pages->setCurrentIndex(HOME); // setCurrentIndex cycles through the stackedwidget
-    ui->tabWidget_pages->setCurrentIndex(HOME); // setCurrentIndex cycles through the tabWidget
+    ui->tabWidget_home_pages->setCurrentIndex(HOME); // setCurrentIndex cycles through the tabWidget
     
     // Create Database
 	DBManager::instance();
@@ -27,21 +27,6 @@ MainWindow::~MainWindow()
 {
 	delete ui;
 }
-
-/*---FUNCTIONS----*/
-// insert any functions for mainwindow into this block
-
-void clearFields() // proposed method to clear all tables and user input.
-{
-
-}
-
-
-
-
-
-/*----END FUNCTIONS----*/
-
 
 /*----PAGE NAVIGATION----*/
 /*----HOME----*/
@@ -148,13 +133,20 @@ void MainWindow::on_pushButton_receipt_back_clicked()
 void MainWindow::on_pushButton_login_continue_clicked()
 {
 	ui->stackedWidget_pages->setCurrentIndex(ADMIN);
-	TableManager::instance()->InitializeAdminTable(ui->tableView_database);
+    ui->tabWidget_admin_pages->setCurrentIndex(ADMINTAB);
+    TableManager::instance()->InitializeAdminTable(ui->tableView_admin_cities);
 }
 
 void MainWindow::on_pushButton_admin_back_clicked()
 {
     ui->stackedWidget_pages->setCurrentIndex(HOME);
-    ui->tabWidget_pages->setCurrentIndex(HOME);
+    ui->tabWidget_home_pages->setCurrentIndex(HOME);
+}
+
+void MainWindow::on_pushButton_admin_food_back_clicked()
+{
+    ui->stackedWidget_pages->setCurrentIndex(HOME);
+    ui->tabWidget_home_pages->setCurrentIndex(HOME);
 }
 /*----END NAVIGATION----*/
 
@@ -179,6 +171,8 @@ void ClearFields()
 void MainWindow::on_pushButton_admin_import_clicked()
 {
 	DBManager::instance()->ImportCities(this);
-	TableManager::instance()->InitializeAdminTable(ui->tableView_database);
+    TableManager::instance()->InitializeAdminTable(ui->tableView_admin_cities);
 }
 /*----END NAVIGATION----*/
+
+
