@@ -46,6 +46,13 @@ public:
         RECEIPT,
         ADMIN
     };
+
+    enum adminPage // enums for navigation through admin tabs
+    {
+        ADMINTAB,
+        FOODTAB
+    };
+
     /*----END ENUMS----*/
 
 private slots:
@@ -83,6 +90,8 @@ private slots:
     void on_pushButton_login_continue_clicked(); // login
 
     void on_pushButton_admin_back_clicked(); // admin
+
+    void on_pushButton_admin_food_back_clicked();
 
     void on_pushButton_admin_import_clicked();
     /*----END NAVIGATION----*/
