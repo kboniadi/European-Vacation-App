@@ -11,7 +11,7 @@ MainWindow::MainWindow(QWidget *parent)
 	ui->setupUi(this);
 
 	ui->stackedWidget_pages->setCurrentIndex(HOME); // setCurrentIndex cycles through the stackedwidget
-    ui->tabWidget_pages->setCurrentIndex(HOME); // setCurrentIndex cycles through the tabWidget
+    ui->tabWidget_home_pages->setCurrentIndex(HOME); // setCurrentIndex cycles through the tabWidget
     
     // Create Database
 	DBManager::instance();
@@ -21,27 +21,15 @@ MainWindow::MainWindow(QWidget *parent)
 
     // Create list of cities used in purchasing and receipt pages
     cities = new QVector<City>;
+
+    // initialize paris trip spinbox (will be moved to tablemanager)
+    ui->spinBox_paris_select->setMinimum(1);
 }
 
 MainWindow::~MainWindow()
 {
 	delete ui;
 }
-
-/*---FUNCTIONS----*/
-// insert any functions for mainwindow into this block
-
-void clearFields() // proposed method to clear all tables and user input.
-{
-
-}
-
-
-
-
-
-/*----END FUNCTIONS----*/
-
 
 /*----PAGE NAVIGATION----*/
 /*----HOME----*/
@@ -74,13 +62,14 @@ void MainWindow::on_pushButton_home_berlin_clicked()
 		total += DBManager::instance()->GetDistances(sorted[i], sorted[i + 1]);
 	}
 
-	ui->label_total_distance->setText("Total Distance(km): " + QString::number(total));
-	ui->label_total_distance->adjustSize();
+    ui->label_berlin_total_distance->setText("Total Distance(km): " + QString::number(total));
+    ui->label_berlin_total_distance->adjustSize();
 }
 
 void MainWindow::on_pushButton_home_paris_clicked()
 {
     ui->stackedWidget_pages->setCurrentIndex(PARIS);
+    ui->spinBox_paris_select->setValue(1);
 }
 
 void MainWindow::on_pushButton_home_custom_clicked()
@@ -139,6 +128,36 @@ void MainWindow::on_pushButton_berin_continue_clicked()
 }
 
 /*----PARIS----*/
+void MainWindow::on_spinBox_paris_select_valueChanged(int citiesToVisit)
+{
+    // kord's berlin trip code unless commented
+    QStringList unsorted;
+    QStringList sorted;
+    QStringList trip; // list of cities included in trip
+    DBManager::instance()->GetCities(unsorted);
+    unsorted.removeAll("Paris");
+    unsorted.push_front("Paris");
+    algorithm::sort(unsorted, sorted);
+
+    ui->spinBox_paris_select->setMaximum(sorted.length() - 1); // fills the spinbox with max number of cities to visit
+
+    for (int i = 0; i < citiesToVisit + 1; i++) // fills trip list with sorted list
+    {
+        trip.push_back(sorted.front());
+        sorted.pop_front();
+    }
+
+    TableManager::instance()->PopulateTripTable(ui->tableView_paris_cities, trip);
+
+    int total = 0;
+    for (int i = 0; i < trip.length() - 1; i++) {
+        total += DBManager::instance()->GetDistances(trip[i], trip[i + 1]);
+    }
+
+    ui->label_paris_total_distance->setText("Total Distance(km): " + QString::number(total));
+    ui->label_paris_total_distance->adjustSize();
+}
+
 void MainWindow::on_pushButton_paris_back_clicked()
 {
     ui->stackedWidget_pages->setCurrentIndex(HOME);
@@ -213,13 +232,20 @@ void MainWindow::on_pushButton_receipt_back_clicked()
 void MainWindow::on_pushButton_login_continue_clicked()
 {
 	ui->stackedWidget_pages->setCurrentIndex(ADMIN);
-	TableManager::instance()->InitializeAdminTable(ui->tableView_database);
+    ui->tabWidget_admin_pages->setCurrentIndex(ADMINTAB);
+    TableManager::instance()->InitializeAdminTable(ui->tableView_admin_cities);
 }
 
 void MainWindow::on_pushButton_admin_back_clicked()
 {
     ui->stackedWidget_pages->setCurrentIndex(HOME);
-    ui->tabWidget_pages->setCurrentIndex(HOME);
+    ui->tabWidget_home_pages->setCurrentIndex(HOME);
+}
+
+void MainWindow::on_pushButton_admin_food_back_clicked()
+{
+    ui->stackedWidget_pages->setCurrentIndex(HOME);
+    ui->tabWidget_home_pages->setCurrentIndex(HOME);
 }
 
 void MainWindow::on_pushButton_admin_import_clicked()
@@ -313,6 +339,12 @@ void MainWindow::DestroyCities()
 void ClearFields()
 {
 
+}
+
+void MainWindow::on_pushButton_admin_import_clicked()
+{
+	DBManager::instance()->ImportCities(this);
+    TableManager::instance()->InitializeAdminTable(ui->tableView_admin_cities);
 }
 
 
