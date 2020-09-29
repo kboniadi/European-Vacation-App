@@ -50,12 +50,24 @@ void MainWindow::on_pushButton_home_berlin_clicked()
     ui->stackedWidget_pages->setCurrentIndex(BERLIN);
 	QStringList unsorted;
 	QStringList sorted;
+
+    // Delete existing cities list
+    DestroyCities();
+
 	DBManager::instance()->GetCities(unsorted);
 	unsorted.removeAll("Berlin");
 	unsorted.push_front("Berlin");
 
 	algorithm::sort(unsorted, sorted);
 	TableManager::instance()->PopulateTripTable(ui->tableView_berlin_cities, sorted);
+
+    // Populate city objects
+    for(int index = 0; index < sorted.size(); index++)
+    {
+        City temp;
+        temp.SetName(sorted.at(index));
+        cities->push_back(temp);
+    }
 
 	int total = 0;
 	for (int i = 0; i < sorted.length() - 1; i++) {
@@ -252,26 +264,21 @@ void MainWindow::on_pushButton_custom_finalize_clicked()
     if(!ui->pushButton_custom_continue->isEnabled())
     { ui->pushButton_custom_continue->setEnabled(true); }
 
-    // Populate city objects
-    qDebug() << "Outputting city names inside loop";
-    for(int index = 0; index < customTripCities.size(); index++)
-    {
-        City temp;
-        temp.SetName(customTripCities.at(index));
-        cities->push_back(temp);
-        qDebug() << cities->at(index).GetName();
-    }
-
-    // DEBUG output city object contents
-    qDebug() << "Outputting city names outside loop";
-    for(int index = 0; index < cities->size(); index++)
-    {
-        qDebug() << cities->at(index).GetName() << endl;
-    }
-
     // Run the sorting algorithm
     algorithm::sort(customTripCities, sorted);
     TableManager::instance()->PopulateTripTable(ui->tableView, sorted);
+
+    // Delete existing cities list
+    DestroyCities();
+
+    // Populate city objects
+    for(int index = 0; index < sorted.size(); index++)
+    {
+        City temp;
+        temp.SetName(sorted.at(index));
+        cities->push_back(temp);
+        qDebug() << cities->at(index).GetName();
+    }
 
     // Calculate distance
     int total = 0;
@@ -293,9 +300,10 @@ void MainWindow::on_pushButton_custom_finalize_clicked()
 // Destroy cities list used in purchasing and receipt page
 void MainWindow::DestroyCities()
 {
-    for(int index = 0; index < cities->size(); index++)
+    int size = cities->size();
+    for(int index = 0; index < size; index++)
     {
-        cities->operator[](index).DestroyCity();
+        cities->pop_front();
     }
 }
 
