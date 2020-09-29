@@ -453,6 +453,19 @@
        <string>Finalize Trip</string>
       </property>
      </widget>
+     <widget class="QLabel" name="label_custom_distance">
+      <property name="geometry">
+       <rect>
+        <x>450</x>
+        <y>730</y>
+        <width>211</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Total Distance: </string>
+      </property>
+     </widget>
     </widget>
     <widget class="QWidget" name="page_purchase">
      <widget class="QLabel" name="label_purchase_title">
