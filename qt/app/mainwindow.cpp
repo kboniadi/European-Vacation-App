@@ -79,6 +79,16 @@ void MainWindow::on_pushButton_home_custom_clicked()
     ui->comboBox_custom_otherCities->hide();
     ui->pushButton_custom_add->hide();
 
+    // Populate cities dropdown only one time
+    if(ui->comboBox_custom_startingCity->count() == 0)
+    {
+        DBManager::instance()->GetCities(customTripCities);
+        ui->comboBox_custom_startingCity->addItems(customTripCities);
+        qDebug() << customTripCities;
+    }
+
+    //
+
 }
 
 void MainWindow::on_pushButton_home_exit_clicked()

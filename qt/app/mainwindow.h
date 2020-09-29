@@ -89,5 +89,7 @@ private:
 	Ui::MainWindow *ui;
 
     QVector<City>* cities;
+
+    QStringList customTripCities;
 };
 #endif // MAINWINDOW_H

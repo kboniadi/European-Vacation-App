@@ -31,7 +31,7 @@
       <item>
        <widget class="QTabWidget" name="tabWidget_pages">
         <property name="currentIndex">
-         <number>3</number>
+         <number>0</number>
         </property>
         <widget class="QWidget" name="tab_home">
          <attribute name="title">
@@ -363,12 +363,12 @@
        <rect>
         <x>180</x>
         <y>500</y>
-        <width>80</width>
+        <width>161</width>
         <height>25</height>
        </rect>
       </property>
       <property name="text">
-       <string>Continue</string>
+       <string>Continue to Food Selection</string>
       </property>
      </widget>
      <widget class="QLabel" name="label_custom_startingCity">
@@ -438,6 +438,19 @@
         <width>600</width>
         <height>600</height>
        </rect>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pushButton_custom_finalize">
+      <property name="geometry">
+       <rect>
+        <x>190</x>
+        <y>360</y>
+        <width>91</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Finalize Trip</string>
       </property>
      </widget>
     </widget>
