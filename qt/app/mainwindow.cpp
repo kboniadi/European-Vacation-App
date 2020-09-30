@@ -121,10 +121,10 @@ void MainWindow::on_pushButton_berin_continue_clicked()
     TableManager::instance()->PopulatePurchaseTable(ui->tableWidget_purchase_pos, cities);
 
     // Insert spinbox column
-//    TableManager::instance()->InsertSpinBoxCol(ui->tableWidget_purchase_pos,
-//                                               TableManager::instance()->PURCHASE_SPINBOX_MIN,
-//                                               TableManager::instance()->PURCHASE_SPINBOX_MAX,
-//                                               TableManager::instance()->P_QTY);
+    TableManager::instance()->InsertSpinBoxCol(ui->tableWidget_purchase_pos,
+                                               TableManager::instance()->PURCHASE_SPINBOX_MIN,
+                                               TableManager::instance()->PURCHASE_SPINBOX_MAX,
+                                               TableManager::instance()->P_QTY);
 }
 
 /*----PARIS----*/

@@ -2,7 +2,10 @@
 #include "City.h"
 
 TableManager::TableManager()
-    : parisTripSpinBoxMax{0}, purchaseTableSpinBoxes{nullptr} {}
+    : parisTripSpinBoxMax{0}, purchaseTableSpinBoxes{nullptr}
+{
+    purchaseTableSpinBoxes = new QVector<QSpinBox*>;
+}
 
 TableManager* TableManager::instance()
 {
