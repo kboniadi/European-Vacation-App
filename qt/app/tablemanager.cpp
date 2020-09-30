@@ -24,7 +24,7 @@ void TableManager::InitializeCitiesTable(QTableWidget* table, const int &cols, c
 }
 
     // Populates cities table with relevant information
-void TableManager::PopulateCitiesTable(QTableWidget* table, QVector<City>* cites)
+void TableManager::PopulateCitiesTable(QTableWidget* table, QVector<City>* cities)
 {
 
 }
@@ -98,7 +98,6 @@ void TableManager::PopulatePurchaseTable(QTableWidget* purchaseTable, QVector<Ci
             priceItem = new QTableWidgetItem(QString::number(cities->at(cityIndex).GetFoodPriceAt(foodIndex)));
 
             // If list is not empty
-            qDebug() << "Row count: " << purchaseTable->rowCount();
             if(purchaseTable->rowCount() != 0)
             {
                 // Check to see if there's a match between this row's city name and the previous row's city name
@@ -159,13 +158,22 @@ void TableManager::InsertSpinBoxCol(QTableWidget* table, const int min, const in
 
 // ********************** Receipt Table Methods ****************************
     // Initializes receipt table to blank
-void TableManager::InitializeReceiptTable(QTableWidget* table, const int &cols, const QStringList &headers)
+void TableManager::InitializeReceiptTable(QTableWidget* receiptTable, const int &cols, const QStringList &headers)
 {
+    // All of the code below is dependent on receiptTable being a tablewidget. glhf
+//    receiptTable->clearContents();
+//    receiptTable->setColumnCount(cols);
+//    receiptTable->setHorizontalHeaderLabels(headers);
+//    // TODO - Might be a good idea to set column widths here
+//    receiptTable->setEditTriggers(QTableView::NoEditTriggers);
+//    receiptTable->hideColumn(P_KEY);
+//    receiptTable->verticalHeader()->hide();
 
+//    DeleteAllTableRows(receiptTable);
 }
 
     // Populates receipt table with relevant information
-void TableManager::PopulateReceiptTable(QTableWidget* table, QVector<City>* cites)
+void TableManager::PopulateReceiptTable(QTableWidget* receiptTable, QVector<City>* cities)
 {
 
 }
@@ -191,7 +199,7 @@ void TableManager::InitializeAdminTable(QTableView* table)
 	table->setModel(model);
 }
     // Populates admin table with relevant information
-void TableManager::PopulateAdminTable(QTableWidget* table, QVector<City>* cites)
+void TableManager::PopulateAdminTable(QTableWidget* table, QVector<City>* cities)
 {
 
 }

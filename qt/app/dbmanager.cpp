@@ -205,9 +205,6 @@ void DBManager::CreateShoppingList(QVector<City>* cities)
     // Run query in a loop
     for(int index = 0; index < cities->size(); index++)
     {
-        // DEBUG
-        qDebug() << "Outputting menu for" << cities->at(index).GetName();
-
         // Bind value
         query.bindValue(":cityName", cities->at(index).GetName());
 
@@ -224,19 +221,8 @@ void DBManager::CreateShoppingList(QVector<City>* cities)
                 temp.SetName(query.value(0).toString());
                 temp.SetPrice(query.value(1).toFloat());
 
-                // DEBUG
-                qDebug() << "Food item created:" << temp.GetName() << temp.GetPrice();
-
                 // Add it to the object's food vector
                 cities->operator[](index).AddFood(temp);
-
-                // DEBUG
-                qDebug() << "Food items in " << cities->at(index).GetName();
-                for(int index2 = 0; index2 < cities->at(index).GetFoodListSize(); index2++)
-                {
-                    qDebug() << cities->at(index).GetFoodNameAt(index2);
-                    qDebug() << cities->at(index).GetFoodPriceAt(index2);
-                }
             }
         }
         else
@@ -245,17 +231,3 @@ void DBManager::CreateShoppingList(QVector<City>* cities)
         }
     }
 }
-/*
- * remember to make a pointer to vector of foods so i can load that into
- * each city's pointer to vector of foods (as a temp)
- *
- * QVector<Foods>* foods;
- *
- * // then delete it at the end? i dunno, pointers.
- * try to qdebug both the city's food pointer and this food pointer
- * after deleting it at the end of an iteration.
- *
- * If that works, we good. If not, don't delete it and try to point it
- * at something else i guess?
- *
- */

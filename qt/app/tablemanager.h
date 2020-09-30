@@ -71,9 +71,9 @@ public:
         // Number of columns in receipt table
     const int RECEIPT_TABLE_COL_COUNT = 5;
         // Positions of receipt table columns by name
-    enum ReceiptTableColPositions { R_CITYNAME, R_FOOD, R_PRICE, R_QTY, R_TOTAL };
+    enum ReceiptTableColPositions { R_KEY, R_CITYNAME, R_FOOD, R_PRICE, R_QTY, R_TOTAL };
         // Names of receipt table column headers
-    QStringList receiptTableColNames = {"City Name", "Food Available", "Price", "Quantity Purchased", "Total Charges" };
+    QStringList receiptTableColNames = {"KEY", "City Name", "Food Available", "Price", "Quantity Purchased", "Total Charges" };
 
     // ************************* Admin Table Attributes ************************
 
@@ -93,7 +93,7 @@ public:
         // Initializes cities table to blank
     void InitializeCitiesTable(QTableWidget* table, const int &cols, const QStringList &headers);
         // Populates cities table with relevant information
-    void PopulateCitiesTable(QTableWidget* table, QVector<City>* cites);
+    void PopulateCitiesTable(QTableWidget* table, QVector<City>* cities);
 
     // ************************* Food Table Methods ****************************
 
@@ -107,7 +107,7 @@ public:
         // Initializes trip planning table to blank. Used for all types of trips
     void InitializeTripTable(QTableWidget* table, const int &cols, const QStringList &headers);
         // Populates trip planning table with relevant information
-	void PopulateTripTable(QTableView* table, const QStringList& cites);
+    void PopulateTripTable(QTableView* table, const QStringList& cities);
 
     // ************** Food Purchasing Table Methods ****************************
         // Initializes purchase table to blank
@@ -119,15 +119,15 @@ public:
 
     // ********************** Receipt Table Methods ****************************
         // Initializes receipt table to blank
-    void InitializeReceiptTable(QTableWidget* table, const int &cols, const QStringList &headers);
+    void InitializeReceiptTable(QTableWidget* receiptTable, const int &cols, const QStringList &headers);
         // Populates receipt table with relevant information
-    void PopulateReceiptTable(QTableWidget* table, QVector<City>* cites);
+    void PopulateReceiptTable(QTableWidget* receiptTable, QVector<City>* cites);
 
     // ****************** Admin Table Table Methods ****************************
         // Intializes admin table to blank
 	void InitializeAdminTable(QTableView* table);
         // Populates admin table with relevant information
-    void PopulateAdminTable(QTableWidget* table, QVector<City>* cites);
+    void PopulateAdminTable(QTableWidget* table, QVector<City>* cities);
 
     void DeleteAllTableRows(QTableWidget *table);
         // TODO copy/paste contents of one table to another

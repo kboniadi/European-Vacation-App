@@ -166,6 +166,13 @@ void MainWindow::on_pushButton_purchase_back_clicked()
 void MainWindow::on_pushButton_purchase_continue_clicked()
 {
     ui->stackedWidget_pages->setCurrentIndex(RECEIPT);
+
+    // Collect data from spinboxes and populate final form of cities objects
+    CreateReceipt(cities);
+
+    // Initialize (to blank), receipt table
+
+    // Populate table with data
 }
 
 /*----RECEIPT----*/
@@ -213,4 +220,20 @@ void MainWindow::on_pushButton_admin_import_clicked()
     DBManager::instance()->ImportCities(this);
     TableManager::instance()->InitializeAdminTable(ui->tableView_database);
 }
-/*----END NAVIGATION----*/
+
+// Create receipt to print on receipt page
+void MainWindow::CreateReceipt(QVector<City>* cities)
+{
+    int uberIndex = 0;
+    for(int cityIndex = 0; cityIndex < cities->size(); cityIndex++)
+    {
+        for(int foodIndex = 0; foodIndex < cities->at(cityIndex).GetFoodListSize(); foodIndex++)
+        {
+            // Add food to item
+            cities->operator[](cityIndex).SetFoodQtyAt(foodIndex, TableManager::instance()->purchaseTableSpinBoxes->at(uberIndex)->value());
+            uberIndex++;
+        }
+    }
+}
+
+/*----END HELPER FUNCTIONS----*/
