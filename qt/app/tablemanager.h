@@ -54,11 +54,11 @@ public:
     // **************** Food Purchasing Table Attributes ***********************
 
         // Number of columns in food-purchasing table
-    const int PURCHASE_TABLE_COL_COUNT = 4;
+    const int PURCHASE_TABLE_COL_COUNT = 5;
         // Positions of food purchase table columns by name
-    enum PurchaseTableColPositions { P_CITYNAME, P_FOOD, P_PRICE, P_QTY };
+    enum PurchaseTableColPositions { P_KEY, P_CITYNAME, P_FOOD, P_PRICE, P_QTY };
         // Names of purchase table column headers
-    QStringList purchaseTableColNames = {"City Name", "Food Available", "Price", "Quantity Desired" };
+    QStringList purchaseTableColNames = {"KEY", "City Name", "Food Available", "Price", "Quantity Desired" };
         // Minimum value for food purchase spinbox
     const int PURCHASE_SPINBOX_MIN = 0;
         // Maximum value for food purchase spinbox

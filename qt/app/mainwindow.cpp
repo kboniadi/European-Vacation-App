@@ -110,16 +110,21 @@ void MainWindow::on_pushButton_berin_continue_clicked()
 {
     ui->stackedWidget_pages->setCurrentIndex(PURCHASE);
 
+    // Create shopping list
+    DBManager::instance()->CreateShoppingList(cities);
+
     // Initialize purchase table to blank
     TableManager::instance()->InitializePurchaseTable(ui->tableWidget_purchase_pos,
                                                       TableManager::instance()->PURCHASE_TABLE_COL_COUNT,
                                                       TableManager::instance()->purchaseTableColNames);
     // Populate purchase table
-
+    TableManager::instance()->PopulatePurchaseTable(ui->tableWidget_purchase_pos, cities);
 
     // Insert spinbox column
-
-    DBManager::instance()->CreateShoppingList(cities);
+//    TableManager::instance()->InsertSpinBoxCol(ui->tableWidget_purchase_pos,
+//                                               TableManager::instance()->PURCHASE_SPINBOX_MIN,
+//                                               TableManager::instance()->PURCHASE_SPINBOX_MAX,
+//                                               TableManager::instance()->P_QTY);
 }
 
 /*----PARIS----*/

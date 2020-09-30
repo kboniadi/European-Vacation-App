@@ -70,6 +70,8 @@ void TableManager::InitializePurchaseTable(QTableWidget* purchaseTable, const in
     purchaseTable->setHorizontalHeaderLabels(headers);
     // TODO - Might be a good idea to set column widths here
     purchaseTable->setEditTriggers(QTableView::NoEditTriggers);
+    purchaseTable->hideColumn(P_KEY);
+    purchaseTable->verticalHeader()->hide();
 
     DeleteAllTableRows(purchaseTable);
 }
@@ -78,29 +80,62 @@ void TableManager::InitializePurchaseTable(QTableWidget* purchaseTable, const in
 void TableManager::PopulatePurchaseTable(QTableWidget* purchaseTable, QVector<City>* cities)
 {
     QTableWidgetItem* priceItem;
+    QString currentName;
+    QString previousName;
 
-    for(int index = 0; index < cities->size(); index++)
+    // For the length of the city list
+    for(int cityIndex = 0; cityIndex < cities->size(); cityIndex++)
     {
-        // Create new row
-        purchaseTable->insertRow(index);
+        int foodListSize = cities->at(cityIndex).GetFoodListSize();
 
-        // Convert int values to QString & store into QTableWidgetItems
-        priceItem = new QTableWidgetItem(QString::number(cities->at(index).GetFoodPriceAt(index)));
+        // Iterate through each city's food list
+        for(int foodIndex = 0; foodIndex < foodListSize; foodIndex++)
+        {
+            // Generate food price tablewidgetitem
+            priceItem = new QTableWidgetItem(QString::number(cities->at(cityIndex).GetFoodPriceAt(foodIndex)));
 
+            // If list is not empty
+            qDebug() << "Row count: " << purchaseTable->rowCount();
+            if(purchaseTable->rowCount() != 0)
+            {
+                // Check to see if there's a match between this row's city name and the previous row's city name
+                currentName = purchaseTable->item(purchaseTable->rowCount() -1, P_KEY)->data(0).toString();
+                previousName = cities->at(cityIndex).GetName();
 
-//        // Place items and actor string values into scenarioActorsTable
-//        scenarioActorsTable->setItem(index, SC_ID, idItem);
-//        scenarioActorsTable->setItem(index, SC_NAME, new QTableWidgetItem(scenarioActorList->at(index).GetName()));
-//        scenarioActorsTable->setItem(index, SC_HP, hpItem);
-//        scenarioActorsTable->setItem(index, SC_AC, acItem);
-//        scenarioActorsTable->setItem(index, SC_DC, dcItem);
-//        scenarioActorsTable->setItem(index, SC_NOTES, new QTableWidgetItem(scenarioActorList->at(index).GetNotes()));
-//        scenarioActorsTable->setItem(index, SC_TYPE, new QTableWidgetItem(scenarioActorList->at(index).GetType()));
+                // Add a row to the end
+                purchaseTable->insertRow(purchaseTable->rowCount());
 
-//        // Probably gonna need another loop here for the remaining food items
+                bool match = currentName == previousName;
 
+                // If the row names do not match, insert the city name into the name column
+                if(!match)
+                {
+                    // Insert city name into city name column
+                    purchaseTable->setItem(purchaseTable->rowCount() - 1, P_CITYNAME, new QTableWidgetItem(cities->at(cityIndex).GetName()));
+                }
+                else // Else, insert blank name
+                {
+                    purchaseTable->setItem(purchaseTable->rowCount() - 1, P_CITYNAME, new QTableWidgetItem(""));
+                }
+            } // END if purchase table not empty
+            else // if purchase table empty
+            {
+                // Add new row
+                purchaseTable->insertRow(purchaseTable->rowCount());
 
-    } // END for
+                // Insert city name into city name column
+                purchaseTable->setItem(purchaseTable->rowCount() - 1, P_CITYNAME, new QTableWidgetItem(cities->at(cityIndex).GetName()));
+            }
+
+            // Insert city name into key column
+            purchaseTable->setItem(purchaseTable->rowCount() - 1, P_KEY, new QTableWidgetItem(cities->at(cityIndex).GetName()));
+            // Add food name
+            purchaseTable->setItem(purchaseTable->rowCount() - 1, P_FOOD, new QTableWidgetItem(cities->at(cityIndex).GetFoodNameAt(foodIndex)));
+            // Add food price
+            purchaseTable->setItem(purchaseTable->rowCount() - 1, P_PRICE, priceItem);
+
+        } // END for iterate through food list
+    } // END for iterate through city list
 }
 
     // Inserts a dynamic spinbox in table at specific column
