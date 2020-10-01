@@ -2,6 +2,7 @@
 #define CITY_H
 #include <QString>
 #include <QStringList>
+#include <QVector>
 
 class Food;
 
@@ -16,10 +17,26 @@ public:
     // Mutator: Alter/set city name
     void SetName(const QString &name);
 
-    // Accessor: Get food list associated with city
-    QVector<Food>* GetFoods() const;
+    // Accessor: Get food at index in associated with city
+    Food GetFoodAt(const int &index) const;
+
+    // Get food name at this index
+    QString GetFoodNameAt(const int &index) const;
+
+    // Get food price at this index
+    float GetFoodPriceAt(const int &index) const;
+
+    // Get food qty at this index
+    int GetFoodQtyAt(const int &index) const;
+
+    // Set food qty at this index
+    void SetFoodQtyAt(const int &index, const int &qty);
+
+    // Accessor: Get size of food list
+    int GetFoodListSize() const;
+
     // Mutator: Alter/set food list
-    void SetFoods(QVector<Food>* &foodList);
+    void AddFood(Food &item);
 
     // Destroy City Object
     void DestroyCity();

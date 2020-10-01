@@ -16,6 +16,8 @@
  * @brief The DBManager class manages core methods used to access the data
  * stored in the data base
  */
+class City;
+
 class DBManager: public QWidget, public QSqlDatabase {
 	Q_OBJECT;
 public:
@@ -92,6 +94,9 @@ public:
 	 * @return distance between two cities
 	 */
 	int GetDistances(const QString &city1, const QString &city2);
+
+  void CreateShoppingList(QVector<City>* cities);
+
 private:
 	QSqlQuery query;	//!< used to query the database
 
