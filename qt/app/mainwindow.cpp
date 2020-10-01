@@ -296,6 +296,10 @@ void MainWindow::on_pushButton_custom_add_clicked()
     // Enable "Plan trip" button
     if(!ui->pushButton_custom_finalize->isEnabled())
     { ui->pushButton_custom_finalize->setEnabled(true);}
+
+    // Disable button if empty
+    if(ui->comboBox_custom_otherCities->count() == 0)
+    { ui->pushButton_custom_add->setDisabled(true); }
 }
 
 
