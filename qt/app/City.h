@@ -2,6 +2,7 @@
 #define CITY_H
 #include <QString>
 #include <QStringList>
+#include <QVector>
 
 class Food;
 
