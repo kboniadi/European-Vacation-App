@@ -7,13 +7,13 @@ def ImportCityTemplate(filename):
     # conn.execute("PRAGMA foreign_keys=1")
     # cur = conn.cursor()    
 
-    cur.execute("CREATE TABLE IF NOT EXISTS Parent(id INTEGER PRIMARY KEY AUTOINCREMENT, city TEXT)")
+    cur.execute("CREATE TABLE IF NOT EXISTS cities(id INTEGER PRIMARY KEY AUTOINCREMENT, cityNames TEXT)")
 
     with open(filename, 'r') as csvFile:
         readCSV = csv.reader(csvFile, delimiter=',')
         
         for row in readCSV:
-            cur.execute("INSERT INTO Parent(city) VALUES(?)", row)
+            cur.execute("INSERT INTO cities(cityNames) VALUES(?)", row)
     # conn.commit()
     # cur.close()
     # conn.close()
@@ -23,11 +23,11 @@ def ImportFile(filename, table, column1, column2):
     # conn = sqlite3.connect("Data.db")
     # cur = conn.cursor()
 
-    cur.execute('SELECT * FROM Parent')
+    cur.execute('SELECT * FROM cities')
     outer = cur.fetchall()
 
     temp = '''CREATE TABLE IF NOT EXISTS {0}(id INTEGER, {1} TEXT,
-    {2} INTEGER, FOREIGN KEY(id) REFERENCES Parent(id) ON DELETE CASCADE)'''.format(table, column1, column2)
+    {2} INTEGER, FOREIGN KEY(id) REFERENCES cities(id) ON DELETE CASCADE)'''.format(table, column1, column2)
     cur.execute(temp)
 
     with open(filename, 'r') as csvFile:
@@ -54,8 +54,8 @@ def ImportFile(filename, table, column1, column2):
     # conn.close()
 
 def ImportAccounts(username, password, accessLevel):
-    cur.execute("CREATE TABLE IF NOT EXISTS Accounts(username TEXT, password TEXT, level TEXT)");
-    cur.execute("INSERT INTO Accounts(username, password, level) VALUES(?, ?, ?)", (username, password, accessLevel));
+    cur.execute("CREATE TABLE IF NOT EXISTS accounts(username TEXT, password TEXT, level TEXT)");
+    cur.execute("INSERT INTO accounts(username, password, level) VALUES(?, ?, ?)", (username, password, accessLevel));
 
 # def getData():
 #     con = sqlite3.connect('Data.db')
@@ -84,15 +84,15 @@ if __name__ == "__main__":
     conn.execute("PRAGMA foreign_keys=1")
     cur = conn.cursor()
 
-    DropTable('Distance')
-    DropTable('Food')
-    DropTable('Parent')
-    DropTable('Accounts');
+    DropTable('distance')
+    DropTable('food')
+    DropTable('cities')
+    DropTable('accounts');
     # DropTable('New_Cities')
 
     ImportCityTemplate('cities.csv')
-    ImportFile('Dist_&_Foods-Distances.csv', 'Distance', 'endCity', 'distance')
-    ImportFile('Dist_&_Foods-Foods.csv', 'Food', 'food', 'price')
+    ImportFile('Dist_&_Foods-Distances.csv', 'distance', 'endCity', 'distances')
+    ImportFile('Dist_&_Foods-Foods.csv', 'food', 'foodNames', 'price')
     ImportAccounts('admin', 'password', 'ADMIN');
     
     # getData()

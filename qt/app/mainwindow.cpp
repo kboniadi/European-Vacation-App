@@ -13,10 +13,10 @@ MainWindow::MainWindow(QWidget *parent)
 	ui->stackedWidget_pages->setCurrentIndex(HOME); // setCurrentIndex cycles through the stackedwidget
     ui->tabWidget_home_pages->setCurrentIndex(HOME); // setCurrentIndex cycles through the tabWidget
     
-    // Create Database
+	// Creates single Database instance
 	DBManager::instance();
 
-    // Create TableManager
+	// Create single TableManager instance
     TableManager::instance();
 
     // Create list of cities used in purchasing and receipt pages
@@ -42,6 +42,7 @@ void MainWindow::on_pushButton_home_berlin_clicked()
     // Delete existing cities list
     DestroyCities();
 
+	// puts list of cities in a form that can be sorted
 	DBManager::instance()->GetCities(unsorted);
 	unsorted.removeAll("Berlin");
 	unsorted.push_front("Berlin");
@@ -57,6 +58,7 @@ void MainWindow::on_pushButton_home_berlin_clicked()
         cities->push_back(temp);
     }
 
+	// totals distance for the trip based on sorted list of cities
 	int total = 0;
 	for (int i = 0; i < sorted.length() - 1; i++) {
 		total += DBManager::instance()->GetDistances(sorted[i], sorted[i + 1]);
