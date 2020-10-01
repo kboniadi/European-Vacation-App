@@ -13,10 +13,11 @@ MainWindow::MainWindow(QWidget *parent)
 	  ui->stackedWidget_pages->setCurrentIndex(HOME); // setCurrentIndex cycles through the stackedwidget
     ui->tabWidget_home_pages->setCurrentIndex(HOME); // setCurrentIndex cycles through the tabWidget
     
-    // Create Database
-    DBManager::instance();
 
-    // Create TableManager
+	// Creates single Database instance
+	DBManager::instance();
+
+	// Create single TableManager instance
     TableManager::instance();
 
     // Create list of cities used in purchasing and receipt pages
@@ -42,12 +43,14 @@ void MainWindow::on_pushButton_home_berlin_clicked()
     // Delete existing cities list
     DestroyCities();
 
-    DBManager::instance()->GetCities(unsorted);
-    unsorted.removeAll("Berlin");
-    unsorted.push_front("Berlin");
+	// puts list of cities in a form that can be sorted
+	DBManager::instance()->GetCities(unsorted);
+	unsorted.removeAll("Berlin");
+	unsorted.push_front("Berlin");
 
     algorithm::sort(unsorted, sorted);
     TableManager::instance()->PopulateTripTable(ui->tableView_berlin_cities, sorted);
+
 
     // TODO This is where 'delete _foods' in the city constructor will break the program.
     // Dunno how to resolve
@@ -60,6 +63,7 @@ void MainWindow::on_pushButton_home_berlin_clicked()
         cities->push_back(temp);
     }
 
+	// totals distance for the trip based on sorted list of cities
 	int total = 0;
 	for (int i = 0; i < sorted.length() - 1; i++) {
 		total += DBManager::instance()->GetDistances(sorted[i], sorted[i + 1]);

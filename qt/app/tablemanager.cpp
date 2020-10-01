@@ -57,8 +57,10 @@ void TableManager::PopulateTripTable(QTableView* table, const QStringList& citie
 	QStringListModel *model = new QStringListModel;
 	model->setStringList(cities);
 
+	// prevent unwanted editing by user
 	table->setEditTriggers(QAbstractItemView::NoEditTriggers);
 	table->verticalHeader()->setVisible(false);
+	// note: QStringListModel has no header setting function
 	table->horizontalHeader()->setVisible(false);
 	table->setGridStyle(Qt::NoPen);
 	table->setModel(model);
@@ -184,11 +186,11 @@ void TableManager::InitializeAdminTable(QTableView* table)
 {
 	QSqlQueryModel *model = new QSqlQueryModel;
 
-	model->setQuery("SELECT city, endCity, distance FROM Distance, Parent WHERE"
-					" Parent.id = Distance.id ORDER BY Parent.id");
+	model->setQuery("SELECT cityNames, endCity, distances FROM distance, cities WHERE"
+					" cities.id = distance.id ORDER BY cities.id");
 
 	if (!model->query().exec())
-		qDebug() << "didn't work";
+		qDebug() << "TableManager::InitializeAdminTable() : query failed";
 
 	model->setHeaderData(0, Qt::Horizontal, QObject::tr("Starting City"), Qt::DisplayRole);
 	model->setHeaderData(1, Qt::Horizontal, QObject::tr("Ending City"), Qt::DisplayRole);

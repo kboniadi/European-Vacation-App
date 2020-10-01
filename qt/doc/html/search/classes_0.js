@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['mainwindow_7',['MainWindow',['../classMainWindow.html',1,'']]]
+  ['algorithm_114',['algorithm',['../structalgorithm.html',1,'']]]
 ];

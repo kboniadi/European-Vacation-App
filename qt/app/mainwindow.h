@@ -3,8 +3,6 @@
 
 #include <QMainWindow>
 #include <QStackedWidget>
-#include <dbmanager.h>
-#include <tablemanager.h>
 #include "sortalgorithm.h"
 
 QT_BEGIN_NAMESPACE
