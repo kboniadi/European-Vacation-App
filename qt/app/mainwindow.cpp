@@ -10,9 +10,9 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
 
-    ui->stackedWidget_pages->setCurrentIndex(HOME); // setCurrentIndex cycles through the stackedwidget
-    ui->tabWidget_pages->setCurrentIndex(HOME); // setCurrentIndex cycles through the tabWidget
-
+	  ui->stackedWidget_pages->setCurrentIndex(HOME); // setCurrentIndex cycles through the stackedwidget
+    ui->tabWidget_home_pages->setCurrentIndex(HOME); // setCurrentIndex cycles through the tabWidget
+    
     // Create Database
     DBManager::instance();
 
@@ -21,27 +21,15 @@ MainWindow::MainWindow(QWidget *parent)
 
     // Create list of cities used in purchasing and receipt pages
     cities = new QVector<City>;
+
+    // initialize paris trip spinbox (will be moved to tablemanager)
+    ui->spinBox_paris_select->setMinimum(1);
 }
 
 MainWindow::~MainWindow()
 {
     delete ui;
 }
-
-/*---FUNCTIONS----*/
-// insert any functions for mainwindow into this block
-
-void clearFields() // proposed method to clear all tables and user input.
-{
-
-}
-
-
-
-
-
-/*----END FUNCTIONS----*/
-
 
 /*----PAGE NAVIGATION----*/
 /*----HOME----*/
@@ -63,6 +51,7 @@ void MainWindow::on_pushButton_home_berlin_clicked()
 
     // TODO This is where 'delete _foods' in the city constructor will break the program.
     // Dunno how to resolve
+
     // Populate city objects
     for(int index = 0; index < sorted.size(); index++)
     {
@@ -71,18 +60,19 @@ void MainWindow::on_pushButton_home_berlin_clicked()
         cities->push_back(temp);
     }
 
-    int total = 0;
-    for (int i = 0; i < sorted.length() - 1; i++) {
-        total += DBManager::instance()->GetDistances(sorted[i], sorted[i + 1]);
-    }
+	int total = 0;
+	for (int i = 0; i < sorted.length() - 1; i++) {
+		total += DBManager::instance()->GetDistances(sorted[i], sorted[i + 1]);
+	}
 
-    ui->label_total_distance->setText("Total Distance(km): " + QString::number(total));
-    ui->label_total_distance->adjustSize();
+    ui->label_berlin_total_distance->setText("Total Distance(km): " + QString::number(total));
+    ui->label_berlin_total_distance->adjustSize();
 }
 
 void MainWindow::on_pushButton_home_paris_clicked()
 {
     ui->stackedWidget_pages->setCurrentIndex(PARIS);
+    ui->spinBox_paris_select->setValue(1);
 }
 
 void MainWindow::on_pushButton_home_custom_clicked()
@@ -92,7 +82,36 @@ void MainWindow::on_pushButton_home_custom_clicked()
     ui->label_custom_otherCities->hide();
     ui->comboBox_custom_otherCities->hide();
     ui->pushButton_custom_add->hide();
+    ui->label_custom_distance->clear();
+    ui->comboBox_custom_otherCities->clear();
 
+    // Reset table
+    QSqlQueryModel* reset = new QSqlQueryModel;
+    ui->tableView->setModel(reset);
+
+    // If food selection enabled, disable
+    if(ui->pushButton_custom_continue->isEnabled())
+    { ui->pushButton_custom_continue->setDisabled(true); }
+
+    // If combobox is disabled, enable
+    if(!ui->comboBox_custom_startingCity->isEnabled())
+    { ui->comboBox_custom_startingCity->setEnabled(true); }
+
+    // Set combobox index to 0
+    ui->comboBox_custom_startingCity->setCurrentIndex(0);
+
+    // Clear custom trip cities list
+    customTripCities.clear();
+
+    // Populate cities dropdown only one time
+    if(ui->comboBox_custom_startingCity->count() == 0)
+    {
+        DBManager::instance()->GetCities(customTripComboBoxCities);
+        ui->comboBox_custom_startingCity->addItems(customTripComboBoxCities);
+    }
+
+    // Grey out 'finalize trip'
+    ui->pushButton_custom_finalize->setDisabled(true);
 }
 
 void MainWindow::on_pushButton_home_exit_clicked()
@@ -128,6 +147,36 @@ void MainWindow::on_pushButton_berin_continue_clicked()
 }
 
 /*----PARIS----*/
+void MainWindow::on_spinBox_paris_select_valueChanged(int citiesToVisit)
+{
+    // kord's berlin trip code unless commented
+    QStringList unsorted;
+    QStringList sorted;
+    QStringList trip; // list of cities included in trip
+    DBManager::instance()->GetCities(unsorted);
+    unsorted.removeAll("Paris");
+    unsorted.push_front("Paris");
+    algorithm::sort(unsorted, sorted);
+
+    ui->spinBox_paris_select->setMaximum(sorted.length() - 1); // fills the spinbox with max number of cities to visit
+
+    for (int i = 0; i < citiesToVisit + 1; i++) // fills trip list with sorted list
+    {
+        trip.push_back(sorted.front());
+        sorted.pop_front();
+    }
+
+    TableManager::instance()->PopulateTripTable(ui->tableView_paris_cities, trip);
+
+    int total = 0;
+    for (int i = 0; i < trip.length() - 1; i++) {
+        total += DBManager::instance()->GetDistances(trip[i], trip[i + 1]);
+    }
+
+    ui->label_paris_total_distance->setText("Total Distance(km): " + QString::number(total));
+    ui->label_paris_total_distance->adjustSize();
+}
+
 void MainWindow::on_pushButton_paris_back_clicked()
 {
     ui->stackedWidget_pages->setCurrentIndex(HOME);
@@ -155,6 +204,30 @@ void MainWindow::on_comboBox_custom_startingCity_activated(int index)
     ui->label_custom_otherCities->show();
     ui->comboBox_custom_otherCities->show();
     ui->pushButton_custom_add->show();
+
+    // Enable other_cities combobox
+    if(!ui->comboBox_custom_otherCities->isEnabled())
+    { ui->comboBox_custom_otherCities->setEnabled(true); }
+
+    // Enable add_city pushbutton
+    if(!ui->pushButton_custom_add->isEnabled())
+    { ui->pushButton_custom_add->setEnabled(true); }
+
+    // Place starting city on separate list
+    customTripCities.push_back(ui->comboBox_custom_startingCity->currentText());
+
+    // Remove cities from available selection
+    customTripComboBoxCities.removeOne(ui->comboBox_custom_startingCity->currentText());
+
+    // Populate other combobox
+    ui->comboBox_custom_otherCities->addItems(customTripComboBoxCities);
+
+    // Grey out combobox
+    ui->comboBox_custom_startingCity->setDisabled(true);
+
+    // Place city on table
+    TableManager::instance()->PopulateTripTable(ui->tableView, customTripCities);
+
 }
 
 /*----PURCHASE----*/
@@ -184,15 +257,96 @@ void MainWindow::on_pushButton_receipt_back_clicked()
 /*----ADMIN----*/
 void MainWindow::on_pushButton_login_continue_clicked()
 {
-    ui->stackedWidget_pages->setCurrentIndex(ADMIN);
-    TableManager::instance()->InitializeAdminTable(ui->tableView_database);
+	ui->stackedWidget_pages->setCurrentIndex(ADMIN);
+    ui->tabWidget_admin_pages->setCurrentIndex(ADMINTAB);
+    TableManager::instance()->InitializeAdminTable(ui->tableView_admin_cities);
 }
 
 void MainWindow::on_pushButton_admin_back_clicked()
 {
     ui->stackedWidget_pages->setCurrentIndex(HOME);
-    ui->tabWidget_pages->setCurrentIndex(HOME);
+    ui->tabWidget_home_pages->setCurrentIndex(HOME);
 }
+
+void MainWindow::on_pushButton_admin_food_back_clicked()
+{
+    ui->stackedWidget_pages->setCurrentIndex(HOME);
+    ui->tabWidget_home_pages->setCurrentIndex(HOME);
+}
+
+void MainWindow::on_pushButton_admin_import_clicked()
+{
+    DBManager::instance()->ImportCities(this);
+    TableManager::instance()->InitializeAdminTable(ui->tableView_admin_cities);
+}
+
+
+
+void MainWindow::on_pushButton_custom_add_clicked()
+{
+    // Add city to QStringList
+    customTripCities.push_back(ui->comboBox_custom_otherCities->currentText());
+
+    // Remove city from combobox
+    ui->comboBox_custom_otherCities->removeItem(ui->comboBox_custom_otherCities->currentIndex());
+
+    // Add city to table
+    TableManager::instance()->PopulateTripTable(ui->tableView, customTripCities);
+
+    // Enable "Plan trip" button
+    if(!ui->pushButton_custom_finalize->isEnabled())
+    { ui->pushButton_custom_finalize->setEnabled(true);}
+}
+
+
+void MainWindow::on_pushButton_custom_finalize_clicked()
+{
+    QStringList sorted;
+
+    // Disable other_cities combobox
+    if(ui->comboBox_custom_otherCities->isEnabled())
+    { ui->comboBox_custom_otherCities->setDisabled(true); }
+
+    // Disable add_city pushbutton
+    if(ui->pushButton_custom_add->isEnabled())
+    { ui->pushButton_custom_add->setDisabled(true); }
+
+    // Disable finalize_trip button
+    if(ui->pushButton_custom_finalize->isEnabled())
+    { ui->pushButton_custom_finalize->setDisabled(true); }
+
+    // Enable 'Continue' pushbutton
+    if(!ui->pushButton_custom_continue->isEnabled())
+    { ui->pushButton_custom_continue->setEnabled(true); }
+
+    // Run the sorting algorithm
+    algorithm::sort(customTripCities, sorted);
+    TableManager::instance()->PopulateTripTable(ui->tableView, sorted);
+
+    // Delete existing cities list
+    DestroyCities();
+
+    // Populate city objects
+    for(int index = 0; index < sorted.size(); index++)
+    {
+        City temp;
+        temp.SetName(sorted.at(index));
+        cities->push_back(temp);
+        qDebug() << cities->at(index).GetName();
+    }
+
+    // Calculate distance
+    int total = 0;
+    for (int i = 0; i < sorted.length() - 1; i++) {
+        total += DBManager::instance()->GetDistances(sorted[i], sorted[i + 1]);
+    }
+
+    // Display distance
+    ui->label_custom_distance->setText("Total Distance(km): " + QString::number(total));
+    ui->label_custom_distance->adjustSize();
+}
+
+
 /*----END NAVIGATION----*/
 
 
@@ -215,11 +369,6 @@ void ClearFields()
 
 }
 
-void MainWindow::on_pushButton_admin_import_clicked()
-{
-    DBManager::instance()->ImportCities(this);
-    TableManager::instance()->InitializeAdminTable(ui->tableView_database);
-}
 
 // Create receipt to print on receipt page
 void MainWindow::CreateReceipt(QVector<City>* cities)

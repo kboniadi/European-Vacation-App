@@ -49,6 +49,13 @@ public:
         RECEIPT,
         ADMIN
     };
+
+    enum adminPage // enums for navigation through admin tabs
+    {
+        ADMINTAB,
+        FOODTAB
+    };
+
     /*----END ENUMS----*/
 
 private slots:
@@ -65,7 +72,9 @@ private slots:
 
     void on_pushButton_berin_continue_clicked();
 
-    void on_pushButton_paris_back_clicked(); // paris
+    void on_spinBox_paris_select_valueChanged(int citiesToVisit); // paris
+
+    void on_pushButton_paris_back_clicked();
 
     void on_pushButton_paris_continue_clicked();
 
@@ -85,12 +94,22 @@ private slots:
 
     void on_pushButton_admin_back_clicked(); // admin
 
+    void on_pushButton_admin_food_back_clicked();
+
     void on_pushButton_admin_import_clicked();
+
+    void on_pushButton_custom_add_clicked();
+
+    void on_pushButton_custom_finalize_clicked();
     /*----END NAVIGATION----*/
+
 
 private:
 	Ui::MainWindow *ui;
 
     QVector<City>* cities;
+    QStringList customTripCities;
+    QStringList customTripComboBoxCities;
+
 };
 #endif // MAINWINDOW_H
