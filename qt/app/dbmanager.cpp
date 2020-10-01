@@ -1,4 +1,6 @@
 #include "dbmanager.h"
+#include "City.h"
+#include "food.h"
 #include <QFileDialog>
 #include <QProgressDialog>
 DBManager::DBManager(QWidget *parent)
@@ -195,18 +197,37 @@ int DBManager::GetDistances(const QString &city1, const QString &city2)
 }
 
 
-//  QVector<City>* CreateShoppingList(QVector<City>* cities);
-/*
- * remember to make a pointer to vector of foods so i can load that into
- * each city's pointer to vector of foods (as a temp)
- *
- * QVector<Foods>* foods;
- *
- * // then delete it at the end? i dunno, pointers.
- * try to qdebug both the city's food pointer and this food pointer
- * after deleting it at the end of an iteration.
- *
- * If that works, we good. If not, don't delete it and try to point it
- * at something else i guess?
- *
- */
+void DBManager::CreateShoppingList(QVector<City>* cities)
+{
+    // Prep general query
+    query.prepare("SELECT Food.food, Food.price from Parent, Food where city = :cityName and Parent.id = Food.id;");
+
+    // Run query in a loop
+    for(int index = 0; index < cities->size(); index++)
+    {
+        // Bind value
+        query.bindValue(":cityName", cities->at(index).GetName());
+
+        // Execute query
+        if(query.exec())
+        {
+            // While food exists in DB for this specific city
+            while(query.next())
+            {
+                // Create a food item
+                Food temp;
+
+                // Populate it
+                temp.SetName(query.value(0).toString());
+                temp.SetPrice(query.value(1).toFloat());
+
+                // Add it to the object's food vector
+                cities->operator[](index).AddFood(temp);
+            }
+        }
+        else
+        {
+            qDebug() << "Query didn't execute properly";
+        }
+    }
+}

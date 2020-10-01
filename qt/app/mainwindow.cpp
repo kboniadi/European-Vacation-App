@@ -5,16 +5,16 @@
 #include "tablemanager.h"
 
 MainWindow::MainWindow(QWidget *parent)
-	: QMainWindow(parent)
-	, ui(new Ui::MainWindow)
+    : QMainWindow(parent)
+    , ui(new Ui::MainWindow)
 {
-	ui->setupUi(this);
+    ui->setupUi(this);
 
-	ui->stackedWidget_pages->setCurrentIndex(HOME); // setCurrentIndex cycles through the stackedwidget
+	  ui->stackedWidget_pages->setCurrentIndex(HOME); // setCurrentIndex cycles through the stackedwidget
     ui->tabWidget_home_pages->setCurrentIndex(HOME); // setCurrentIndex cycles through the tabWidget
     
     // Create Database
-	DBManager::instance();
+    DBManager::instance();
 
     // Create TableManager
     TableManager::instance();
@@ -28,7 +28,7 @@ MainWindow::MainWindow(QWidget *parent)
 
 MainWindow::~MainWindow()
 {
-	delete ui;
+    delete ui;
 }
 
 /*----PAGE NAVIGATION----*/
@@ -36,18 +36,21 @@ MainWindow::~MainWindow()
 void MainWindow::on_pushButton_home_berlin_clicked()
 {
     ui->stackedWidget_pages->setCurrentIndex(BERLIN);
-	QStringList unsorted;
-	QStringList sorted;
+    QStringList unsorted;
+    QStringList sorted;
 
     // Delete existing cities list
     DestroyCities();
 
-	DBManager::instance()->GetCities(unsorted);
-	unsorted.removeAll("Berlin");
-	unsorted.push_front("Berlin");
+    DBManager::instance()->GetCities(unsorted);
+    unsorted.removeAll("Berlin");
+    unsorted.push_front("Berlin");
 
-	algorithm::sort(unsorted, sorted);
-	TableManager::instance()->PopulateTripTable(ui->tableView_berlin_cities, sorted);
+    algorithm::sort(unsorted, sorted);
+    TableManager::instance()->PopulateTripTable(ui->tableView_berlin_cities, sorted);
+
+    // TODO This is where 'delete _foods' in the city constructor will break the program.
+    // Dunno how to resolve
 
     // Populate city objects
     for(int index = 0; index < sorted.size(); index++)
@@ -125,6 +128,22 @@ void MainWindow::on_pushButton_berlin_back_clicked()
 void MainWindow::on_pushButton_berin_continue_clicked()
 {
     ui->stackedWidget_pages->setCurrentIndex(PURCHASE);
+
+    // Create shopping list
+    DBManager::instance()->CreateShoppingList(cities);
+
+    // Initialize purchase table to blank
+    TableManager::instance()->InitializePurchaseTable(ui->tableWidget_purchase_pos,
+                                                      TableManager::instance()->PURCHASE_TABLE_COL_COUNT,
+                                                      TableManager::instance()->purchaseTableColNames);
+    // Populate purchase table
+    TableManager::instance()->PopulatePurchaseTable(ui->tableWidget_purchase_pos, cities);
+
+    // Insert spinbox column
+    TableManager::instance()->InsertSpinBoxCol(ui->tableWidget_purchase_pos,
+                                               TableManager::instance()->PURCHASE_SPINBOX_MIN,
+                                               TableManager::instance()->PURCHASE_SPINBOX_MAX,
+                                               TableManager::instance()->P_QTY);
 }
 
 /*----PARIS----*/
@@ -220,6 +239,13 @@ void MainWindow::on_pushButton_purchase_back_clicked()
 void MainWindow::on_pushButton_purchase_continue_clicked()
 {
     ui->stackedWidget_pages->setCurrentIndex(RECEIPT);
+
+    // Collect data from spinboxes and populate final form of cities objects
+    CreateReceipt(cities);
+
+    // Initialize (to blank), receipt table
+
+    // Populate table with data
 }
 
 /*----RECEIPT----*/
@@ -330,6 +356,7 @@ void MainWindow::on_pushButton_custom_finalize_clicked()
 void MainWindow::DestroyCities()
 {
     int size = cities->size();
+
     for(int index = 0; index < size; index++)
     {
         cities->pop_front();
@@ -343,5 +370,19 @@ void ClearFields()
 }
 
 
+// Create receipt to print on receipt page
+void MainWindow::CreateReceipt(QVector<City>* cities)
+{
+    int uberIndex = 0;
+    for(int cityIndex = 0; cityIndex < cities->size(); cityIndex++)
+    {
+        for(int foodIndex = 0; foodIndex < cities->at(cityIndex).GetFoodListSize(); foodIndex++)
+        {
+            // Add food to item
+            cities->operator[](cityIndex).SetFoodQtyAt(foodIndex, TableManager::instance()->purchaseTableSpinBoxes->at(uberIndex)->value());
+            uberIndex++;
+        }
+    }
+}
 
-
+/*----END HELPER FUNCTIONS----*/

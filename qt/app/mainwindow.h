@@ -32,6 +32,9 @@ public:
     // Destroy list of cities list used in purchasing and receipt
     void DestroyCities();
 
+    // Create receipt to print on receipt page
+    void CreateReceipt(QVector<City>* cities);
+
 
     /*----END FUNCTIONS----*/
 

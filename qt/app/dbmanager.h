@@ -11,6 +11,8 @@
 #include <QMessageBox>
 #include <QTime>
 
+class City;
+
 class DBManager: public QWidget, public QSqlDatabase {
 	Q_OBJECT;
 public:
@@ -31,7 +33,7 @@ public:
 //	void getBerlinTripCities(QVector<QString>&);
 //	void getCustomTripCities(QVector<QString>&);
 
-//  QVector<City>* CreateShoppingList(QVector<City>* cities);
+   void CreateShoppingList(QVector<City>* cities);
 private:
 	QSqlQuery query;
 	explicit DBManager(QWidget *parent = nullptr);
