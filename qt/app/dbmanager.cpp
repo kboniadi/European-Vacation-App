@@ -215,7 +215,7 @@ int DBManager::GetDistances(const QString &city1, const QString &city2)
 void DBManager::CreateShoppingList(QVector<City>* cities)
 {
     // Prep general query
-    query.prepare("SELECT Food.food, Food.price from Parent, Food where city = :cityName and Parent.id = Food.id;");
+    query.prepare("SELECT food.foodNames, food.price from cities, food where citynames = :cityName and cities.id = food.id;");
 
     // Run query in a loop
     for(int index = 0; index < cities->size(); index++)
