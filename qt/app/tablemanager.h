@@ -1,9 +1,14 @@
 #ifndef TABLEMANAGER_H
 #define TABLEMANAGER_H
+
 #include <QDebug>
 #include <QSpinBox>
 #include <QTableWidget>
+#include <QTableView>
 #include <QVector>
+#include <QHeaderView>
+#include <QStringListModel>
+#include "dbmanager.h"
 
 class City;
 
@@ -49,26 +54,26 @@ public:
     // **************** Food Purchasing Table Attributes ***********************
 
         // Number of columns in food-purchasing table
-    const int PURCHASE_TABLE_COL_COUNT = 4;
+    const int PURCHASE_TABLE_COL_COUNT = 5;
         // Positions of food purchase table columns by name
-    enum PurchaseTableColPositions { P_CITYNAME, P_FOOD, P_PRICE, P_QTY };
+    enum PurchaseTableColPositions { P_KEY, P_CITYNAME, P_FOOD, P_PRICE, P_QTY };
         // Names of purchase table column headers
-    QStringList purchaseTableColNames = {"City Name", "Food Available", "Price", "Quantity Desired" };
+    QStringList purchaseTableColNames = {"KEY", "City Name", "Food Available", "Price", "Quantity Desired" };
         // Minimum value for food purchase spinbox
     const int PURCHASE_SPINBOX_MIN = 0;
         // Maximum value for food purchase spinbox
     const int PURCHASE_SPINBOX_MAX = 20;
         // Vector of pointers to spinbox pointers. Needed for dynamically creating spinboxes on purchase page
-    QVector<QSpinBox*>* PurchaseTableSpinBoxes;
+    QVector<QSpinBox*>* purchaseTableSpinBoxes;
 
     // ************************ Receipt Table Attributes ***********************
 
         // Number of columns in receipt table
     const int RECEIPT_TABLE_COL_COUNT = 5;
         // Positions of receipt table columns by name
-    enum ReceiptTableColPositions { R_CITYNAME, R_FOOD, R_PRICE, R_QTY, R_TOTAL };
+    enum ReceiptTableColPositions { R_KEY, R_CITYNAME, R_FOOD, R_PRICE, R_QTY, R_TOTAL };
         // Names of receipt table column headers
-    QStringList receiptTableColNames = {"City Name", "Food Available", "Price", "Quantity Purchased", "Total Charges" };
+    QStringList receiptTableColNames = {"KEY", "City Name", "Food Available", "Price", "Quantity Purchased", "Total Charges" };
 
     // ************************* Admin Table Attributes ************************
 
@@ -88,7 +93,7 @@ public:
         // Initializes cities table to blank
     void InitializeCitiesTable(QTableWidget* table, const int &cols, const QStringList &headers);
         // Populates cities table with relevant information
-    void PopulateCitiesTable(QTableWidget* table, QVector<City>* cites);
+    void PopulateCitiesTable(QTableWidget* table, QVector<City>* cities);
 
     // ************************* Food Table Methods ****************************
 
@@ -102,34 +107,35 @@ public:
         // Initializes trip planning table to blank. Used for all types of trips
     void InitializeTripTable(QTableWidget* table, const int &cols, const QStringList &headers);
         // Populates trip planning table with relevant information
-    void PopulateTripTable(QTableWidget* table, QVector<City>* cites);
+    void PopulateTripTable(QTableView* table, const QStringList& cities);
 
     // ************** Food Purchasing Table Methods ****************************
         // Initializes purchase table to blank
     void InitializePurchaseTable(QTableWidget* table, const int &cols, const QStringList &headers);
         // Populates purchase table with relevant information
-    void PopulatePurchaseTable(QTableWidget* table, QVector<City>* cites);
+    void PopulatePurchaseTable(QTableWidget* purchaseTable, QVector<City>* cities);
         // Inserts a dynamic spinbox in table at specific column
     void InsertSpinBoxCol(QTableWidget* table, const int min, const int max, const int col);
 
     // ********************** Receipt Table Methods ****************************
         // Initializes receipt table to blank
-    void InitializeReceiptTable(QTableWidget* table, const int &cols, const QStringList &headers);
+    void InitializeReceiptTable(QTableWidget* receiptTable, const int &cols, const QStringList &headers);
         // Populates receipt table with relevant information
-    void PopulateReceiptTable(QTableWidget* table, QVector<City>* cites);
+    void PopulateReceiptTable(QTableWidget* receiptTable, QVector<City>* cites);
 
     // ****************** Admin Table Table Methods ****************************
         // Intializes admin table to blank
-    void InitializeAdminTable(QTableWidget* table, const int &cols, const QStringList &headers);
+	void InitializeAdminTable(QTableView* table);
         // Populates admin table with relevant information
-    void PopulateAdminTable(QTableWidget* table, QVector<City>* cites);
+    void PopulateAdminTable(QTableWidget* table, QVector<City>* cities);
 
+    void DeleteAllTableRows(QTableWidget *table);
         // TODO copy/paste contents of one table to another
     // void CopyXTableToOther(QTableWidget* origin, QTableWidget* destination);
 
 private:
-    TableManager();
-    ~TableManager();
+	TableManager();
+	~TableManager();
 };
 
 #endif // TABLEMANAGER_H

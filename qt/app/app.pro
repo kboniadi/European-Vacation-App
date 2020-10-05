@@ -19,14 +19,18 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
     City.cpp \
     dbmanager.cpp \
+    food.cpp \
     main.cpp \
     mainwindow.cpp \
+    sortalgorithm.cpp \
     tablemanager.cpp
 
 HEADERS += \
     City.h \
     dbmanager.h \
+    food.h \
     mainwindow.h \
+    sortalgorithm.h \
     tablemanager.h
 
 FORMS += \
