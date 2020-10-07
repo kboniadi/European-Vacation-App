@@ -75,8 +75,20 @@ void MainWindow::on_pushButton_home_berlin_clicked()
 
 void MainWindow::on_pushButton_home_paris_clicked()
 {
+    City temp; // City object to populate initial cities list
+
     ui->stackedWidget_pages->setCurrentIndex(PARIS);
     ui->spinBox_paris_select->setValue(1);
+
+    // Delete existing cities list
+    DestroyCities();
+
+    // Populate initial two cities
+    temp.SetName("Paris");
+    cities->push_back(temp);
+    temp.SetName("Brussels");
+    cities->push_back(temp);
+
 }
 
 void MainWindow::on_pushButton_home_custom_clicked()
@@ -86,6 +98,9 @@ void MainWindow::on_pushButton_home_custom_clicked()
     ui->label_custom_otherCities->hide();
     ui->comboBox_custom_otherCities->hide();
     ui->pushButton_custom_add->hide();
+
+    // Delete existing cities list
+    DestroyCities();
 
     // Reset fields/objects
     customTripCities.clear();
@@ -161,13 +176,28 @@ void MainWindow::on_spinBox_paris_select_valueChanged(int citiesToVisit)
     unsorted.removeAll("Paris");
     unsorted.push_front("Paris");
     algorithm::sort(unsorted, sorted);
+    City temp; // temp object used to populate purchase page
 
-    ui->spinBox_paris_select->setMaximum(sorted.length() - 1); // fills the spinbox with max number of cities to visit
+    // Populate spinbox
+    ui->spinBox_paris_select->setMaximum(sorted.length() - 1);
 
-    for (int i = 0; i < citiesToVisit + 1; i++) // fills trip list with sorted list
+    // Fill trip list with sorted list
+    for (int i = 0; i < citiesToVisit + 1; i++)
     {
         trip.push_back(sorted.front());
         sorted.pop_front();
+    }
+
+    // If spinbox value is decreased, remove city from purchase cities list
+    if(ui->spinBox_paris_select->value() < parisSpinBoxPreviousVal && cities->size() > 0)
+    {
+        cities->pop_back();
+    }
+    else // If spinbox value is increased, add city to purchase cities list
+    {
+        // Add subsequent cities to purchase page object
+        temp.SetName(trip.back());
+        cities->push_back(temp);
     }
 
     TableManager::instance()->PopulateTripTable(ui->tableView_paris_cities, trip);
@@ -179,6 +209,8 @@ void MainWindow::on_spinBox_paris_select_valueChanged(int citiesToVisit)
 
     ui->label_paris_total_distance->setText("Total Distance(km): " + QString::number(total));
     ui->label_paris_total_distance->adjustSize();
+
+    parisSpinBoxPreviousVal = ui->spinBox_paris_select->value();
 }
 
 void MainWindow::on_pushButton_paris_back_clicked()
@@ -412,7 +444,6 @@ void ClearFields()
 {
 
 }
-
 
 // Create receipt to print on receipt page
 void MainWindow::CreateReceipt(QVector<City>* cities)
