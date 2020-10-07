@@ -86,8 +86,13 @@ void MainWindow::on_pushButton_home_custom_clicked()
     ui->label_custom_otherCities->hide();
     ui->comboBox_custom_otherCities->hide();
     ui->pushButton_custom_add->hide();
+
+    // Reset fields/objects
+    customTripCities.clear();
     ui->label_custom_distance->clear();
+    customTripComboBoxCities.clear();
     ui->comboBox_custom_otherCities->clear();
+    ui->comboBox_custom_startingCity->clear();
 
     // Reset table
     QSqlQueryModel* reset = new QSqlQueryModel;
@@ -104,15 +109,9 @@ void MainWindow::on_pushButton_home_custom_clicked()
     // Set combobox index to 0
     ui->comboBox_custom_startingCity->setCurrentIndex(0);
 
-    // Clear custom trip cities list
-    customTripCities.clear();
-
-    // Populate cities dropdown only one time
-    if(ui->comboBox_custom_startingCity->count() == 0)
-    {
-        DBManager::instance()->GetCities(customTripComboBoxCities);
-        ui->comboBox_custom_startingCity->addItems(customTripComboBoxCities);
-    }
+    // Populate cities dropdown
+    DBManager::instance()->GetCities(customTripComboBoxCities);
+    ui->comboBox_custom_startingCity->addItems(customTripComboBoxCities);
 
     // Grey out 'finalize trip'
     ui->pushButton_custom_finalize->setDisabled(true);
@@ -189,6 +188,22 @@ void MainWindow::on_pushButton_paris_back_clicked()
 void MainWindow::on_pushButton_paris_continue_clicked()
 {
     ui->stackedWidget_pages->setCurrentIndex(PURCHASE);
+
+    // Create shopping list
+    DBManager::instance()->CreateShoppingList(cities);
+
+    // Initialize purchase table to blank
+    TableManager::instance()->InitializePurchaseTable(ui->tableWidget_purchase_pos,
+                                                      TableManager::instance()->PURCHASE_TABLE_COL_COUNT,
+                                                      TableManager::instance()->purchaseTableColNames);
+    // Populate purchase table
+    TableManager::instance()->PopulatePurchaseTable(ui->tableWidget_purchase_pos, cities);
+
+    // Insert spinbox column
+    TableManager::instance()->InsertSpinBoxCol(ui->tableWidget_purchase_pos,
+                                               TableManager::instance()->PURCHASE_SPINBOX_MIN,
+                                               TableManager::instance()->PURCHASE_SPINBOX_MAX,
+                                               TableManager::instance()->P_QTY);
 }
 
 /*----CUSTOM-----*/
@@ -200,6 +215,22 @@ void MainWindow::on_pushButton_custom_back_clicked()
 void MainWindow::on_pushButton_custom_continue_clicked()
 {
     ui->stackedWidget_pages->setCurrentIndex(PURCHASE);
+
+    // Create shopping list
+    DBManager::instance()->CreateShoppingList(cities);
+
+    // Initialize purchase table to blank
+    TableManager::instance()->InitializePurchaseTable(ui->tableWidget_purchase_pos,
+                                                      TableManager::instance()->PURCHASE_TABLE_COL_COUNT,
+                                                      TableManager::instance()->purchaseTableColNames);
+    // Populate purchase table
+    TableManager::instance()->PopulatePurchaseTable(ui->tableWidget_purchase_pos, cities);
+
+    // Insert spinbox column
+    TableManager::instance()->InsertSpinBoxCol(ui->tableWidget_purchase_pos,
+                                               TableManager::instance()->PURCHASE_SPINBOX_MIN,
+                                               TableManager::instance()->PURCHASE_SPINBOX_MAX,
+                                               TableManager::instance()->P_QTY);
 }
 
 void MainWindow::on_comboBox_custom_startingCity_activated(int index)
