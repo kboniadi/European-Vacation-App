@@ -126,6 +126,7 @@ void MainWindow::on_pushButton_home_exit_clicked()
 void MainWindow::on_pushButton_berlin_back_clicked()
 {
     ui->stackedWidget_pages->setCurrentIndex(HOME);
+    DestroyCities();
 }
 
 void MainWindow::on_pushButton_berin_continue_clicked()
@@ -183,6 +184,7 @@ void MainWindow::on_spinBox_paris_select_valueChanged(int citiesToVisit)
 void MainWindow::on_pushButton_paris_back_clicked()
 {
     ui->stackedWidget_pages->setCurrentIndex(HOME);
+    DestroyCities();
 }
 
 void MainWindow::on_pushButton_paris_continue_clicked()
@@ -210,6 +212,7 @@ void MainWindow::on_pushButton_paris_continue_clicked()
 void MainWindow::on_pushButton_custom_back_clicked()
 {
     ui->stackedWidget_pages->setCurrentIndex(HOME);
+    DestroyCities();
 }
 
 void MainWindow::on_pushButton_custom_continue_clicked()
@@ -269,6 +272,7 @@ void MainWindow::on_comboBox_custom_startingCity_activated(int index)
 void MainWindow::on_pushButton_purchase_back_clicked()
 {
     ui->stackedWidget_pages->setCurrentIndex(HOME);
+    DestroyCities();
 }
 
 void MainWindow::on_pushButton_purchase_continue_clicked()
@@ -287,6 +291,7 @@ void MainWindow::on_pushButton_purchase_continue_clicked()
 void MainWindow::on_pushButton_receipt_back_clicked()
 {
     ui->stackedWidget_pages->setCurrentIndex(HOME);
+    DestroyCities();
 }
 
 /*----ADMIN----*/
