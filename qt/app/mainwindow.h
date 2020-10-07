@@ -109,5 +109,7 @@ private:
     QStringList customTripCities;
     QStringList customTripComboBoxCities;
 
+    int parisSpinBoxPreviousVal = 0;
+
 };
 #endif // MAINWINDOW_H

@@ -81,7 +81,7 @@ void DBManager::ImportCities(QWidget *parent)
 //	QTime start = QTime::currentTime();
 
 	if (!file.open(QFile::ReadOnly)) {
-			qDebug() << "DBManager::ImportCities() : error openning the file";
+            qDebug() << "DBManager::ImportCities() : error opening the file";
 	} else {
 		qDebug() << "file opened";
 		QTextStream ss(&file);
