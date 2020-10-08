@@ -315,8 +315,12 @@ void MainWindow::on_pushButton_purchase_continue_clicked()
     CreateReceipt(cities);
 
     // Initialize (to blank), receipt table
+    TableManager::instance()->InitializeReceiptTable(ui->tableWidget_receipt_view,
+                                                      TableManager::instance()->PURCHASE_TABLE_COL_COUNT,
+                                                      TableManager::instance()->purchaseTableColNames);
 
     // Populate table with data
+    TableManager::instance()->PopulateReceiptTable(ui->tableWidget_receipt_view, cities);
 }
 
 /*----RECEIPT----*/
