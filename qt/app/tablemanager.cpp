@@ -36,18 +36,6 @@ void TableManager::PopulateCitiesTable(QTableWidget* cityTable, QStringList* cit
     // Create distance item
     QTableWidgetItem* distanceItem;
 
-    // Create Initial row
-    cityTable->insertRow(cityTable->rowCount());
-
-    // Generate distance tablewidgetitem
-    distanceItem = new QTableWidgetItem(QString::number(0));
-
-    // Insert city name into city name column
-    cityTable->setItem(cityTable->rowCount() - 1, C_CITYNAME, new QTableWidgetItem("Berlin"));
-
-    // Insert distance into distance column
-    cityTable->setItem(cityTable->rowCount() - 1, C_DISTANCE, distanceItem);
-
     // Loop to insert values into table
     for(int index = 0; index < cityNames->size(); index++)
     {
