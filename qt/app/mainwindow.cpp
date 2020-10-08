@@ -445,7 +445,6 @@ void MainWindow::on_tabWidget_home_pages_currentChanged(int index)
 }
 
 
-
 /*----END NAVIGATION----*/
 
 

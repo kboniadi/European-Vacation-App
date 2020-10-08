@@ -26,7 +26,7 @@ public:
         // Positions of cities table columns by name
     enum CitiesTableColPositions { C_CITYNAME, C_DISTANCE };
         // Names of cities table column headers
-    QStringList citiesTableColNames	= { "City Name", "Distance from Berlin" };
+    QStringList citiesTableColNames	= { "City Name", "Distance from Berlin (km)" };
 
     // ************************** Food Table Attributes ************************
         // Number of columns in food table
