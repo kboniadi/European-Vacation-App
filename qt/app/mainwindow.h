@@ -54,6 +54,14 @@ public:
         FOODTAB
     };
 
+    enum tabs // enum to track tab navigation
+    {
+        T_HOME,
+        T_CITIES,
+        T_FOODS,
+        T_ADMIN
+    };
+
     /*----END ENUMS----*/
 
 private slots:
@@ -101,6 +109,8 @@ private slots:
     void on_pushButton_custom_finalize_clicked();
     /*----END NAVIGATION----*/
 
+
+    void on_tabWidget_home_pages_currentChanged(int index);
 
 private:
 	Ui::MainWindow *ui;

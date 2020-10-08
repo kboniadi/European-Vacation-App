@@ -246,3 +246,30 @@ void DBManager::CreateShoppingList(QVector<City>* cities)
         }
     }
 }
+
+void DBManager::GetCitiesTable(QStringList* cityNames, QVector<int>* distancesFromBerlin)
+{
+    query.prepare("SELECT cities.citynames, distance.distances FROM cities, distance WHERE distance.endcity = 'Berlin' AND cities.id = distance.id;");
+
+    if(query.exec())
+    {
+        QString cityName;
+        int distance;
+        while(query.next())
+        {
+            // Load objects
+            cityName = query.value(0).toString();
+            distance = query.value(1).toInt();
+
+            cityNames->append(cityName);
+            distancesFromBerlin->push_back(distance);
+
+            qDebug() << "City added: " << cityName;
+            qDebug() << "Distance: " << distance;
+        }
+    }
+    else
+    {
+        qDebug() << "GetCitiesTable query didn't execute properly";
+    }
+}

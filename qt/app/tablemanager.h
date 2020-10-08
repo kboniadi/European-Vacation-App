@@ -91,9 +91,9 @@ public:
     // *********************** Cities Table Methods ****************************
 
         // Initializes cities table to blank
-    void InitializeCitiesTable(QTableWidget* table, const int &cols, const QStringList &headers);
+    void InitializeCitiesTable(QTableWidget* citiesTable, const int &cityTablecols, const QStringList &cityTableHeaders);
         // Populates cities table with relevant information
-    void PopulateCitiesTable(QTableWidget* table, QVector<City>* cities);
+    void PopulateCitiesTable(QTableWidget* cityTable, QStringList *cityNames, QVector<int> *distancesFromBerlin);
 
     // ************************* Food Table Methods ****************************
 
