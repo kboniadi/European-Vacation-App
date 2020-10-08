@@ -97,6 +97,8 @@ public:
 
   void CreateShoppingList(QVector<City>* cities);
 
+  void GetCitiesTable(QStringList *cityNames, QVector<int>* distancesFromBerlin);
+
 private:
 	QSqlQuery query;	//!< used to query the database
 

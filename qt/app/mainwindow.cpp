@@ -422,6 +422,28 @@ void MainWindow::on_pushButton_custom_finalize_clicked()
     ui->label_custom_distance->adjustSize();
 }
 
+void MainWindow::on_tabWidget_home_pages_currentChanged(int index)
+{
+    if(index == T_CITIES)
+    {
+        // Create objects
+        QStringList* cityNames = new QStringList;
+        QVector<int>* distancesFromBerlin = new QVector<int>;
+
+        // Initialize cities table
+        TableManager::instance()->InitializeCitiesTable(ui->tableWidget_cities_view,
+                                                        TableManager::instance()->CITIES_TABLE_COL_COUNT,
+                                                        TableManager::instance()->citiesTableColNames);
+
+        // Get table data from db
+        DBManager::instance()->GetCitiesTable(cityNames, distancesFromBerlin);
+
+
+        // Populate table
+        TableManager::instance()->PopulateCitiesTable(ui->tableWidget_cities_view, cityNames, distancesFromBerlin);
+    }
+}
+
 
 /*----END NAVIGATION----*/
 
@@ -461,3 +483,4 @@ void MainWindow::CreateReceipt(QVector<City>* cities)
 }
 
 /*----END HELPER FUNCTIONS----*/
+

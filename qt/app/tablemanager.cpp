@@ -18,15 +18,51 @@ TableManager::~TableManager() {}
 // *********************** Cities Table Methods ****************************
 
     // Initializes cities table to blank
-void TableManager::InitializeCitiesTable(QTableWidget* table, const int &cols, const QStringList &headers)
+void TableManager::InitializeCitiesTable(QTableWidget* citiesTable, const int &citiesCols, const QStringList &citiesHeaders)
 {
+    citiesTable->clearContents();
+    citiesTable->setColumnCount(citiesCols);
+    citiesTable->setHorizontalHeaderLabels(citiesHeaders);
+    // TODO - Might be a good idea to set column widths here
+    citiesTable->setEditTriggers(QTableView::NoEditTriggers);
+    citiesTable->verticalHeader()->hide();
 
+    DeleteAllTableRows(citiesTable);
 }
 
     // Populates cities table with relevant information
-void TableManager::PopulateCitiesTable(QTableWidget* table, QVector<City>* cities)
+void TableManager::PopulateCitiesTable(QTableWidget* cityTable, QStringList* cityNames, QVector<int>* distancesFromBerlin)
 {
+    // Create distance item
+    QTableWidgetItem* distanceItem;
 
+    // Create Initial row
+    cityTable->insertRow(cityTable->rowCount());
+
+    // Generate distance tablewidgetitem
+    distanceItem = new QTableWidgetItem(QString::number(0));
+
+    // Insert city name into city name column
+    cityTable->setItem(cityTable->rowCount() - 1, C_CITYNAME, new QTableWidgetItem("Berlin"));
+
+    // Insert distance into distance column
+    cityTable->setItem(cityTable->rowCount() - 1, C_DISTANCE, distanceItem);
+
+    // Loop to insert values into table
+    for(int index = 0; index < cityNames->size(); index++)
+    {
+        // Create row
+        cityTable->insertRow(cityTable->rowCount());
+
+        // Populate cityname column
+        cityTable->setItem(cityTable->rowCount() -1, C_CITYNAME, new QTableWidgetItem(cityNames->at(index)));
+
+        // Create distance item
+        distanceItem = new QTableWidgetItem(QString::number(distancesFromBerlin->at(index)));
+
+        // Populate distance column
+        cityTable->setItem(cityTable->rowCount() - 1, C_DISTANCE, distanceItem);
+    }
 }
 
 // ************************* Food Table Methods ****************************

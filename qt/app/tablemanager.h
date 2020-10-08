@@ -26,7 +26,7 @@ public:
         // Positions of cities table columns by name
     enum CitiesTableColPositions { C_CITYNAME, C_DISTANCE };
         // Names of cities table column headers
-    QStringList citiesTableColNames	= { "City Name", "Distance from Berlin" };
+    QStringList citiesTableColNames	= { "City Name", "Distance from Berlin (km)" };
 
     // ************************** Food Table Attributes ************************
         // Number of columns in food table
@@ -91,9 +91,9 @@ public:
     // *********************** Cities Table Methods ****************************
 
         // Initializes cities table to blank
-    void InitializeCitiesTable(QTableWidget* table, const int &cols, const QStringList &headers);
+    void InitializeCitiesTable(QTableWidget* citiesTable, const int &cityTablecols, const QStringList &cityTableHeaders);
         // Populates cities table with relevant information
-    void PopulateCitiesTable(QTableWidget* table, QVector<City>* cities);
+    void PopulateCitiesTable(QTableWidget* cityTable, QStringList *cityNames, QVector<int> *distancesFromBerlin);
 
     // ************************* Food Table Methods ****************************
 
