@@ -24,14 +24,14 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>2</number>
+     <number>0</number>
     </property>
     <widget class="QWidget" name="page_home">
      <layout class="QHBoxLayout" name="horizontalLayout_5">
       <item>
        <widget class="QTabWidget" name="tabWidget_home_pages">
         <property name="currentIndex">
-         <number>0</number>
+         <number>2</number>
         </property>
         <widget class="QWidget" name="tab_home">
          <attribute name="title">
@@ -90,7 +90,7 @@
          </attribute>
          <layout class="QVBoxLayout" name="verticalLayout_3">
           <item>
-           <widget class="QTableView" name="tableView_cities_view"/>
+           <widget class="QTableWidget" name="tableWidget_cities_view"/>
           </item>
          </layout>
         </widget>
@@ -100,7 +100,7 @@
          </attribute>
          <layout class="QVBoxLayout" name="verticalLayout_2">
           <item>
-           <widget class="QTableView" name="tableView_food_view"/>
+           <widget class="QTableWidget" name="tableWidget_food_view"/>
           </item>
          </layout>
         </widget>
@@ -598,16 +598,6 @@
        <string>Back to Home</string>
       </property>
      </widget>
-     <widget class="QTableView" name="tableView_receipt_view">
-      <property name="geometry">
-       <rect>
-        <x>80</x>
-        <y>120</y>
-        <width>1040</width>
-        <height>500</height>
-       </rect>
-      </property>
-     </widget>
      <widget class="QLabel" name="label_receipt_distance">
       <property name="geometry">
        <rect>
@@ -632,6 +622,16 @@
       </property>
       <property name="text">
        <string>Total Spent:</string>
+      </property>
+     </widget>
+     <widget class="QTableWidget" name="tableWidget_receipt_view">
+      <property name="geometry">
+       <rect>
+        <x>80</x>
+        <y>120</y>
+        <width>1040</width>
+        <height>500</height>
+       </rect>
       </property>
      </widget>
     </widget>
