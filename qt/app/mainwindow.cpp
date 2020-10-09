@@ -316,11 +316,21 @@ void MainWindow::on_pushButton_purchase_continue_clicked()
 
     // Initialize (to blank), receipt table
     TableManager::instance()->InitializeReceiptTable(ui->tableWidget_receipt_view,
-                                                      TableManager::instance()->PURCHASE_TABLE_COL_COUNT,
-                                                      TableManager::instance()->purchaseTableColNames);
+                                                      TableManager::instance()->RECEIPT_TABLE_COL_COUNT,
+                                                      TableManager::instance()->receiptTableColNames);
 
     // Populate table with data
     TableManager::instance()->PopulateReceiptTable(ui->tableWidget_receipt_view, cities);
+
+    // get total cost
+    double totalCost = 0;
+    QTableWidgetItem *item;
+    for (int i = 0; i < ui->tableWidget_receipt_view->rowCount(); i++)
+    {
+        item = ui->tableWidget_receipt_view->itemAt(i, TableManager::R_TOTAL);
+        totalCost += item->text().toDouble();
+    }
+    ui->label_receipt_spent->setText("Total spent $" + QString::number(totalCost));
 }
 
 /*----RECEIPT----*/

@@ -69,7 +69,7 @@ public:
     // ************************ Receipt Table Attributes ***********************
 
         // Number of columns in receipt table
-    const int RECEIPT_TABLE_COL_COUNT = 5;
+    const int RECEIPT_TABLE_COL_COUNT = 6;
         // Positions of receipt table columns by name
     enum ReceiptTableColPositions { R_KEY, R_CITYNAME, R_FOOD, R_PRICE, R_QTY, R_TOTAL };
         // Names of receipt table column headers
