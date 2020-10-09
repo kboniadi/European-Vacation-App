@@ -1,8 +1,6 @@
 #include "dbmanager.h"
-#include "City.h"
-#include "food.h"
 #include <QFileDialog>
-#include <QProgressDialog>
+
 DBManager::DBManager(QWidget *parent)
 	: QWidget{parent}, QSqlDatabase(QSqlDatabase::addDatabase("QSQLITE"))
 {
@@ -11,7 +9,7 @@ DBManager::DBManager(QWidget *parent)
 	if (!open()) {
 		qDebug() << "Connection to database failed";
 	} else {
-        qDebug() << "Connection to database succeeded";
+		qDebug() << "Connection to database succedded";
 	}
 }
 
@@ -25,63 +23,45 @@ DBManager::~DBManager()
 
 DBManager* DBManager::instance()
 {
-	// creates one and only one instance of the database
 	static DBManager instance;
 	return &instance;
 }
 
-void DBManager::AddFood(const QString &city, const QString &food,
+void DBManager::addFood(const QString &city, const QString &food,
 						const QString &price)
 {
-	// finds and stores the id associated with the city name
-	query.prepare("SELECT id FROM cities WHERE cityNames = :city");
+	query.prepare("SELECT id FROM Parent WHERE city = :city");
 	query.bindValue(":city", city);
 	if (!query.exec()) {
-		qDebug() << "DBManager::AddFood() : query failed";
+		qDebug() << "Query didn't execute properly";
 		return;
 	}
 	query.first();
 	int id = query.value(0).toInt();
 
-	// using the obtained id, a new food item and price is INSERTED
-	query.prepare("INSERT INTO food(id, foodNames, price) VALUES(:id, :food, :price)");
+	query.prepare("INSERT INTO Food(id, food, price) VALUES(:id, :food, :price)");
 	query.bindValue(":id", id);
 	query.bindValue(":food", food);
 	query.bindValue(":price", price);
 	if (!query.exec())
-		qDebug() << "DBManager::AddFood() : query failed";
+		qDebug() << "Query didn't execute properly";
 	query.finish();
+
 }
 
-void DBManager::ImportCities(QWidget *parent)
+void DBManager::ImportCities()
 {
 	QString startCity, endCity, distance;
 	QString filter = "CSV file (*.csv)";
 	QStringList cities;
-	// opens system file directory in your home path
 	QString fileName = QFileDialog::getOpenFileName(this, tr("Open File"),
 													QDir::homePath(), filter);
-	// needed to iterate through file...similar to fstream
 	QFile file(fileName);
 
-	// populates cities with all the cities in the DB
-	GetCities(cities);
-
-	// loading bar beginning logic to mask slow query speeds
-	// takes a QWidget pointer for window positioning purposes
-	QProgressDialog progress("Updating db...", "Cancel", 0, 46, parent);
-	progress.setWindowModality(Qt::WindowModal);
-	progress.setCancelButton(0);
-	progress.setWindowTitle("Loader");
-	int count = 0;
-	progress.setMinimumDuration(count);
-	// loading bar increases linearly with count
-	progress.setValue(count);
-
-//	QTime start = QTime::currentTime();
+	getCities(cities);
 
 	if (!file.open(QFile::ReadOnly)) {
-			qDebug() << "DBManager::ImportCities() : error openning the file";
+			qDebug() << "error openning the file";
 	} else {
 		qDebug() << "file opened";
 		QTextStream ss(&file);
@@ -89,113 +69,103 @@ void DBManager::ImportCities(QWidget *parent)
 
 		while (!ss.atEnd()) {
 			QString line = ss.readLine();
-			// parses each line in the csv into a QStringList
 			list = line.split(",");
 
-			// only insert if the city is unique
 			if (!cities.contains(list[0])) {
-				query.prepare("INSERT INTO cities(cityNames) VALUES(:city)");
+				query.prepare("INSERT INTO Parent(city) VALUES(:city)");
 				query.bindValue(":city", list[0]);
 				if (!query.exec()) {
-					qDebug() << "DBManager::ImportCities() : error executing query";
+					qDebug() << "Query didn't execute properly";
 					return;
 				}
 				query.finish();
-				// re-populates cities with updated city list
-				GetCities(cities);
+				getCities(cities);
 			}
 
-			// finds and stores the id associated with the city name
-			query.prepare("SELECT id FROM cities WHERE cityNames = :city");
+			query.prepare("SELECT id FROM Parent WHERE city = :city");
 			query.bindValue(":city", list[0]);
 			if (!query.exec()) {
-				qDebug() << "DBManager::ImportCities() : error executing query";
+				qDebug() << "Query didn't execute properly";
 				return;
 			}
 			query.first();
 			int id = query.value(0).toInt();
 
-			// insert distance and endCity data into DB
-			query.prepare("INSERT INTO distance(id, endCity, distances) "
+			query.prepare("INSERT INTO Distance(id, endCity, distance) "
 						  "VALUES(:id, :endCity, :distance)");
 			query.bindValue(":id", id);
 			query.bindValue(":endCity", list[1]);
 			query.bindValue(":distance", list[2]);
 			if (!query.exec())
-				qDebug() << "DBManager::ImportCities() : error executing query";
+				qDebug() << "Query didn't execute properly";
 			query.finish();
-
-			// update progress bar
-			progress.setValue(++count);
 		}
 	}
-//	QTime end = QTime::currentTime();
-//	qDebug() << "function took: " << start.msecsTo(end) / 1000.0 << " sec";
 }
 
-void DBManager::UpdateFoodPrice(const QString &foodName, const QString &price)
+void DBManager::updateFoodPrice(const QString &foodName, const QString &price)
 {
-	query.prepare("UPDATE food SET price = :price WHERE food.foodNames = :foodName");
+	query.prepare("UPDATE Food SET price = :price WHERE Food.food = :foodName");
 	query.bindValue(":price", price);
 	query.bindValue(":foodName", foodName);
 	if (!query.exec())
-		qDebug() << "DBManager::UpdateFoodPrice() : query failed";
+		qDebug() << "Query didn't execute properly";
 	query.finish();
 }
 
-void DBManager::DeleteFood(const QString &foodName)
+void DBManager::deleteFood(const QString &foodName)
 {
-	query.prepare("DELETE FROM food WHERE food.foodNames = :foodName");
+	query.prepare("DELETE FROM Food WHERE Food.food = :foodName");
 	query.bindValue(":foodName", foodName);
 	if (!query.exec())
-		qDebug() << "DBManager::DeleteFood() : query failed";
+		qDebug() << "Query didn't execute properly";
 	query.finish();
 
 }
 
-void DBManager::CityToFoodNames(const QString &city, QStringList &foods)
+void DBManager::cityToFoodNames(const QString &city, QVector<QString> &foods)
 {
-	query.prepare("SELECT foodNames FROM food, cities WHERE cities.cityNames = :city AND "
-				  "cities.id = food.id");
+	query.prepare("SELECT food FROM Food, Parent WHERE Parent.city = :city AND "
+				  "Parent.id = Food.id");
 	query.bindValue(":city", city);
 	if (query.exec()) {
 		while (query.next())
 			foods.push_back(query.value(0).toString());
 		query.finish();
 	} else {
-		qDebug() << "DBManager::CityToFoodNames() : query failed";
+		qDebug() << "Query didn't execute properly";
 	}
 }
 
-QString DBManager::FoodNameToPrice(const QString &food)
+QString DBManager::foodNameToPrice(const QString &food)
 {
-	query.prepare("SELECT price FROM food WHERE food.foodNames = :food");
+	query.prepare("SELECT price FROM Food WHERE Food.food = :food");
 	query.bindValue(":food", food);
 	if (query.exec()) {
 		query.first();
 		return query.value(0).toString();
 	} else {
-		qDebug() << "DBManager::FoodNameToPrice() : query failed";
+		qDebug() << "Query didn't execute properly";
 	}
 	return QString("Error");
 }
 
-void DBManager::GetCities(QStringList &cities)
+void DBManager::getCities(QStringList &cities)
 {
-	query.prepare("SELECT cityNames FROM cities");
+	query.prepare("SELECT city FROM Parent");
 	if (query.exec()) {
 		while (query.next())
 			cities.push_back(query.value(0).toString());
 		query.finish();
 	} else {
-		qDebug() << "DBManager::GetCities() : query failed";
+		qDebug() << "Query didn't execute properly";
 	}
 }
 
-int DBManager::GetDistances(const QString &city1, const QString &city2)
+int DBManager::getDistances(const QString &city1, const QString &city2)
 {
-	query.prepare("SELECT distances FROM distance, cities WHERE "
-				  "cities.cityNames = :city1 AND cities.id = distance.id AND "
+	query.prepare("SELECT distance FROM Distance, Parent WHERE "
+				  "Parent.city = :city1 AND Parent.id = Distance.id AND "
 				  "endCity = :city2");
 
 	query.bindValue(":city1", city1);
@@ -205,44 +175,8 @@ int DBManager::GetDistances(const QString &city1, const QString &city2)
 		query.first();
 		return query.value(0).toInt();
 	} else {
-		qDebug() << "DBManager::GetDistances() : query failed";
+		qDebug() << "Query didn't execute properly";
 	}
-	// can indicate that city name is wrong or not part of DB
 	return -1;
 }
 
-
-void DBManager::CreateShoppingList(QVector<City>* cities)
-{
-    // Prep general query
-    query.prepare("SELECT food.foodNames, food.price from cities, food where citynames = :cityName and cities.id = food.id;");
-
-    // Run query in a loop
-    for(int index = 0; index < cities->size(); index++)
-    {
-        // Bind value
-        query.bindValue(":cityName", cities->at(index).GetName());
-
-        // Execute query
-        if(query.exec())
-        {
-            // While food exists in DB for this specific city
-            while(query.next())
-            {
-                // Create a food item
-                Food temp;
-
-                // Populate it
-                temp.SetName(query.value(0).toString());
-                temp.SetPrice(query.value(1).toFloat());
-
-                // Add it to the object's food vector
-                cities->operator[](index).AddFood(temp);
-            }
-        }
-        else
-        {
-            qDebug() << "Query didn't execute properly";
-        }
-    }
-}
