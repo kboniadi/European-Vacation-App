@@ -27,10 +27,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->spinBox_paris_select->setMinimum(1);
 }
 
-MainWindow::~MainWindow()
-{
-    delete ui;
-}
+MainWindow::~MainWindow() { delete ui; }
 
 /*----PAGE NAVIGATION----*/
 /*----HOME----*/
