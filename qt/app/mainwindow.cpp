@@ -21,7 +21,7 @@ MainWindow::MainWindow(QWidget *parent)
     TableManager::instance();
 
     // Create list of cities used in purchasing and receipt pages
-    cities = new QVector<City>;
+	cities.clear();
 
     // initialize paris trip spinbox (will be moved to tablemanager)
     ui->spinBox_paris_select->setMinimum(1);
@@ -60,7 +60,7 @@ void MainWindow::on_pushButton_home_berlin_clicked()
     {
         City temp;
         temp.SetName(sorted.at(index));
-        cities->push_back(temp);
+		cities.push_back(temp);
     }
 
 	// totals distance for the trip based on sorted list of cities
@@ -85,9 +85,9 @@ void MainWindow::on_pushButton_home_paris_clicked()
 
     // Populate initial two cities
     temp.SetName("Paris");
-    cities->push_back(temp);
+	cities.push_back(temp);
     temp.SetName("Brussels");
-    cities->push_back(temp);
+	cities.push_back(temp);
 
 }
 
@@ -110,8 +110,8 @@ void MainWindow::on_pushButton_home_custom_clicked()
     ui->comboBox_custom_startingCity->clear();
 
     // Reset table
-    QSqlQueryModel* reset = new QSqlQueryModel;
-    ui->tableView->setModel(reset);
+	QSqlQueryModel reset;
+	ui->tableView->setModel(&reset);
 
     // If food selection enabled, disable
     if(ui->pushButton_custom_continue->isEnabled())
@@ -149,14 +149,14 @@ void MainWindow::on_pushButton_berin_continue_clicked()
     ui->stackedWidget_pages->setCurrentIndex(PURCHASE);
 
     // Create shopping list
-    DBManager::instance()->CreateShoppingList(cities);
+	DBManager::instance()->CreateShoppingList(&cities);
 
     // Initialize purchase table to blank
     TableManager::instance()->InitializePurchaseTable(ui->tableWidget_purchase_pos,
                                                       TableManager::instance()->PURCHASE_TABLE_COL_COUNT,
                                                       TableManager::instance()->purchaseTableColNames);
     // Populate purchase table
-    TableManager::instance()->PopulatePurchaseTable(ui->tableWidget_purchase_pos, cities);
+	TableManager::instance()->PopulatePurchaseTable(ui->tableWidget_purchase_pos, &cities);
 
     // Insert spinbox column
     TableManager::instance()->InsertSpinBoxCol(ui->tableWidget_purchase_pos,
@@ -189,15 +189,15 @@ void MainWindow::on_spinBox_paris_select_valueChanged(int citiesToVisit)
     }
 
     // If spinbox value is decreased, remove city from purchase cities list
-    if(ui->spinBox_paris_select->value() < parisSpinBoxPreviousVal && cities->size() > 0)
+	if(ui->spinBox_paris_select->value() < parisSpinBoxPreviousVal && cities.size() > 0)
     {
-        cities->pop_back();
+		cities.pop_back();
     }
     else // If spinbox value is increased, add city to purchase cities list
     {
         // Add subsequent cities to purchase page object
         temp.SetName(trip.back());
-        cities->push_back(temp);
+		cities.push_back(temp);
     }
 
     TableManager::instance()->PopulateTripTable(ui->tableView_paris_cities, trip);
@@ -224,14 +224,14 @@ void MainWindow::on_pushButton_paris_continue_clicked()
     ui->stackedWidget_pages->setCurrentIndex(PURCHASE);
 
     // Create shopping list
-    DBManager::instance()->CreateShoppingList(cities);
+	DBManager::instance()->CreateShoppingList(&cities);
 
     // Initialize purchase table to blank
     TableManager::instance()->InitializePurchaseTable(ui->tableWidget_purchase_pos,
                                                       TableManager::instance()->PURCHASE_TABLE_COL_COUNT,
                                                       TableManager::instance()->purchaseTableColNames);
     // Populate purchase table
-    TableManager::instance()->PopulatePurchaseTable(ui->tableWidget_purchase_pos, cities);
+	TableManager::instance()->PopulatePurchaseTable(ui->tableWidget_purchase_pos, &cities);
 
     // Insert spinbox column
     TableManager::instance()->InsertSpinBoxCol(ui->tableWidget_purchase_pos,
@@ -252,14 +252,14 @@ void MainWindow::on_pushButton_custom_continue_clicked()
     ui->stackedWidget_pages->setCurrentIndex(PURCHASE);
 
     // Create shopping list
-    DBManager::instance()->CreateShoppingList(cities);
+	DBManager::instance()->CreateShoppingList(&cities);
 
     // Initialize purchase table to blank
     TableManager::instance()->InitializePurchaseTable(ui->tableWidget_purchase_pos,
                                                       TableManager::instance()->PURCHASE_TABLE_COL_COUNT,
                                                       TableManager::instance()->purchaseTableColNames);
     // Populate purchase table
-    TableManager::instance()->PopulatePurchaseTable(ui->tableWidget_purchase_pos, cities);
+	TableManager::instance()->PopulatePurchaseTable(ui->tableWidget_purchase_pos, &cities);
 
     // Insert spinbox column
     TableManager::instance()->InsertSpinBoxCol(ui->tableWidget_purchase_pos,
@@ -268,7 +268,7 @@ void MainWindow::on_pushButton_custom_continue_clicked()
                                                TableManager::instance()->P_QTY);
 }
 
-void MainWindow::on_comboBox_custom_startingCity_activated(int index)
+void MainWindow::on_comboBox_custom_startingCity_activated(int /*index*/)
 {
     // hiding/showing for custom trip page (will move to a tablemanager function)
     ui->label_custom_otherCities->show();
@@ -312,7 +312,7 @@ void MainWindow::on_pushButton_purchase_continue_clicked()
     ui->stackedWidget_pages->setCurrentIndex(RECEIPT);
 
     // Collect data from spinboxes and populate final form of cities objects
-    CreateReceipt(cities);
+	CreateReceipt(&cities);
 
     // Initialize (to blank), receipt table
 
@@ -407,8 +407,8 @@ void MainWindow::on_pushButton_custom_finalize_clicked()
     {
         City temp;
         temp.SetName(sorted.at(index));
-        cities->push_back(temp);
-        qDebug() << cities->at(index).GetName();
+		cities.push_back(temp);
+		qDebug() << cities.at(index).GetName();
     }
 
     // Calculate distance
@@ -427,8 +427,8 @@ void MainWindow::on_tabWidget_home_pages_currentChanged(int index)
     if(index == T_CITIES)
     {
         // Create objects
-        QStringList* cityNames = new QStringList;
-        QVector<int>* distancesFromBerlin = new QVector<int>;
+		QStringList cityNames;
+		QVector<int> distancesFromBerlin;
 
         // Initialize cities table
         TableManager::instance()->InitializeCitiesTable(ui->tableWidget_cities_view,
@@ -436,11 +436,11 @@ void MainWindow::on_tabWidget_home_pages_currentChanged(int index)
                                                         TableManager::instance()->citiesTableColNames);
 
         // Get table data from db
-        DBManager::instance()->GetCitiesTable(cityNames, distancesFromBerlin);
+		DBManager::instance()->GetCitiesTable(&cityNames, &distancesFromBerlin);
 
 
         // Populate table
-        TableManager::instance()->PopulateCitiesTable(ui->tableWidget_cities_view, cityNames, distancesFromBerlin);
+		TableManager::instance()->PopulateCitiesTable(ui->tableWidget_cities_view, &cityNames, &distancesFromBerlin);
     }
 }
 
@@ -453,11 +453,11 @@ void MainWindow::on_tabWidget_home_pages_currentChanged(int index)
 // Destroy cities list used in purchasing and receipt page
 void MainWindow::DestroyCities()
 {
-    int size = cities->size();
+	int size = cities.size();
 
     for(int index = 0; index < size; index++)
     {
-        cities->pop_front();
+		cities.pop_front();
     }
 }
 
@@ -476,7 +476,8 @@ void MainWindow::CreateReceipt(QVector<City>* cities)
         for(int foodIndex = 0; foodIndex < cities->at(cityIndex).GetFoodListSize(); foodIndex++)
         {
             // Add food to item
-            cities->operator[](cityIndex).SetFoodQtyAt(foodIndex, TableManager::instance()->purchaseTableSpinBoxes->at(uberIndex)->value());
+			cities->operator[](cityIndex).SetFoodQtyAt(foodIndex,
+			TableManager::instance()->purchaseTableSpinBoxes->at(uberIndex)->value());
             uberIndex++;
         }
     }

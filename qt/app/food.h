@@ -14,12 +14,12 @@ public:
     // Accessor: Get price of food item
     float GetPrice() const;
     // Mutator: Alter/set food item name
-    void SetPrice(const float &price);
+	void SetPrice(float price);
 
     // Accessor: Get quantity of purchased food item
     int GetQty() const;
     // Mutator: Alter/set quantity of purchased food item
-    void SetQty(const int &qty);
+	void SetQty(int qty);
 
     // Constructor
     Food();
