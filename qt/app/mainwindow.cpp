@@ -71,6 +71,9 @@ void MainWindow::on_pushButton_home_berlin_clicked()
 
     ui->label_berlin_total_distance->setText("Total Distance(km): " + QString::number(total));
     ui->label_berlin_total_distance->adjustSize();
+    // Display distance on receipt page
+    ui->label_receipt_distance->setText("Total Distance(km): " + QString::number(total));
+    ui->label_receipt_distance->adjustSize();
 }
 
 void MainWindow::on_pushButton_home_paris_clicked()
@@ -209,6 +212,9 @@ void MainWindow::on_spinBox_paris_select_valueChanged(int citiesToVisit)
 
     ui->label_paris_total_distance->setText("Total Distance(km): " + QString::number(total));
     ui->label_paris_total_distance->adjustSize();
+    // Display distance on receipt page
+    ui->label_receipt_distance->setText("Total Distance(km): " + QString::number(total));
+    ui->label_receipt_distance->adjustSize();
 
     parisSpinBoxPreviousVal = ui->spinBox_paris_select->value();
 }
@@ -327,10 +333,12 @@ void MainWindow::on_pushButton_purchase_continue_clicked()
     QTableWidgetItem *item;
     for (int i = 0; i < ui->tableWidget_receipt_view->rowCount(); i++)
     {
-        item = ui->tableWidget_receipt_view->itemAt(i, TableManager::R_TOTAL);
+        item = ui->tableWidget_receipt_view->item(i, TableManager::R_TOTAL);
         totalCost += item->text().toDouble();
     }
     ui->label_receipt_spent->setText("Total spent $" + QString::number(totalCost));
+
+
 }
 
 /*----RECEIPT----*/
@@ -434,6 +442,9 @@ void MainWindow::on_pushButton_custom_finalize_clicked()
     // Display distance
     ui->label_custom_distance->setText("Total Distance(km): " + QString::number(total));
     ui->label_custom_distance->adjustSize();
+    // Display distance on receipt page
+    ui->label_receipt_distance->setText("Total Distance(km): " + QString::number(total));
+    ui->label_receipt_distance->adjustSize();
 }
 
 void MainWindow::on_tabWidget_home_pages_currentChanged(int index)

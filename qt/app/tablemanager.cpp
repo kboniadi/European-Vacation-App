@@ -186,16 +186,6 @@ void TableManager::InsertSpinBoxCol(QTableWidget* table, const int min, const in
     // Initializes receipt table to blank
 void TableManager::InitializeReceiptTable(QTableWidget* receiptTable, const int &cols, const QStringList &headers)
 {
-    // All of the code below is dependent on receiptTable being a tablewidget. glhf
-//    receiptTable->clearContents();
-//    receiptTable->setColumnCount(cols);
-//    receiptTable->setHorizontalHeaderLabels(headers);
-//    // TODO - Might be a good idea to set column widths here
-//    receiptTable->setEditTriggers(QTableView::NoEditTriggers);
-//    receiptTable->hideColumn(P_KEY);
-//    receiptTable->verticalHeader()->hide();
-
-//    DeleteAllTableRows(receiptTable);
     receiptTable->clearContents();
     receiptTable->setColumnCount(cols);
     receiptTable->setHorizontalHeaderLabels(headers);
@@ -216,19 +206,21 @@ void TableManager::PopulateReceiptTable(QTableWidget* receiptTable, QVector<City
     QString currentName;
     QString previousName;
 
-//    for (int i = 0; i < cities->size(); i++)
-//    {
-//        // Removes food from list if qty is 0
-//        int foodListSize = cities->at(i).GetFoodListSize();
-//        for (int j = 0; j < foodListSize; j++)
-//        {
-//            qtyItem = new QTableWidgetItem(QString::number(cities->at(i).GetFoodQtyAt(j)));
-//            if (qtyItem->text().toDouble() == 0)
-//            {
-//                cities->at(i).RemoveFoodAt(j);
-//            }
-//        }
-//    }
+    for (int i = 0; i < cities->size(); i++)
+    {
+        // Removes food from list if qty is 0
+        int foodListSize = cities->at(i).GetFoodListSize();
+        for (int j = 0; j < foodListSize; j++)
+        {
+            qtyItem = new QTableWidgetItem(QString::number(cities->at(i).GetFoodQtyAt(j)));
+            if (qtyItem->text().toDouble() == 0)
+            {
+                cities->at(i).RemoveFoodAt(j);
+                j--;
+                foodListSize--;
+            }
+        }
+    }
     // For the length of the city list
     for(int cityIndex = 0; cityIndex < cities->size(); cityIndex++)
     {
