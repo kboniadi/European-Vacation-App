@@ -78,8 +78,8 @@ void TableManager::InitializeTripTable(QTableWidget* table, const int &cols, con
     // Populates trip planning table with relevant information
 void TableManager::PopulateTripTable(QTableView* table, const QStringList& cities)
 {
-	QStringListModel *model = new QStringListModel;
-	model->setStringList(cities);
+        QStringListModel *model = new QStringListModel;
+        model->setStringList(cities);
 
 	// prevent unwanted editing by user
 	table->setEditTriggers(QAbstractItemView::NoEditTriggers);
@@ -87,7 +87,7 @@ void TableManager::PopulateTripTable(QTableView* table, const QStringList& citie
 	// note: QStringListModel has no header setting function
 	table->horizontalHeader()->setVisible(false);
 	table->setGridStyle(Qt::NoPen);
-	table->setModel(model);
+        table->setModel(model);
 }
 
 // ************** Food Purchasing Table Methods ****************************
