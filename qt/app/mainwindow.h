@@ -16,26 +16,12 @@ class City;
 class MainWindow : public QMainWindow
 {
 	Q_OBJECT
-
 public:
 	MainWindow(QWidget *parent = nullptr);
 	~MainWindow();
-
-    /*----FUNCTIONS----*/
-    // insert any functions for mainwindow into this block
-
-    // function to reset all tables and user inputs
-    void ClearFields();
-
-    // Destroy list of cities list used in purchasing and receipt
-    void DestroyCities();
-
-    // Create receipt to print on receipt page
-    void CreateReceipt(QVector<City>* cities);
-
-
     /*----END FUNCTIONS----*/
 
+private:
     /*----ENUMS----*/
     enum page // enums for navigation through stackedwidget
     {
@@ -61,8 +47,20 @@ public:
         T_FOODS,
         T_ADMIN
     };
+	/*----END ENUMS----*/
 
-    /*----END ENUMS----*/
+	/*----FUNCTIONS----*/
+
+	// function to reset all tables and user inputs
+	void ClearFields();
+
+	// Destroy list of cities list used in purchasing and receipt
+	void DestroyCities();
+
+	// Create receipt to print on receipt page
+	void CreateReceipt(QVector<City>* cities);
+	void UpdateAdminFoodTable();
+	/*----END FUNCTIONS----*/
 
 private slots:
     /*----NAVIGATION----*/
@@ -104,6 +102,14 @@ private slots:
 
     void on_pushButton_admin_import_clicked();
 
+	void on_pushButton_admin_add_clicked();
+
+	void on_pushButton_admin_delete_clicked();
+
+	void on_pushButton_admin_edit_clicked();
+
+	void on_tabWidget_admin_pages_currentChanged(int index);
+
     void on_pushButton_custom_add_clicked();
 
     void on_pushButton_custom_finalize_clicked();
@@ -119,7 +125,6 @@ private:
     QStringList customTripCities;
     QStringList customTripComboBoxCities;
 
-    int parisSpinBoxPreviousVal = 0;
-
+	int parisSpinBoxPreviousVal{0};
 };
 #endif // MAINWINDOW_H

@@ -10,8 +10,10 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
 
-	  ui->stackedWidget_pages->setCurrentIndex(HOME); // setCurrentIndex cycles through the stackedwidget
-    ui->tabWidget_home_pages->setCurrentIndex(HOME); // setCurrentIndex cycles through the tabWidget
+	// setCurrentIndex cycles through the stackedwidget
+	ui->stackedWidget_pages->setCurrentIndex(HOME);
+	// setCurrentIndex cycles through the tabWidget
+	ui->tabWidget_home_pages->setCurrentIndex(HOME);
     
 
 	// Creates single Database instance
@@ -150,16 +152,16 @@ void MainWindow::on_pushButton_berin_continue_clicked()
 
     // Initialize purchase table to blank
     TableManager::instance()->InitializePurchaseTable(ui->tableWidget_purchase_pos,
-                                                      TableManager::instance()->PURCHASE_TABLE_COL_COUNT,
-                                                      TableManager::instance()->purchaseTableColNames);
+	TableManager::instance()->PURCHASE_TABLE_COL_COUNT,
+	TableManager::instance()->purchaseTableColNames);
     // Populate purchase table
 	TableManager::instance()->PopulatePurchaseTable(ui->tableWidget_purchase_pos, &cities);
 
     // Insert spinbox column
     TableManager::instance()->InsertSpinBoxCol(ui->tableWidget_purchase_pos,
-                                               TableManager::instance()->PURCHASE_SPINBOX_MIN,
-                                               TableManager::instance()->PURCHASE_SPINBOX_MAX,
-                                               TableManager::instance()->P_QTY);
+	TableManager::instance()->PURCHASE_SPINBOX_MIN,
+	TableManager::instance()->PURCHASE_SPINBOX_MAX,
+	TableManager::instance()->P_QTY);
 }
 
 /*----PARIS----*/
@@ -225,16 +227,16 @@ void MainWindow::on_pushButton_paris_continue_clicked()
 
     // Initialize purchase table to blank
     TableManager::instance()->InitializePurchaseTable(ui->tableWidget_purchase_pos,
-                                                      TableManager::instance()->PURCHASE_TABLE_COL_COUNT,
-                                                      TableManager::instance()->purchaseTableColNames);
+	TableManager::instance()->PURCHASE_TABLE_COL_COUNT,
+	TableManager::instance()->purchaseTableColNames);
     // Populate purchase table
 	TableManager::instance()->PopulatePurchaseTable(ui->tableWidget_purchase_pos, &cities);
 
     // Insert spinbox column
     TableManager::instance()->InsertSpinBoxCol(ui->tableWidget_purchase_pos,
-                                               TableManager::instance()->PURCHASE_SPINBOX_MIN,
-                                               TableManager::instance()->PURCHASE_SPINBOX_MAX,
-                                               TableManager::instance()->P_QTY);
+	TableManager::instance()->PURCHASE_SPINBOX_MIN,
+	TableManager::instance()->PURCHASE_SPINBOX_MAX,
+	TableManager::instance()->P_QTY);
 }
 
 /*----CUSTOM-----*/
@@ -253,16 +255,16 @@ void MainWindow::on_pushButton_custom_continue_clicked()
 
     // Initialize purchase table to blank
     TableManager::instance()->InitializePurchaseTable(ui->tableWidget_purchase_pos,
-                                                      TableManager::instance()->PURCHASE_TABLE_COL_COUNT,
-                                                      TableManager::instance()->purchaseTableColNames);
+	TableManager::instance()->PURCHASE_TABLE_COL_COUNT,
+	TableManager::instance()->purchaseTableColNames);
     // Populate purchase table
 	TableManager::instance()->PopulatePurchaseTable(ui->tableWidget_purchase_pos, &cities);
 
     // Insert spinbox column
     TableManager::instance()->InsertSpinBoxCol(ui->tableWidget_purchase_pos,
-                                               TableManager::instance()->PURCHASE_SPINBOX_MIN,
-                                               TableManager::instance()->PURCHASE_SPINBOX_MAX,
-                                               TableManager::instance()->P_QTY);
+	TableManager::instance()->PURCHASE_SPINBOX_MIN,
+	TableManager::instance()->PURCHASE_SPINBOX_MAX,
+	TableManager::instance()->P_QTY);
 }
 
 void MainWindow::on_comboBox_custom_startingCity_activated(int /*index*/)
@@ -349,7 +351,42 @@ void MainWindow::on_pushButton_admin_import_clicked()
     TableManager::instance()->InitializeAdminTable(ui->tableView_admin_cities);
 }
 
+void MainWindow::on_pushButton_admin_add_clicked()
+{
+	QString city = ui->lineEdit_admin_city->text();
+	QString food = ui->lineEdit_admin_food->text();
+	QString price = ui->lineEdit_admin_price->text();
 
+	DBManager::instance()->AddFood(city, food, price);
+	ClearFields();
+	UpdateAdminFoodTable();
+}
+
+void MainWindow::on_pushButton_admin_delete_clicked()
+{
+	QString city = ui->lineEdit_admin_city->text();
+	QString food = ui->lineEdit_admin_food->text();
+	QString price = ui->lineEdit_admin_price->text();
+	DBManager::instance()->DeleteFood(food);
+	ClearFields();
+	UpdateAdminFoodTable();
+}
+
+void MainWindow::on_pushButton_admin_edit_clicked()
+{
+	QString city = ui->lineEdit_admin_city->text();
+	QString food = ui->lineEdit_admin_food->text();
+	QString price = ui->lineEdit_admin_price->text();
+	DBManager::instance()->UpdateFoodPrice(food, price);
+	ClearFields();
+	UpdateAdminFoodTable();
+}
+
+void MainWindow::on_tabWidget_admin_pages_currentChanged(int index)
+{
+	if (index == FOODTAB)
+		UpdateAdminFoodTable();
+}
 
 void MainWindow::on_pushButton_custom_add_clicked()
 {
@@ -421,24 +458,24 @@ void MainWindow::on_pushButton_custom_finalize_clicked()
 
 void MainWindow::on_tabWidget_home_pages_currentChanged(int index)
 {
-    if(index == T_CITIES)
-    {
-        // Create objects
+	if(index == T_CITIES)
+	{
+		// Create objects
 		QStringList cityNames;
 		QVector<int> distancesFromBerlin;
 
-        // Initialize cities table
-        TableManager::instance()->InitializeCitiesTable(ui->tableWidget_cities_view,
-                                                        TableManager::instance()->CITIES_TABLE_COL_COUNT,
-                                                        TableManager::instance()->citiesTableColNames);
+		// Initialize cities table
+		TableManager::instance()->InitializeCitiesTable(ui->tableWidget_cities_view,
+		TableManager::instance()->CITIES_TABLE_COL_COUNT,
+		TableManager::instance()->citiesTableColNames);
 
-        // Get table data from db
+		// Get table data from db
 		DBManager::instance()->GetCitiesTable(&cityNames, &distancesFromBerlin);
 
 
-        // Populate table
+		// Populate table
 		TableManager::instance()->PopulateCitiesTable(ui->tableWidget_cities_view, &cityNames, &distancesFromBerlin);
-    }
+	}
 }
 
 
@@ -459,9 +496,11 @@ void MainWindow::DestroyCities()
 }
 
 // Clear fields on admin page for add/edit/remove food items
-void ClearFields()
+void MainWindow::ClearFields()
 {
-
+	ui->lineEdit_admin_city->setText(QString{});
+	ui->lineEdit_admin_food->setText(QString{});
+	ui->lineEdit_admin_price->setText(QString{});
 }
 
 // Create receipt to print on receipt page
@@ -480,5 +519,23 @@ void MainWindow::CreateReceipt(QVector<City>* cities)
     }
 }
 
-/*----END HELPER FUNCTIONS----*/
+void MainWindow::UpdateAdminFoodTable()
+{
+	QVector<City> cityVec;
+	QStringList cities;
+	DBManager::instance()->GetCities(cities);
 
+	for (int i = 0; i < cities.length(); i++) {
+		cityVec.push_back({cities[i]});
+	}
+	// Create shopping list
+	DBManager::instance()->CreateShoppingList(&cityVec);
+
+	// Initialize purchase table to blank
+	TableManager::instance()->InitializeAdminTable(ui->tableWidget_cities_food,
+	TableManager::instance()->ADMIN_TABLE_COL_COUNT,
+	TableManager::instance()->adminTableColNames);
+	// Populate purchase table
+	TableManager::instance()->PopulateAdminTable(ui->tableWidget_cities_food, &cityVec);
+}
+/*----END HELPER FUNCTIONS----*/

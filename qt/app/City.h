@@ -10,6 +10,7 @@ class City
 public:
     // Constructor - Note: will set _foods to nullptr
     City();
+	City(QString city);
 
     // Accessor: Get name of city
     QString GetName() const;
@@ -38,7 +39,7 @@ public:
 	void AddFood(const Food &item);
 
     // Destructor
-    ~City();
+	~City() = default;
 
 private:
     QString _name;          // Name of city
