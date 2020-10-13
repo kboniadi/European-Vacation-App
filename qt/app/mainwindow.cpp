@@ -348,9 +348,20 @@ void MainWindow::on_pushButton_receipt_back_clicked()
 /*----ADMIN----*/
 void MainWindow::on_pushButton_login_continue_clicked()
 {
-	ui->stackedWidget_pages->setCurrentIndex(ADMIN);
-    ui->tabWidget_admin_pages->setCurrentIndex(ADMINTAB);
-    TableManager::instance()->InitializeAdminTable(ui->tableView_admin_cities);
+    // Check login credentials
+    if(DBManager::instance()->LogIn(ui->lineEdit_login_username->text(), ui->lineEdit_username_password->text()))
+    {
+        // Change index to admin section
+        ui->stackedWidget_pages->setCurrentIndex(ADMIN);
+        ui->tabWidget_admin_pages->setCurrentIndex(ADMINTAB);// TODO move changing index to here
+        TableManager::instance()->InitializeAdminTable(ui->tableView_admin_cities);
+    }
+    else
+    {
+        // Warning message here
+    }
+
+
 }
 
 void MainWindow::on_pushButton_admin_back_clicked()
