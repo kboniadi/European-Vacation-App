@@ -115,7 +115,7 @@ private slots:
 private:
 	Ui::MainWindow *ui;
 
-    QVector<City>* cities;
+	QVector<City> cities;
     QStringList customTripCities;
     QStringList customTripComboBoxCities;
 

@@ -3,6 +3,7 @@
 #include "food.h"
 #include <QFileDialog>
 #include <QProgressDialog>
+
 DBManager::DBManager(QWidget *parent)
 	: QWidget{parent}, QSqlDatabase(QSqlDatabase::addDatabase("QSQLITE"))
 {
@@ -44,7 +45,8 @@ void DBManager::AddFood(const QString &city, const QString &food,
 	int id = query.value(0).toInt();
 
 	// using the obtained id, a new food item and price is INSERTED
-	query.prepare("INSERT INTO food(id, foodNames, price) VALUES(:id, :food, :price)");
+	query.prepare("INSERT INTO food(id, foodNames, price) "
+				  "VALUES(:id, :food, :price)");
 	query.bindValue(":id", id);
 	query.bindValue(":food", food);
 	query.bindValue(":price", price);
@@ -74,9 +76,10 @@ void DBManager::ImportCities(QWidget *parent)
 	progress.setCancelButton(0);
 	progress.setWindowTitle("Loader");
 	int count = 0;
+	progress.setRange(count, 52);
 	progress.setMinimumDuration(count);
 	// loading bar increases linearly with count
-	progress.setValue(count);
+//	progress.setValue(count);
 
 //	QTime start = QTime::currentTime();
 
@@ -86,9 +89,14 @@ void DBManager::ImportCities(QWidget *parent)
 		qDebug() << "file opened";
 		QTextStream ss(&file);
 		QStringList list;
+		bool foodStarted = false;
 
 		while (!ss.atEnd()) {
 			QString line = ss.readLine();
+			if (line == "//Food") {
+				foodStarted = true;
+				line = ss.readLine();
+			}
 			// parses each line in the csv into a QStringList
 			list = line.split(",");
 
@@ -100,7 +108,6 @@ void DBManager::ImportCities(QWidget *parent)
 					qDebug() << "DBManager::ImportCities() : error executing query";
 					return;
 				}
-				query.finish();
 				// re-populates cities with updated city list
 				GetCities(cities);
 			}
@@ -109,25 +116,34 @@ void DBManager::ImportCities(QWidget *parent)
 			query.prepare("SELECT id FROM cities WHERE cityNames = :city");
 			query.bindValue(":city", list[0]);
 			if (!query.exec()) {
-				qDebug() << "DBManager::ImportCities() : error executing query";
+				qDebug() << "DBManager::ImportCities() : error executing query(city data)";
 				return;
 			}
 			query.first();
 			int id = query.value(0).toInt();
 
-			// insert distance and endCity data into DB
-			query.prepare("INSERT INTO distance(id, endCity, distances) "
-						  "VALUES(:id, :endCity, :distance)");
-			query.bindValue(":id", id);
-			query.bindValue(":endCity", list[1]);
-			query.bindValue(":distance", list[2]);
+			if (foodStarted) {
+				query.prepare("INSERT INTO food(id, foodNames, price) "
+							  "VALUES(:id, :food, :price)");
+				query.bindValue(":id", id);
+				query.bindValue(":food", list[1]);
+				query.bindValue(":price", list[2]);
+			} else {
+				// insert distance and endCity data into DB
+				query.prepare("INSERT INTO distance(id, endCity, distances) "
+							  "VALUES(:id, :endCity, :distance)");
+				query.bindValue(":id", id);
+				query.bindValue(":endCity", list[1]);
+				query.bindValue(":distance", list[2]);
+			}
+
 			if (!query.exec())
 				qDebug() << "DBManager::ImportCities() : error executing query";
-			query.finish();
 
 			// update progress bar
 			progress.setValue(++count);
 		}
+		query.finish();
 	}
 //	QTime end = QTime::currentTime();
 //	qDebug() << "function took: " << start.msecsTo(end) / 1000.0 << " sec";
