@@ -323,7 +323,7 @@ void MainWindow::on_pushButton_purchase_continue_clicked()
                                                       TableManager::instance()->receiptTableColNames);
 
     // Populate table with data
-    TableManager::instance()->PopulateReceiptTable(ui->tableWidget_receipt_view, cities);
+    TableManager::instance()->PopulateReceiptTable(ui->tableWidget_receipt_view, &cities);
 
     // get total cost
     double totalCost = 0;
@@ -498,7 +498,7 @@ void MainWindow::CreateReceipt(QVector<City>* cities)
         for(int foodIndex = 0; foodIndex < cities->at(cityIndex).GetFoodListSize(); foodIndex++)
         {
             // Add food to item
-			cities->operator[](cityIndex).SetFoodQtyAt(foodIndex,
+            cities->operator[](cityIndex).SetFoodQtyAt(foodIndex,
 			TableManager::instance()->purchaseTableSpinBoxes->at(uberIndex)->value());
             uberIndex++;
         }

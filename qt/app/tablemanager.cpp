@@ -215,7 +215,7 @@ void TableManager::PopulateReceiptTable(QTableWidget* receiptTable, QVector<City
             qtyItem = new QTableWidgetItem(QString::number(cities->at(i).GetFoodQtyAt(j)));
             if (qtyItem->text().toDouble() == 0)
             {
-                cities->at(i).RemoveFoodAt(j);
+                cities->operator[](i).RemoveFoodAt(j);
                 j--;
                 foodListSize--;
             }

@@ -59,9 +59,9 @@ void City::AddFood(const Food &item)
 }
 
 // Mutator: Alter/set food list
-void City::RemoveFoodAt(const int &index) const
+void City::RemoveFoodAt(int index)
 {
-    _foods->removeAt(index);
+    _foods.removeAt(index);
 }
 
 
