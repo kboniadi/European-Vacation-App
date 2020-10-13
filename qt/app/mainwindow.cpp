@@ -358,7 +358,13 @@ void MainWindow::on_pushButton_login_continue_clicked()
     }
     else
     {
-        // Warning message here
+        // Popup window asking if they want to delete that person
+//        QMessageBox invalid;
+//        invalid.setIcon(QMessageBox::Warning);
+//        invalid.setText("WARNING");
+//        invalid.setInformativeText("Username and/or password is incorrect.");
+//        invalid.setStandardButtons(QMessageBox::Ok);
+//        invalid.exec();
     }
 
 
