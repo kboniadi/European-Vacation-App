@@ -361,7 +361,8 @@ void MainWindow::on_pushButton_login_continue_clicked()
     else
     {
 		// username and password incorrect
-		QMessageBox::warning(this, tr("Warning"), tr("Username and/or password is incorrect."));
+		QMessageBox::warning(this, tr("Warning"),
+							 tr("Username and/or password is incorrect."));
     }
 
 
