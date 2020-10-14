@@ -38,6 +38,8 @@ public:
     // Mutator: Alter/set food list
 	void AddFood(const Food &item);
 
+    void RemoveFoodAt(int index);
+    // Mutator: Alter/set food list
     // Destructor
 	~City() = default;
 

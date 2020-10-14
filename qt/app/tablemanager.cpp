@@ -185,21 +185,103 @@ void TableManager::InsertSpinBoxCol(QTableWidget* table, const int min, const in
     // Initializes receipt table to blank
 void TableManager::InitializeReceiptTable(QTableWidget* receiptTable, const int &cols, const QStringList &headers)
 {
-    // All of the code below is dependent on receiptTable being a tablewidget. glhf
-//    receiptTable->clearContents();
-//    receiptTable->setColumnCount(cols);
-//    receiptTable->setHorizontalHeaderLabels(headers);
-//    // TODO - Might be a good idea to set column widths here
-//    receiptTable->setEditTriggers(QTableView::NoEditTriggers);
-//    receiptTable->hideColumn(P_KEY);
-//    receiptTable->verticalHeader()->hide();
+    receiptTable->clearContents();
+    receiptTable->setColumnCount(cols);
+    receiptTable->setHorizontalHeaderLabels(headers);
+    // TODO - Might be a good idea to set column widths here
+    receiptTable->setEditTriggers(QTableView::NoEditTriggers);
+    receiptTable->hideColumn(P_KEY);
+    receiptTable->verticalHeader()->hide();
 
-//    DeleteAllTableRows(receiptTable);
+    DeleteAllTableRows(receiptTable);
 }
 
     // Populates receipt table with relevant information
 void TableManager::PopulateReceiptTable(QTableWidget* receiptTable, QVector<City>* cities)
 {
+    QTableWidgetItem* priceItem;
+    QTableWidgetItem* qtyItem;
+    QTableWidgetItem* totalItem;
+    QString currentName;
+    QString previousName;
+
+    for (int i = 0; i < cities->size(); i++)
+    {
+        // Removes food from list if qty is 0
+        int foodListSize = cities->at(i).GetFoodListSize();
+        for (int j = 0; j < foodListSize; j++)
+        {
+            qtyItem = new QTableWidgetItem(QString::number(cities->at(i).GetFoodQtyAt(j)));
+            if (qtyItem->text().toDouble() == 0)
+            {
+                cities->operator[](i).RemoveFoodAt(j);
+                j--;
+                foodListSize--;
+            }
+        }
+    }
+    // For the length of the city list
+    for(int cityIndex = 0; cityIndex < cities->size(); cityIndex++)
+    {
+        int foodListSize = cities->at(cityIndex).GetFoodListSize();
+
+        // Iterate through each city's food list
+        for(int foodIndex = 0; foodIndex < foodListSize; foodIndex++)
+        {
+                // Generate food quantity tablewidgetitem
+                qtyItem = new QTableWidgetItem(QString::number(cities->at(cityIndex).GetFoodQtyAt(foodIndex)));
+
+                // Generate food price tablewidgetitem
+                priceItem = new QTableWidgetItem(QString::number(cities->at(cityIndex).GetFoodPriceAt(foodIndex)));
+
+                // Generate food total tablewidgetitem
+                totalItem = new QTableWidgetItem(QString::number((cities->at(cityIndex).GetFoodPriceAt(foodIndex)) * (cities->at(cityIndex).GetFoodQtyAt(foodIndex))));
+
+                // If list is not empty
+                if(receiptTable->rowCount() != 0)
+                {
+                    // Check to see if there's a match between this row's city name and the previous row's city name
+                    currentName = receiptTable->item(receiptTable->rowCount() -1, R_KEY)->data(0).toString();
+                    previousName = cities->at(cityIndex).GetName();
+
+                    // Add a row to the end
+                    receiptTable->insertRow(receiptTable->rowCount());
+
+                    bool match = currentName == previousName;
+
+                    // If the row names do not match, insert the city name into the name column
+                    if(!match)
+                    {
+                        // Insert city name into city name column
+                        receiptTable->setItem(receiptTable->rowCount() - 1, R_CITYNAME, new QTableWidgetItem(cities->at(cityIndex).GetName()));
+                    }
+                    else // Else, insert blank name
+                    {
+                        receiptTable->setItem(receiptTable->rowCount() - 1, R_CITYNAME, new QTableWidgetItem(""));
+                    }
+                } // END if purchase table not empty
+                else // if purchase table empty
+                {
+                    // Add new row
+                    receiptTable->insertRow(receiptTable->rowCount());
+
+                    // Insert city name into city name column
+                    receiptTable->setItem(receiptTable->rowCount() - 1, R_CITYNAME, new QTableWidgetItem(cities->at(cityIndex).GetName()));
+                }
+
+                // Insert city name into key column
+                receiptTable->setItem(receiptTable->rowCount() - 1, R_KEY, new QTableWidgetItem(cities->at(cityIndex).GetName()));
+                // Add food name
+                receiptTable->setItem(receiptTable->rowCount() - 1, R_FOOD, new QTableWidgetItem(cities->at(cityIndex).GetFoodNameAt(foodIndex)));
+                // Add food price
+                receiptTable->setItem(receiptTable->rowCount() - 1, R_PRICE, priceItem);
+                // Add food quantity
+                receiptTable->setItem(receiptTable->rowCount() - 1, R_QTY, qtyItem);
+
+                receiptTable->setItem(receiptTable->rowCount() - 1, R_TOTAL, totalItem);
+
+        } // END for iterate through food list
+    } // END for iterate through city list
 
 }
 
