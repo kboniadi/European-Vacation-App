@@ -135,10 +135,10 @@ void TableManager::PopulateFoodTable(QTableWidget* foodTable, QVector<City>* cit
 // **************** Trip Planning Table Methods ****************************
 
     // Initializes trip planning table to blank. Used for all types of trips
-void TableManager::InitializeTripTable(QTableWidget* table, const int &cols, const QStringList &headers)
-{
+//void TableManager::InitializeTripTable(QTableWidget* table, const int &cols, const QStringList &headers)
+//{
 
-}
+//}
 
     // Populates trip planning table with relevant information
 void TableManager::PopulateTripTable(QTableView* table, const QStringList& cities)

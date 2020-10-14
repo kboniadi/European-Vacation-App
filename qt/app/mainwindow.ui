@@ -24,14 +24,14 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>3</number>
+     <number>0</number>
     </property>
     <widget class="QWidget" name="page_home">
      <layout class="QHBoxLayout" name="horizontalLayout_5">
       <item>
        <widget class="QTabWidget" name="tabWidget_home_pages">
         <property name="currentIndex">
-         <number>0</number>
+         <number>3</number>
         </property>
         <widget class="QWidget" name="tab_home">
          <attribute name="title">
@@ -484,7 +484,7 @@
        <string>Total Distance: </string>
       </property>
      </widget>
-     <widget class="QWidget" name="">
+     <widget class="QWidget" name="layoutWidget">
       <property name="geometry">
        <rect>
         <x>110</x>
