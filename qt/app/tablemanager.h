@@ -126,9 +126,9 @@ public:
     // ****************** Admin Table Table Methods ****************************
 		// Intializes admin table using model for city distance list
 	void InitializeAdminTable(QTableView* table);
-	// Initilaizes admin food table to blank
+		// Initilaizes admin food table to blank
 	void InitializeAdminTable(QTableWidget* adminTable, const int &cols, const QStringList &headers);
-	// Populates admin table with relevant information
+		// Populates admin table with relevant information
     void PopulateAdminTable(QTableWidget* table, QVector<City>* cities);
 
     void DeleteAllTableRows(QTableWidget *table);

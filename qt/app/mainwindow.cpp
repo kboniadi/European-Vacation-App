@@ -357,9 +357,17 @@ void MainWindow::on_pushButton_admin_add_clicked()
 	QString food = ui->lineEdit_admin_food->text();
 	QString price = ui->lineEdit_admin_price->text();
 
-	DBManager::instance()->AddFood(city, food, price);
+	QStringList list;
+	DBManager::instance()->GetCities(list);
+
+	if (!list.contains(city)) {
+		QMessageBox::warning(this, tr("Notice"),
+		tr("There was an error with your query.\nPlease try again."));
+	} else {
+		DBManager::instance()->AddFood(city, food, price);
+		UpdateAdminFoodTable();
+	}
 	ClearFields();
-	UpdateAdminFoodTable();
 }
 
 void MainWindow::on_pushButton_admin_delete_clicked()
@@ -367,9 +375,27 @@ void MainWindow::on_pushButton_admin_delete_clicked()
 	QString city = ui->lineEdit_admin_city->text();
 	QString food = ui->lineEdit_admin_food->text();
 	QString price = ui->lineEdit_admin_price->text();
-	DBManager::instance()->DeleteFood(food);
+
+	QSqlQuery query;
+	bool valid = false;
+	query.prepare("SELECT foodNames FROM food");
+	if (query.exec()) {
+		while (query.next()) {
+			if (food == query.value(0).toString()) {
+				valid = true;
+				break;
+			}
+		}
+	}
+
+	if (!valid) {
+		QMessageBox::warning(this, tr("Notice"),
+		tr("Could not find that food item in the DataBase.\n Please try again."));
+	} else {
+		DBManager::instance()->DeleteFood(food);
+		UpdateAdminFoodTable();
+	}
 	ClearFields();
-	UpdateAdminFoodTable();
 }
 
 void MainWindow::on_pushButton_admin_edit_clicked()
@@ -377,9 +403,30 @@ void MainWindow::on_pushButton_admin_edit_clicked()
 	QString city = ui->lineEdit_admin_city->text();
 	QString food = ui->lineEdit_admin_food->text();
 	QString price = ui->lineEdit_admin_price->text();
-	DBManager::instance()->UpdateFoodPrice(food, price);
+
+	QSqlQuery query;
+	bool valid = false;
+	query.prepare("SELECT foodNames FROM food");
+	if (query.exec()) {
+		while (query.next()) {
+			if (food == query.value(0).toString()) {
+				valid = true;
+				break;
+			}
+		}
+	}
+
+	bool ok;
+	price.toDouble(&ok);
+
+	if (!valid || !ok) {
+		QMessageBox::warning(this, tr("Notice"),
+		tr("Could not find that food item in the DataBase.\n Please try again."));
+	} else {
+		DBManager::instance()->UpdateFoodPrice(food, price);
+		UpdateAdminFoodTable();
+	}
 	ClearFields();
-	UpdateAdminFoodTable();
 }
 
 void MainWindow::on_tabWidget_admin_pages_currentChanged(int index)
