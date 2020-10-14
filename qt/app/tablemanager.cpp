@@ -228,9 +228,7 @@ void TableManager::InitializeAdminTable(QTableWidget* adminTable, const int &col
 {
 	adminTable->clearContents();
 	adminTable->setColumnCount(cols);
-	adminTable->setColumnWidth(1, 100);
-	adminTable->setColumnWidth(2, 200);
-	adminTable->setColumnWidth(3, 100);
+	adminTable->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
 	adminTable->setHorizontalHeaderLabels(headers);
 	// TODO - Might be a good idea to set column widths here
 	adminTable->setEditTriggers(QTableView::NoEditTriggers);
