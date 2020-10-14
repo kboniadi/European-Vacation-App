@@ -1,5 +1,6 @@
 #include "tablemanager.h"
 #include "City.h"
+#include <QHeaderView>
 
 TableManager::TableManager()
     : parisTripSpinBoxMax{0}, purchaseTableSpinBoxes{nullptr}
@@ -12,8 +13,6 @@ TableManager* TableManager::instance()
 	static TableManager instance;
 	return &instance;
 }
-
-TableManager::~TableManager() {}
 
 // *********************** Cities Table Methods ****************************
 
@@ -142,8 +141,8 @@ void TableManager::InitializeTripTable(QTableWidget* table, const int &cols, con
     // Populates trip planning table with relevant information
 void TableManager::PopulateTripTable(QTableView* table, const QStringList& cities)
 {
-        QStringListModel *model = new QStringListModel;
-        model->setStringList(cities);
+	QStringListModel *model = new QStringListModel;
+	model->setStringList(cities);
 
 	// prevent unwanted editing by user
 	table->setEditTriggers(QAbstractItemView::NoEditTriggers);
@@ -151,7 +150,7 @@ void TableManager::PopulateTripTable(QTableView* table, const QStringList& citie
 	// note: QStringListModel has no header setting function
 	table->horizontalHeader()->setVisible(false);
 	table->setGridStyle(Qt::NoPen);
-        table->setModel(model);
+	table->setModel(model);
 }
 
 // ************** Food Purchasing Table Methods ****************************
@@ -351,7 +350,7 @@ void TableManager::PopulateReceiptTable(QTableWidget* receiptTable, QVector<City
 }
 
 // ****************** Admin Table Table Methods ****************************
-    // Intializes admin table to blank
+	// Intializes admin table using model for city distance list
 void TableManager::InitializeAdminTable(QTableView* table)
 {
 	QSqlQueryModel *model = new QSqlQueryModel;
@@ -370,10 +369,81 @@ void TableManager::InitializeAdminTable(QTableView* table)
 	table->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
 	table->setModel(model);
 }
+
+void TableManager::InitializeAdminTable(QTableWidget* adminTable, const int &cols, const QStringList &headers)
+{
+	adminTable->clearContents();
+	adminTable->setColumnCount(cols);
+	adminTable->setColumnWidth(1, 100);
+	adminTable->setColumnWidth(2, 200);
+	adminTable->setColumnWidth(3, 100);
+	adminTable->setHorizontalHeaderLabels(headers);
+	// TODO - Might be a good idea to set column widths here
+	adminTable->setEditTriggers(QTableView::NoEditTriggers);
+	adminTable->hideColumn(P_KEY);
+	adminTable->verticalHeader()->hide();
+
+	DeleteAllTableRows(adminTable);
+}
     // Populates admin table with relevant information
 void TableManager::PopulateAdminTable(QTableWidget* table, QVector<City>* cities)
 {
+	QTableWidgetItem* priceItem;
+	QString currentName;
+	QString previousName;
 
+	// For the length of the city list
+	for(int cityIndex = 0; cityIndex < cities->size(); cityIndex++)
+	{
+		int foodListSize = cities->at(cityIndex).GetFoodListSize();
+
+		// Iterate through each city's food list
+		for(int foodIndex = 0; foodIndex < foodListSize; foodIndex++)
+		{
+			// Generate food price tablewidgetitem
+			priceItem = new QTableWidgetItem(QString::number(cities->at(cityIndex).GetFoodPriceAt(foodIndex)));
+
+			// If list is not empty
+			if(table->rowCount() != 0)
+			{
+				// Check to see if there's a match between this row's city name and the previous row's city name
+				currentName = table->item(table->rowCount() -1, P_KEY)->data(0).toString();
+				previousName = cities->at(cityIndex).GetName();
+
+				// Add a row to the end
+				table->insertRow(table->rowCount());
+
+				bool match = currentName == previousName;
+
+				// If the row names do not match, insert the city name into the name column
+				if(!match)
+				{
+					// Insert city name into city name column
+					table->setItem(table->rowCount() - 1, P_CITYNAME, new QTableWidgetItem(cities->at(cityIndex).GetName()));
+				}
+				else // Else, insert blank name
+				{
+					table->setItem(table->rowCount() - 1, P_CITYNAME, new QTableWidgetItem(""));
+				}
+			} // END if purchase table not empty
+			else // if purchase table empty
+			{
+				// Add new row
+				table->insertRow(table->rowCount());
+
+				// Insert city name into city name column
+				table->setItem(table->rowCount() - 1, P_CITYNAME, new QTableWidgetItem(cities->at(cityIndex).GetName()));
+			}
+
+			// Insert city name into key column
+			table->setItem(table->rowCount() - 1, P_KEY, new QTableWidgetItem(cities->at(cityIndex).GetName()));
+			// Add food name
+			table->setItem(table->rowCount() - 1, P_FOOD, new QTableWidgetItem(cities->at(cityIndex).GetFoodNameAt(foodIndex)));
+			// Add food price
+			table->setItem(table->rowCount() - 1, P_PRICE, priceItem);
+
+		} // END for iterate through food list
+	} // END for iterate through city list
 }
 
 // *************************************************************************************

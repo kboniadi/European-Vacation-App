@@ -1,14 +1,15 @@
 #include "City.h"
 
 // Constructor
-City::City()
+City::City(): _name{QString{}}
 {
-    _name = "";
 	_foods.clear();
 }
 
-// Destructor
-City::~City() = default;
+City::City(QString city): _name{city}
+{
+	_foods.clear();
+}
 
 // Accessor: Get name of city
 QString City::GetName() const
@@ -58,13 +59,12 @@ void City::AddFood(const Food &item)
 	_foods.push_back(item);
 }
 
+
 // Mutator: Alter/set food list
 void City::RemoveFoodAt(int index)
 {
     _foods.removeAt(index);
 }
-
-
 
 int City::GetFoodListSize() const
 {

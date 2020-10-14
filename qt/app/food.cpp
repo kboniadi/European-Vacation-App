@@ -1,10 +1,7 @@
 #include "food.h"
 
-Food::Food()
+Food::Food():  _name{QString{}}, _price{0}, _qty{0}
 {
-    _name = "";
-    _price = 0;
-    _qty = 0;
 }
 
 // Accessor: Get name of food item

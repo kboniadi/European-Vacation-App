@@ -171,8 +171,8 @@ void DBManager::DeleteFood(const QString &foodName)
 
 void DBManager::CityToFoodNames(const QString &city, QStringList &foods)
 {
-	query.prepare("SELECT foodNames FROM food, cities WHERE cities.cityNames = :city AND "
-				  "cities.id = food.id");
+	query.prepare("SELECT foodNames FROM food, cities WHERE cities.cityNames = "
+				  ":city AND cities.id = food.id");
 	query.bindValue(":city", city);
 	if (query.exec()) {
 		while (query.next())
@@ -231,7 +231,8 @@ int DBManager::GetDistances(const QString &city1, const QString &city2)
 void DBManager::CreateShoppingList(QVector<City>* cities)
 {
     // Prep general query
-    query.prepare("SELECT food.foodNames, food.price from cities, food where citynames = :cityName and cities.id = food.id;");
+	query.prepare("SELECT food.foodNames, food.price FROM cities, food WHERE "
+				  "citynames = :cityName and cities.id = food.id;");
 
     // Run query in a loop
     for(int index = 0; index < cities->size(); index++)
@@ -265,7 +266,9 @@ void DBManager::CreateShoppingList(QVector<City>* cities)
 
 void DBManager::GetCitiesTable(QStringList* cityNames, QVector<int>* distancesFromBerlin)
 {
-    query.prepare("SELECT cities.citynames, distance.distances FROM cities, distance WHERE distance.endcity = 'Berlin' AND cities.id = distance.id;");
+	query.prepare("SELECT cities.citynames, distance.distances FROM cities, "
+				  "distance WHERE distance.endcity = 'Berlin' AND cities.id = "
+				  "distance.id;");
 
     if(query.exec())
     {
