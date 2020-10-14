@@ -86,7 +86,7 @@ void TableManager::PopulateFoodTable(QTableWidget* foodTable, QVector<City>* cit
         for(int foodIndex = 0; foodIndex < foodListSize; foodIndex++)
         {
             // Generate food price tablewidgetitem
-            priceItem = new QTableWidgetItem(QString::number(cities->at(cityIndex).GetFoodPriceAt(foodIndex)));
+			priceItem = new QTableWidgetItem(QString::number(cities->at(cityIndex).GetFoodPriceAt(foodIndex), 'f', 2));
 
             // If list is not empty
             if(foodTable->rowCount() != 0)
@@ -187,7 +187,7 @@ void TableManager::PopulatePurchaseTable(QTableWidget* purchaseTable, QVector<Ci
         for(int foodIndex = 0; foodIndex < foodListSize; foodIndex++)
         {
             // Generate food price tablewidgetitem
-            priceItem = new QTableWidgetItem(QString::number(cities->at(cityIndex).GetFoodPriceAt(foodIndex)));
+			priceItem = new QTableWidgetItem(QString::number(cities->at(cityIndex).GetFoodPriceAt(foodIndex), 'f', 2));
 
             // If list is not empty
             if(purchaseTable->rowCount() != 0)
@@ -300,10 +300,10 @@ void TableManager::PopulateReceiptTable(QTableWidget* receiptTable, QVector<City
                 qtyItem = new QTableWidgetItem(QString::number(cities->at(cityIndex).GetFoodQtyAt(foodIndex)));
 
                 // Generate food price tablewidgetitem
-                priceItem = new QTableWidgetItem(QString::number(cities->at(cityIndex).GetFoodPriceAt(foodIndex)));
+				priceItem = new QTableWidgetItem(QString::number(cities->at(cityIndex).GetFoodPriceAt(foodIndex), 'f', 2));
 
                 // Generate food total tablewidgetitem
-                totalItem = new QTableWidgetItem(QString::number((cities->at(cityIndex).GetFoodPriceAt(foodIndex)) * (cities->at(cityIndex).GetFoodQtyAt(foodIndex))));
+				totalItem = new QTableWidgetItem(QString::number((cities->at(cityIndex).GetFoodPriceAt(foodIndex)) * (cities->at(cityIndex).GetFoodQtyAt(foodIndex)), 'f', 2));
 
                 // If list is not empty
                 if(receiptTable->rowCount() != 0)
@@ -403,7 +403,7 @@ void TableManager::PopulateAdminTable(QTableWidget* table, QVector<City>* cities
 		for(int foodIndex = 0; foodIndex < foodListSize; foodIndex++)
 		{
 			// Generate food price tablewidgetitem
-			priceItem = new QTableWidgetItem(QString::number(cities->at(cityIndex).GetFoodPriceAt(foodIndex)));
+			priceItem = new QTableWidgetItem(QString::number(cities->at(cityIndex).GetFoodPriceAt(foodIndex), 'f', 2));
 
 			// If list is not empty
 			if(table->rowCount() != 0)
