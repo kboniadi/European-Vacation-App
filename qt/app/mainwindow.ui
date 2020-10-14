@@ -155,7 +155,11 @@
               <widget class="QLineEdit" name="lineEdit_login_username"/>
              </item>
              <item row="1" column="0">
-              <widget class="QLineEdit" name="lineEdit_username_password"/>
+              <widget class="QLineEdit" name="lineEdit_username_password">
+               <property name="echoMode">
+                <enum>QLineEdit::Password</enum>
+               </property>
+              </widget>
              </item>
             </layout>
            </item>

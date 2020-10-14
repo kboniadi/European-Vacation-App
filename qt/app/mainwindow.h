@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include <QStackedWidget>
+#include <QMessageBox>
 #include "sortalgorithm.h"
 
 QT_BEGIN_NAMESPACE
