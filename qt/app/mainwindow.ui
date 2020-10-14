@@ -24,7 +24,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>5</number>
+     <number>2</number>
     </property>
     <widget class="QWidget" name="page_home">
      <layout class="QHBoxLayout" name="horizontalLayout_5">
@@ -509,6 +509,33 @@
         </widget>
        </item>
       </layout>
+     </widget>
+     <widget class="QLabel" name="label_paris_header_2">
+      <property name="geometry">
+       <rect>
+        <x>450</x>
+        <y>50</y>
+        <width>300</width>
+        <height>40</height>
+       </rect>
+      </property>
+      <property name="baseSize">
+       <size>
+        <width>0</width>
+        <height>0</height>
+       </size>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>24</pointsize>
+       </font>
+      </property>
+      <property name="text">
+       <string>Destinations:</string>
+      </property>
+      <property name="textFormat">
+       <enum>Qt::PlainText</enum>
+      </property>
      </widget>
     </widget>
     <widget class="QWidget" name="page_purchase">
