@@ -24,7 +24,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>5</number>
     </property>
     <widget class="QWidget" name="page_home">
      <layout class="QHBoxLayout" name="horizontalLayout_5">
@@ -121,7 +121,7 @@
            <string>Login</string>
           </property>
          </widget>
-         <widget class="QWidget" name="layoutWidget">
+         <widget class="QWidget" name="layoutWidget1">
           <property name="geometry">
            <rect>
             <x>440</x>
@@ -559,19 +559,6 @@
         <width>1040</width>
         <height>500</height>
        </rect>
-      </property>
-     </widget>
-     <widget class="QLabel" name="label_purchase_total">
-      <property name="geometry">
-       <rect>
-        <x>80</x>
-        <y>650</y>
-        <width>111</width>
-        <height>16</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Total: </string>
       </property>
      </widget>
     </widget>
