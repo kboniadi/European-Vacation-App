@@ -22,6 +22,7 @@ void TableManager::InitializeCitiesTable(QTableWidget* citiesTable, const int &c
     citiesTable->clearContents();
     citiesTable->setColumnCount(citiesCols);
     citiesTable->setHorizontalHeaderLabels(citiesHeaders);
+	citiesTable->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
     // TODO - Might be a good idea to set column widths here
     citiesTable->setEditTriggers(QTableView::NoEditTriggers);
     citiesTable->verticalHeader()->hide();
@@ -60,6 +61,7 @@ void TableManager::InitializeFoodTable(QTableWidget* foodTable, const int &foodC
     foodTable->clearContents();
     foodTable->setColumnCount(foodCols);
     foodTable->setHorizontalHeaderLabels(foodHeaders);
+	foodTable->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
     // TODO - Might be a good idea to set column widths here
     foodTable->setEditTriggers(QTableView::NoEditTriggers);
     foodTable->hideColumn(F_KEY);
@@ -84,7 +86,7 @@ void TableManager::PopulateFoodTable(QTableWidget* foodTable, QVector<City>* cit
         for(int foodIndex = 0; foodIndex < foodListSize; foodIndex++)
         {
             // Generate food price tablewidgetitem
-            priceItem = new QTableWidgetItem(QString::number(cities->at(cityIndex).GetFoodPriceAt(foodIndex)));
+			priceItem = new QTableWidgetItem(QString::number(cities->at(cityIndex).GetFoodPriceAt(foodIndex), 'f', 2));
 
             // If list is not empty
             if(foodTable->rowCount() != 0)
@@ -133,10 +135,10 @@ void TableManager::PopulateFoodTable(QTableWidget* foodTable, QVector<City>* cit
 // **************** Trip Planning Table Methods ****************************
 
     // Initializes trip planning table to blank. Used for all types of trips
-void TableManager::InitializeTripTable(QTableWidget* table, const int &cols, const QStringList &headers)
-{
+//void TableManager::InitializeTripTable(QTableWidget* table, const int &cols, const QStringList &headers)
+//{
 
-}
+//}
 
     // Populates trip planning table with relevant information
 void TableManager::PopulateTripTable(QTableView* table, const QStringList& cities)
@@ -160,6 +162,7 @@ void TableManager::InitializePurchaseTable(QTableWidget* purchaseTable, const in
     purchaseTable->clearContents();
     purchaseTable->setColumnCount(cols);
     purchaseTable->setHorizontalHeaderLabels(headers);
+	purchaseTable->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
     // TODO - Might be a good idea to set column widths here
     purchaseTable->setEditTriggers(QTableView::NoEditTriggers);
     purchaseTable->hideColumn(P_KEY);
@@ -184,7 +187,7 @@ void TableManager::PopulatePurchaseTable(QTableWidget* purchaseTable, QVector<Ci
         for(int foodIndex = 0; foodIndex < foodListSize; foodIndex++)
         {
             // Generate food price tablewidgetitem
-            priceItem = new QTableWidgetItem(QString::number(cities->at(cityIndex).GetFoodPriceAt(foodIndex)));
+			priceItem = new QTableWidgetItem(QString::number(cities->at(cityIndex).GetFoodPriceAt(foodIndex), 'f', 2));
 
             // If list is not empty
             if(purchaseTable->rowCount() != 0)
@@ -252,6 +255,7 @@ void TableManager::InitializeReceiptTable(QTableWidget* receiptTable, const int 
     receiptTable->clearContents();
     receiptTable->setColumnCount(cols);
     receiptTable->setHorizontalHeaderLabels(headers);
+	receiptTable->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
     // TODO - Might be a good idea to set column widths here
     receiptTable->setEditTriggers(QTableView::NoEditTriggers);
     receiptTable->hideColumn(P_KEY);
@@ -296,10 +300,10 @@ void TableManager::PopulateReceiptTable(QTableWidget* receiptTable, QVector<City
                 qtyItem = new QTableWidgetItem(QString::number(cities->at(cityIndex).GetFoodQtyAt(foodIndex)));
 
                 // Generate food price tablewidgetitem
-                priceItem = new QTableWidgetItem(QString::number(cities->at(cityIndex).GetFoodPriceAt(foodIndex)));
+				priceItem = new QTableWidgetItem(QString::number(cities->at(cityIndex).GetFoodPriceAt(foodIndex), 'f', 2));
 
                 // Generate food total tablewidgetitem
-                totalItem = new QTableWidgetItem(QString::number((cities->at(cityIndex).GetFoodPriceAt(foodIndex)) * (cities->at(cityIndex).GetFoodQtyAt(foodIndex))));
+				totalItem = new QTableWidgetItem(QString::number((cities->at(cityIndex).GetFoodPriceAt(foodIndex)) * (cities->at(cityIndex).GetFoodQtyAt(foodIndex)), 'f', 2));
 
                 // If list is not empty
                 if(receiptTable->rowCount() != 0)
@@ -374,9 +378,7 @@ void TableManager::InitializeAdminTable(QTableWidget* adminTable, const int &col
 {
 	adminTable->clearContents();
 	adminTable->setColumnCount(cols);
-	adminTable->setColumnWidth(1, 100);
-	adminTable->setColumnWidth(2, 200);
-	adminTable->setColumnWidth(3, 100);
+	adminTable->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
 	adminTable->setHorizontalHeaderLabels(headers);
 	// TODO - Might be a good idea to set column widths here
 	adminTable->setEditTriggers(QTableView::NoEditTriggers);
@@ -401,7 +403,7 @@ void TableManager::PopulateAdminTable(QTableWidget* table, QVector<City>* cities
 		for(int foodIndex = 0; foodIndex < foodListSize; foodIndex++)
 		{
 			// Generate food price tablewidgetitem
-			priceItem = new QTableWidgetItem(QString::number(cities->at(cityIndex).GetFoodPriceAt(foodIndex)));
+			priceItem = new QTableWidgetItem(QString::number(cities->at(cityIndex).GetFoodPriceAt(foodIndex), 'f', 2));
 
 			// If list is not empty
 			if(table->rowCount() != 0)

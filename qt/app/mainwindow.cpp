@@ -361,7 +361,8 @@ void MainWindow::on_pushButton_login_continue_clicked()
     else
     {
 		// username and password incorrect
-		QMessageBox::warning(this, tr("Warning"), tr("Username and/or password is incorrect."));
+		QMessageBox::warning(this, tr("Warning"),
+							 tr("Username and/or password is incorrect."));
     }
 
 
@@ -424,7 +425,7 @@ void MainWindow::on_pushButton_admin_delete_clicked()
 
 	if (!valid) {
 		QMessageBox::warning(this, tr("Notice"),
-		tr("Could not find that food item in the DataBase.\n Please try again."));
+		tr("Could not find that food item in the DataBase.\nPlease try again."));
 	} else {
 		DBManager::instance()->DeleteFood(food);
 		UpdateAdminFoodTable();
@@ -455,7 +456,7 @@ void MainWindow::on_pushButton_admin_edit_clicked()
 
 	if (!valid || !ok) {
 		QMessageBox::warning(this, tr("Notice"),
-		tr("Could not find that food item in the DataBase.\n Please try again."));
+		tr("Could not find that food item in the DataBase.\nPlease try again."));
 	} else {
 		DBManager::instance()->UpdateFoodPrice(food, price);
 		UpdateAdminFoodTable();

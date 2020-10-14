@@ -24,14 +24,14 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>6</number>
+     <number>5</number>
     </property>
     <widget class="QWidget" name="page_home">
      <layout class="QHBoxLayout" name="horizontalLayout_5">
       <item>
        <widget class="QTabWidget" name="tabWidget_home_pages">
         <property name="currentIndex">
-         <number>0</number>
+         <number>3</number>
         </property>
         <widget class="QWidget" name="tab_home">
          <attribute name="title">
@@ -121,7 +121,7 @@
            <string>Login</string>
           </property>
          </widget>
-         <widget class="QWidget" name="layoutWidget">
+         <widget class="QWidget" name="layoutWidget1">
           <property name="geometry">
            <rect>
             <x>440</x>
@@ -405,9 +405,9 @@
      <widget class="QPushButton" name="pushButton_custom_continue">
       <property name="geometry">
        <rect>
-        <x>180</x>
-        <y>500</y>
-        <width>161</width>
+        <x>100</x>
+        <y>410</y>
+        <width>201</width>
         <height>25</height>
        </rect>
       </property>
@@ -443,7 +443,7 @@
        <rect>
         <x>100</x>
         <y>300</y>
-        <width>231</width>
+        <width>271</width>
         <height>16</height>
        </rect>
       </property>
@@ -461,19 +461,6 @@
        </rect>
       </property>
      </widget>
-     <widget class="QPushButton" name="pushButton_custom_add">
-      <property name="geometry">
-       <rect>
-        <x>100</x>
-        <y>360</y>
-        <width>80</width>
-        <height>25</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Add City</string>
-      </property>
-     </widget>
      <widget class="QTableView" name="tableView">
       <property name="geometry">
        <rect>
@@ -482,19 +469,6 @@
         <width>600</width>
         <height>600</height>
        </rect>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="pushButton_custom_finalize">
-      <property name="geometry">
-       <rect>
-        <x>190</x>
-        <y>360</y>
-        <width>91</width>
-        <height>21</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Finalize Trip</string>
       </property>
      </widget>
      <widget class="QLabel" name="label_custom_distance">
@@ -509,6 +483,32 @@
       <property name="text">
        <string>Total Distance: </string>
       </property>
+     </widget>
+     <widget class="QWidget" name="layoutWidget">
+      <property name="geometry">
+       <rect>
+        <x>110</x>
+        <y>360</y>
+        <width>178</width>
+        <height>27</height>
+       </rect>
+      </property>
+      <layout class="QHBoxLayout" name="horizontalLayout">
+       <item>
+        <widget class="QPushButton" name="pushButton_custom_add">
+         <property name="text">
+          <string>Add City</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="pushButton_custom_finalize">
+         <property name="text">
+          <string>Finalize Trip</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
      </widget>
     </widget>
     <widget class="QWidget" name="page_purchase">
@@ -559,19 +559,6 @@
         <width>1040</width>
         <height>500</height>
        </rect>
-      </property>
-     </widget>
-     <widget class="QLabel" name="label_purchase_total">
-      <property name="geometry">
-       <rect>
-        <x>80</x>
-        <y>650</y>
-        <width>111</width>
-        <height>16</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Total: </string>
       </property>
      </widget>
     </widget>
