@@ -581,9 +581,9 @@ void MainWindow::on_tabWidget_home_pages_currentChanged(int index)
         // Populate table
         TableManager::instance()->PopulateFoodTable(ui->tableWidget_food_view, &cities);
     }
-	}
-
 }
+
+
 
 
 /*----END NAVIGATION----*/
