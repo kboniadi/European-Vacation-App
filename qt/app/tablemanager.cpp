@@ -22,6 +22,7 @@ void TableManager::InitializeCitiesTable(QTableWidget* citiesTable, const int &c
     citiesTable->clearContents();
     citiesTable->setColumnCount(citiesCols);
     citiesTable->setHorizontalHeaderLabels(citiesHeaders);
+	citiesTable->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
     // TODO - Might be a good idea to set column widths here
     citiesTable->setEditTriggers(QTableView::NoEditTriggers);
     citiesTable->verticalHeader()->hide();
@@ -60,6 +61,7 @@ void TableManager::InitializeFoodTable(QTableWidget* foodTable, const int &foodC
     foodTable->clearContents();
     foodTable->setColumnCount(foodCols);
     foodTable->setHorizontalHeaderLabels(foodHeaders);
+	foodTable->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
     // TODO - Might be a good idea to set column widths here
     foodTable->setEditTriggers(QTableView::NoEditTriggers);
     foodTable->hideColumn(F_KEY);
@@ -160,6 +162,7 @@ void TableManager::InitializePurchaseTable(QTableWidget* purchaseTable, const in
     purchaseTable->clearContents();
     purchaseTable->setColumnCount(cols);
     purchaseTable->setHorizontalHeaderLabels(headers);
+	purchaseTable->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
     // TODO - Might be a good idea to set column widths here
     purchaseTable->setEditTriggers(QTableView::NoEditTriggers);
     purchaseTable->hideColumn(P_KEY);
@@ -252,6 +255,7 @@ void TableManager::InitializeReceiptTable(QTableWidget* receiptTable, const int 
     receiptTable->clearContents();
     receiptTable->setColumnCount(cols);
     receiptTable->setHorizontalHeaderLabels(headers);
+	receiptTable->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
     // TODO - Might be a good idea to set column widths here
     receiptTable->setEditTriggers(QTableView::NoEditTriggers);
     receiptTable->hideColumn(P_KEY);
@@ -374,9 +378,7 @@ void TableManager::InitializeAdminTable(QTableWidget* adminTable, const int &col
 {
 	adminTable->clearContents();
 	adminTable->setColumnCount(cols);
-	adminTable->setColumnWidth(1, 100);
-	adminTable->setColumnWidth(2, 200);
-	adminTable->setColumnWidth(3, 100);
+	adminTable->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
 	adminTable->setHorizontalHeaderLabels(headers);
 	// TODO - Might be a good idea to set column widths here
 	adminTable->setEditTriggers(QTableView::NoEditTriggers);
