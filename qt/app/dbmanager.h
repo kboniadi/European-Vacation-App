@@ -99,6 +99,8 @@ public:
 
 	void GetCitiesTable(QStringList *cityNames, QVector<int>* distancesFromBerlin);
 
+  bool LogIn(const QString &username, const QString &password);
+
 private:
 	QSqlQuery query;	//!< used to query the database
 
