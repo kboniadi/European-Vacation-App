@@ -464,6 +464,40 @@ void MainWindow::on_tabWidget_home_pages_currentChanged(int index)
         // Populate table
 		TableManager::instance()->PopulateCitiesTable(ui->tableWidget_cities_view, &cityNames, &distancesFromBerlin);
     }
+
+    if(index == T_FOODS)
+    {
+        // Create objects
+        QStringList unsorted;
+        QStringList sorted;
+
+        // Initialize cities table
+        TableManager::instance()->InitializeFoodTable(ui->tableWidget_food_view,
+                                                        TableManager::instance()->FOOD_TABLE_COL_COUNT,
+                                                        TableManager::instance()->foodTableColNames);
+        // Delete existing cities list
+        DestroyCities();
+
+        // puts list of cities in a form that can be sorted
+        DBManager::instance()->GetCities(unsorted);
+        unsorted.removeAll("Berlin");
+        unsorted.push_front("Berlin");
+
+        algorithm::sort(unsorted, sorted);
+
+        // Populate city objects
+        for(int index = 0; index < sorted.size(); index++)
+        {
+            City temp;
+            temp.SetName(sorted.at(index));
+            cities.push_back(temp);
+            qDebug() << cities.at(index).GetName();
+        }
+        DBManager::instance()->CreateShoppingList(&cities);
+        // Populate table
+        TableManager::instance()->PopulateFoodTable(ui->tableWidget_food_view, &cities);
+    }
+
 }
 
 

@@ -56,14 +56,78 @@ void TableManager::PopulateCitiesTable(QTableWidget* cityTable, QStringList* cit
 // ************************* Food Table Methods ****************************
 
     // Initializes foods table to blank
-void TableManager::InitializeFoodTable(QTableWidget* table, const int &cols, const QStringList &headers)
+void TableManager::InitializeFoodTable(QTableWidget* foodTable, const int &foodCols, const QStringList &foodHeaders)
 {
+    foodTable->clearContents();
+    foodTable->setColumnCount(foodCols);
+    foodTable->setHorizontalHeaderLabels(foodHeaders);
+    // TODO - Might be a good idea to set column widths here
+    foodTable->setEditTriggers(QTableView::NoEditTriggers);
+    foodTable->hideColumn(F_KEY);
+    foodTable->verticalHeader()->hide();
 
+    DeleteAllTableRows(foodTable);
 }
 
     // Populates food table with relevant information
-void TableManager::PopulateFoodTable(QTableWidget* table, QVector<City>* cites)
+void TableManager::PopulateFoodTable(QTableWidget* foodTable, QVector<City>* cities)
 {
+    QTableWidgetItem* priceItem;
+    QString currentName;
+    QString previousName;
+
+    // For the length of the city list
+    for(int cityIndex = 0; cityIndex < cities->size(); cityIndex++)
+    {
+        int foodListSize = cities->at(cityIndex).GetFoodListSize();
+
+        // Iterate through each city's food list
+        for(int foodIndex = 0; foodIndex < foodListSize; foodIndex++)
+        {
+            // Generate food price tablewidgetitem
+            priceItem = new QTableWidgetItem(QString::number(cities->at(cityIndex).GetFoodPriceAt(foodIndex)));
+
+            // If list is not empty
+            if(foodTable->rowCount() != 0)
+            {
+                // Check to see if there's a match between this row's city name and the previous row's city name
+                currentName = foodTable->item(foodTable->rowCount() -1, F_KEY)->data(0).toString();
+                previousName = cities->at(cityIndex).GetName();
+
+                // Add a row to the end
+                foodTable->insertRow(foodTable->rowCount());
+
+                bool match = currentName == previousName;
+
+                // If the row names do not match, insert the city name into the name column
+                if(!match)
+                {
+                    // Insert city name into city name column
+                    foodTable->setItem(foodTable->rowCount() - 1, F_CITYNAME, new QTableWidgetItem(cities->at(cityIndex).GetName()));
+                }
+                else // Else, insert blank name
+                {
+                    foodTable->setItem(foodTable->rowCount() - 1, F_CITYNAME, new QTableWidgetItem(""));
+                }
+            } // END if food table not empty
+            else // if food table empty
+            {
+                // Add new row
+                foodTable->insertRow(foodTable->rowCount());
+
+                // Insert city name into city name column
+                foodTable->setItem(foodTable->rowCount() - 1, F_CITYNAME, new QTableWidgetItem(cities->at(cityIndex).GetName()));
+            }
+
+            // Insert city name into key column
+            foodTable->setItem(foodTable->rowCount() - 1, F_KEY, new QTableWidgetItem(cities->at(cityIndex).GetName()));
+            // Add food name
+            foodTable->setItem(foodTable->rowCount() - 1, F_FOODNAME, new QTableWidgetItem(cities->at(cityIndex).GetFoodNameAt(foodIndex)));
+            // Add food price
+            foodTable->setItem(foodTable->rowCount() - 1, F_PRICE, priceItem);
+
+        } // END for iterate through food list
+    } // END for iterate through city list for iterate through city list
 
 }
 
