@@ -78,11 +78,11 @@ public:
     // ************************* Admin Table Attributes ************************
 
         // Number of columns in table
-    const int ADMIN_TABLE_COL_COUNT = 3;
+	const int ADMIN_TABLE_COL_COUNT = 4;
         // positions of admin table columns by name
-    enum AdminTableColPositions	{ A_CITYNAME, A_FOOD, A_PRICE };
+	enum AdminTableColPositions	{ A_Key, A_CITYNAME, A_FOOD, A_PRICE };
         // Names of admin table column headers
-    QStringList adminTableColNames = {"City Name", "Food Available", "Price" };
+	QStringList adminTableColNames = {"KEY", "City Name", "Food Available", "Price" };
 
                         /***********
                          * Methods *
@@ -124,9 +124,11 @@ public:
     void PopulateReceiptTable(QTableWidget* receiptTable, QVector<City>* cites);
 
     // ****************** Admin Table Table Methods ****************************
-        // Intializes admin table to blank
+		// Intializes admin table using model for city distance list
 	void InitializeAdminTable(QTableView* table);
-        // Populates admin table with relevant information
+		// Initilaizes admin food table to blank
+	void InitializeAdminTable(QTableWidget* adminTable, const int &cols, const QStringList &headers);
+		// Populates admin table with relevant information
     void PopulateAdminTable(QTableWidget* table, QVector<City>* cities);
 
     void DeleteAllTableRows(QTableWidget *table);
@@ -135,7 +137,7 @@ public:
 
 private:
 	TableManager();
-	~TableManager();
+	~TableManager() = default;
 };
 
 #endif // TABLEMANAGER_H
