@@ -30,11 +30,11 @@ public:
 
     // ************************** Food Table Attributes ************************
         // Number of columns in food table
-    const int FOOD_TABLE_COL_COUNT = 3;
+    const int FOOD_TABLE_COL_COUNT = 4;
         // Positions of food table positions name
-    enum FoodTableColPositions { F_CITYNAME, F_FOODNAME, F_PRICE };
+    enum FoodTableColPositions { F_KEY, F_CITYNAME, F_FOODNAME, F_PRICE };
         // Names of food table column headers
-    QStringList foodTableColNames = { "City Name", "Food Available", "Price" };
+    QStringList foodTableColNames = { "KEY", "City Name", "Food Available", "Price" };
 
     // ***************** Trip Planning Table Attributes ************************
 
@@ -100,7 +100,7 @@ public:
         // Initializes foods table to blank
     void InitializeFoodTable(QTableWidget* table, const int &cols, const QStringList &headers);
         // Populates food table with relevant information
-    void PopulateFoodTable(QTableWidget* table, QVector<City>* cites);
+    void PopulateFoodTable(QTableWidget* foodTable, QVector<City> *cities);
 
     // **************** Trip Planning Table Methods ****************************
 
@@ -121,7 +121,7 @@ public:
         // Initializes receipt table to blank
     void InitializeReceiptTable(QTableWidget* receiptTable, const int &cols, const QStringList &headers);
         // Populates receipt table with relevant information
-    void PopulateReceiptTable(QTableWidget* receiptTable, QVector<City>* cites);
+    void PopulateReceiptTable(QTableWidget* receiptTable, QVector<City>* cities);
 
     // ****************** Admin Table Table Methods ****************************
 		// Intializes admin table using model for city distance list
