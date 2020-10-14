@@ -397,7 +397,10 @@ void MainWindow::on_pushButton_admin_add_clicked()
 	QStringList list;
 	DBManager::instance()->GetCities(list);
 
-	if (!list.contains(city)) {
+	bool ok;
+	price.toDouble(&ok);
+
+	if (!list.contains(city) || !ok || food.isEmpty()) {
 		QMessageBox::warning(this, tr("Notice"),
 		tr("There was an error with your query.\nPlease try again."));
 	} else {
@@ -458,7 +461,7 @@ void MainWindow::on_pushButton_admin_edit_clicked()
 
 	if (!valid || !ok) {
 		QMessageBox::warning(this, tr("Notice"),
-		tr("Could not find that food item in the DataBase.\nPlease try again."));
+		tr("There was an error with your query.\nPlease try again."));
 	} else {
 		DBManager::instance()->UpdateFoodPrice(food, price);
 		UpdateAdminFoodTable();
