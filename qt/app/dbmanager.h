@@ -95,9 +95,9 @@ public:
 	 */
 	int GetDistances(const QString &city1, const QString &city2);
 
-  void CreateShoppingList(QVector<City>* cities);
+	void CreateShoppingList(QVector<City>* cities);
 
-  void GetCitiesTable(QStringList *cityNames, QVector<int>* distancesFromBerlin);
+	void GetCitiesTable(QStringList *cityNames, QVector<int>* distancesFromBerlin);
 
   bool LogIn(const QString &username, const QString &password);
 

@@ -23,7 +23,7 @@ public:
 
     // Constructor
     Food();
-
+	~Food() = default;
 private:
     QString _name;
     float _price;
