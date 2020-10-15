@@ -14,6 +14,12 @@ class DBManager;
 class TableManager;
 class City;
 
+/*!
+ * @class MainWindow
+ * @brief The Mainwindow class is the primary view and interface for all
+ * program functionality, including other classes and objects.
+ */
+
 class MainWindow : public QMainWindow
 {
 	Q_OBJECT

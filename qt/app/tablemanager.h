@@ -12,6 +12,11 @@
 
 class City;
 
+/*!
+ * @class TableManager
+ * @brief The TableManager holds attributes for all tables, initializes them,
+ * and populates their contents. For use in all program functionality
+ */
 class TableManager
 {
 public:
