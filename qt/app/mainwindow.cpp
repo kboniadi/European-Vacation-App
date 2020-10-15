@@ -472,8 +472,6 @@ void MainWindow::on_pushButton_admin_edit_clicked()
 	if (!valid || !ok) {
 		QMessageBox::warning(this, tr("Notice"),
 
-		tr("Could not find that food item in the DataBase.\nPlease try again."));
-    } else {// If valid input and found, update new price in db
 		tr("There was an error with your query.\nPlease try again."));
 	} else {// If valid input and found, update new price in db
 
