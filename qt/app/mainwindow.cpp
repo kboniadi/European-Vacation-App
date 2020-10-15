@@ -330,10 +330,13 @@ void MainWindow::on_pushButton_purchase_continue_clicked()
     QTableWidgetItem *item;
     for (int i = 0; i < ui->tableWidget_receipt_view->rowCount(); i++)
     {
-        item = ui->tableWidget_receipt_view->item(i, TableManager::R_TOTAL);
-        totalCost += item->text().toDouble();
+        if (!(ui->tableWidget_receipt_view->item(i, TableManager::R_FOOD))) // avoids city totals
+        {
+            item = ui->tableWidget_receipt_view->item(i, TableManager::R_TOTAL);
+            totalCost += item->text().toDouble();
+        }
     }
-    ui->label_receipt_spent->setText("Total spent $" + QString::number(totalCost));
+    ui->label_receipt_spent->setText("Total spent $" + QString::number(totalCost, 'f', 2));
 
 
 }

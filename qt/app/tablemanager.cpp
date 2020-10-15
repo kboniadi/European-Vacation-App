@@ -262,6 +262,8 @@ void TableManager::PopulateReceiptTable(QTableWidget* receiptTable, QVector<City
     QTableWidgetItem* priceItem;
     QTableWidgetItem* qtyItem;
     QTableWidgetItem* totalItem;
+    QTableWidgetItem* cityTotal;
+    double cityCounter;
     QString currentName;
     QString previousName;
 
@@ -286,6 +288,8 @@ void TableManager::PopulateReceiptTable(QTableWidget* receiptTable, QVector<City
     {
         int foodListSize = cities->at(cityIndex).GetFoodListSize();
 
+        cityCounter = 0; // resets the grand total for each city
+
         // Iterate through each city's food list
         for(int foodIndex = 0; foodIndex < foodListSize; foodIndex++)
         {
@@ -293,10 +297,13 @@ void TableManager::PopulateReceiptTable(QTableWidget* receiptTable, QVector<City
                 qtyItem = new QTableWidgetItem(QString::number(cities->at(cityIndex).GetFoodQtyAt(foodIndex)));
 
                 // Generate food price tablewidgetitem
-				priceItem = new QTableWidgetItem(QString::number(cities->at(cityIndex).GetFoodPriceAt(foodIndex), 'f', 2));
+                priceItem = new QTableWidgetItem(QString::number(cities->at(cityIndex).GetFoodPriceAt(foodIndex), 'f', 2));
 
                 // Generate food total tablewidgetitem
 				totalItem = new QTableWidgetItem(QString::number((cities->at(cityIndex).GetFoodPriceAt(foodIndex)) * (cities->at(cityIndex).GetFoodQtyAt(foodIndex)), 'f', 2));
+
+                // Generate grand total for each city
+                cityCounter = cityCounter + cities->at(cityIndex).GetFoodPriceAt(foodIndex) * cities->at(cityIndex).GetFoodQtyAt(foodIndex);
 
                 // If list is not empty
                 if(receiptTable->rowCount() != 0)
@@ -342,6 +349,16 @@ void TableManager::PopulateReceiptTable(QTableWidget* receiptTable, QVector<City
                 receiptTable->setItem(receiptTable->rowCount() - 1, R_TOTAL, totalItem);
 
         } // END for iterate through food list
+
+        // Generate row for grand total in each city
+        if (cityCounter != 0)
+        {
+            receiptTable->insertRow(receiptTable->rowCount());
+            receiptTable->setItem(receiptTable->rowCount() - 1, R_KEY, new QTableWidgetItem(cities->at(cityIndex).GetName()));
+            cityTotal = new QTableWidgetItem(QString::number(cityCounter, 'f', 2));
+            receiptTable->setItem(receiptTable->rowCount() - 1, R_TOTAL, cityTotal);
+        }
+
     } // END for iterate through city list
 }
 
