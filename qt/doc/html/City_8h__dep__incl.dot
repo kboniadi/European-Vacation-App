@@ -7,5 +7,9 @@ digraph "/home/kord/Documents/source/cs1d/european-vacation/qt/app/City.h"
   Node1 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node2 [label="/home/kord/Documents\l/source/cs1d/european\l-vacation/qt/app/City.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$City_8cpp.html",tooltip=" "];
   Node1 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node3 [label="/home/kord/Documents\l/source/cs1d/european\l-vacation/qt/app/mainwindow.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$mainwindow_8cpp.html",tooltip=" "];
+  Node3 [label="/home/kord/Documents\l/source/cs1d/european\l-vacation/qt/app/dbmanager.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$dbmanager_8cpp.html",tooltip=" "];
+  Node1 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="/home/kord/Documents\l/source/cs1d/european\l-vacation/qt/app/mainwindow.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$mainwindow_8cpp.html",tooltip=" "];
+  Node1 -> Node5 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 [label="/home/kord/Documents\l/source/cs1d/european\l-vacation/qt/app/tablemanager.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$tablemanager_8cpp.html",tooltip=" "];
 }

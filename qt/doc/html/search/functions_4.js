@@ -1,9 +1,14 @@
 var searchData=
 [
-  ['getcities_144',['GetCities',['../classDBManager.html#ad5f5f2c1557b3bea74d62c689df0fa9f',1,'DBManager']]],
-  ['getdistances_145',['GetDistances',['../classDBManager.html#a8f76544187e006f4c25ae18d0e79bc49',1,'DBManager']]],
-  ['getfoods_146',['GetFoods',['../classCity.html#a9734f62c6b964db83157919c309f9d7d',1,'City']]],
-  ['getname_147',['GetName',['../classCity.html#a1af5eca022084cf3de17d3a29b5f4bba',1,'City::GetName()'],['../classFood.html#a4abe02df46c8aff176125547b7c10930',1,'Food::GetName()']]],
-  ['getprice_148',['GetPrice',['../classFood.html#ae4ff24490681de69a8809d3a1a433b52',1,'Food']]],
-  ['getqty_149',['GetQty',['../classFood.html#aac5002335d9125d605ef61cfa70763be',1,'Food']]]
+  ['getcities_142',['GetCities',['../classDBManager.html#ad5f5f2c1557b3bea74d62c689df0fa9f',1,'DBManager']]],
+  ['getcitiestable_143',['GetCitiesTable',['../classDBManager.html#a2d1ebf8b90eddbf8bdc1f457bcdde29e',1,'DBManager']]],
+  ['getdistances_144',['GetDistances',['../classDBManager.html#a8f76544187e006f4c25ae18d0e79bc49',1,'DBManager']]],
+  ['getfoodat_145',['GetFoodAt',['../classCity.html#abf892e1412558a0605da8b1042de7176',1,'City']]],
+  ['getfoodlistsize_146',['GetFoodListSize',['../classCity.html#ad106341c5d40d6f7e0a60f1ede165b02',1,'City']]],
+  ['getfoodnameat_147',['GetFoodNameAt',['../classCity.html#a9bb0f2c3c2db73fd49af6e0d097cb9fe',1,'City']]],
+  ['getfoodpriceat_148',['GetFoodPriceAt',['../classCity.html#a5058a864ce137659b9c1fcc917eb4bc8',1,'City']]],
+  ['getfoodqtyat_149',['GetFoodQtyAt',['../classCity.html#ad533e2c8b0de5ac1eab8c35b60bc843a',1,'City']]],
+  ['getname_150',['GetName',['../classCity.html#a1af5eca022084cf3de17d3a29b5f4bba',1,'City::GetName()'],['../classFood.html#a4abe02df46c8aff176125547b7c10930',1,'Food::GetName()']]],
+  ['getprice_151',['GetPrice',['../classFood.html#ae4ff24490681de69a8809d3a1a433b52',1,'Food']]],
+  ['getqty_152',['GetQty',['../classFood.html#aac5002335d9125d605ef61cfa70763be',1,'Food']]]
 ];

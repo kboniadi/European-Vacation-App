@@ -1,11 +1,14 @@
 var searchData=
 [
-  ['dbmanager_24',['DBManager',['../classDBManager.html',1,'DBManager'],['../classDBManager.html#a14fa55f5fc5808730566dbc7724dbc99',1,'DBManager::DBManager()']]],
-  ['dbmanager_2ecpp_25',['dbmanager.cpp',['../dbmanager_8cpp.html',1,'']]],
-  ['dbmanager_2eh_26',['dbmanager.h',['../dbmanager_8h.html',1,'']]],
-  ['debug_27',['Debug',['../main_8cpp.html#ab492680ed4011036b504fd042d1703e3',1,'main.cpp']]],
-  ['deletefood_28',['DeleteFood',['../classDBManager.html#aa154a40744ce1236d79d14410f6f911e',1,'DBManager']]],
-  ['destroycities_29',['DestroyCities',['../classMainWindow.html#aa7e5f2256fe4ab03f33c7a7079ca4401',1,'MainWindow']]],
-  ['destroycity_30',['DestroyCity',['../classCity.html#a0ded3c3b00e85344fb03d40772e8e1d7',1,'City']]],
-  ['distance_31',['distance',['../sortalgorithm_8cpp.html#a70511beb5435d8cc9cfafc404ce876fe',1,'sortalgorithm.cpp']]]
+  ['f_5fcityname_27',['F_CITYNAME',['../classTableManager.html#a1da90f7d465c3dfafbc4fc671d2f9603a026a3a2ceb5f79a87c761622135c4043',1,'TableManager']]],
+  ['f_5ffoodname_28',['F_FOODNAME',['../classTableManager.html#a1da90f7d465c3dfafbc4fc671d2f9603a48e839beb1e9bb32d009bc18d326599b',1,'TableManager']]],
+  ['f_5fkey_29',['F_KEY',['../classTableManager.html#a1da90f7d465c3dfafbc4fc671d2f9603a2568d7a26fa75f320437f6a495ecaaf8',1,'TableManager']]],
+  ['f_5fprice_30',['F_PRICE',['../classTableManager.html#a1da90f7d465c3dfafbc4fc671d2f9603a2ea8ee77f644ef53bcdd25d7daaae59f',1,'TableManager']]],
+  ['food_31',['Food',['../classFood.html',1,'Food'],['../classFood.html#a75d4d7f76fd495cc8133302ca9fdc485',1,'Food::Food()']]],
+  ['food_2ecpp_32',['food.cpp',['../food_8cpp.html',1,'']]],
+  ['food_2eh_33',['food.h',['../food_8h.html',1,'']]],
+  ['food_5ftable_5fcol_5fcount_34',['FOOD_TABLE_COL_COUNT',['../classTableManager.html#a0ecf0ce77449bd58fc072793614f2cb1',1,'TableManager']]],
+  ['foodnametoprice_35',['FoodNameToPrice',['../classDBManager.html#ab5b0385d630c4f551fc146370614e786',1,'DBManager']]],
+  ['foodtablecolnames_36',['foodTableColNames',['../classTableManager.html#a26e41d279eef22cc85f9107ae12e5fd5',1,'TableManager']]],
+  ['foodtablecolpositions_37',['FoodTableColPositions',['../classTableManager.html#a1da90f7d465c3dfafbc4fc671d2f9603',1,'TableManager']]]
 ];

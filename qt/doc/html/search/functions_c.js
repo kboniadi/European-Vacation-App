@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['_7ecity_175',['~City',['../classCity.html#ae95feee8a1d4e1f14ea41ec89b47304f',1,'City']]],
-  ['_7emainwindow_176',['~MainWindow',['../classMainWindow.html#ae98d00a93bc118200eeef9f9bba1dba7',1,'MainWindow']]]
+  ['tablemanager_177',['TableManager',['../classTableManager.html#a4a13c2487fc53bb6f3272210a6f0a1a4',1,'TableManager']]]
 ];

@@ -119,7 +119,7 @@ public:
      * @brief Populates cities table with relevant information
      * @param cityTable; Table to be initialized
      * @param cityNames; Number of columns in table
-     * @param citydistancesFromBerlin; List of distances of each city to Berlin
+	 * @param distancesFromBerlin; List of distances of each city to Berlin
      */
     void PopulateCitiesTable(QTableWidget* cityTable, QStringList *cityNames, QVector<int> *distancesFromBerlin);
 
@@ -209,7 +209,7 @@ public:
 
     /*!
      * @brief Populates admin table with relevant information
-     * @param receiptTable; Table to be initialized
+	 * @param table; Table to be initialized
      * @param cities; City objects with which to populate table
      */
     void PopulateAdminTable(QTableWidget* table, QVector<City>* cities);

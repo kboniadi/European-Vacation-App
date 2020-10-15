@@ -9,9 +9,18 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+  $(document).ready(function() { init_search(); });
+/* @license-end */
+</script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
@@ -22,9 +31,24 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">European Vacation
-   &#160;<span id="projectnumber">0.1</span>
+   &#160;<span id="projectnumber">v1.0</span>
    </div>
   </td>
+   <td>        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.png"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Search" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.png" alt=""/></a>
+          </span>
+        </div>
+</td>
  </tr>
  </tbody>
 </table>
@@ -36,16 +60,23 @@
 var searchBox = new SearchBox("searchBox", "search",false,'Search');
 /* @license-end */
 </script>
-<script type="text/javascript" src="menudata.js"></script>
-<script type="text/javascript" src="menu.js"></script>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
 <script type="text/javascript">
 /* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
-$(function() {
-  initMenu('',true,false,'search.php','Search');
-  $(document).ready(function() { init_search(); });
-});
-/* @license-end */</script>
-<div id="main-nav"></div>
+$(document).ready(function(){initNavTree('classFood.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -60,7 +91,6 @@ $(function() {
 </iframe>
 </div>
 
-</div><!-- top -->
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
@@ -70,26 +100,41 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
+<p>The <a class="el" href="classFood.html" title="The Food class is an object that represents the traditional food items available in each city.">Food</a> class is an object that represents the traditional food items available in each city.  
+ <a href="classFood.html#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="food_8h_source.html">food.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a4abe02df46c8aff176125547b7c10930"><td class="memItemLeft" align="right" valign="top">QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFood.html#a4abe02df46c8aff176125547b7c10930">GetName</a> () const</td></tr>
+<tr class="memdesc:a4abe02df46c8aff176125547b7c10930"><td class="mdescLeft">&#160;</td><td class="mdescRight">Accessor: Get name of food object.  <a href="classFood.html#a4abe02df46c8aff176125547b7c10930">More...</a><br /></td></tr>
 <tr class="separator:a4abe02df46c8aff176125547b7c10930"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab3465fd987df4683d57a42c662dddbb7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFood.html#ab3465fd987df4683d57a42c662dddbb7">SetName</a> (const QString &amp;name)</td></tr>
+<tr class="memdesc:ab3465fd987df4683d57a42c662dddbb7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Mutator: Alter/set <a class="el" href="classFood.html" title="The Food class is an object that represents the traditional food items available in each city.">Food</a> object's name attribute.  <a href="classFood.html#ab3465fd987df4683d57a42c662dddbb7">More...</a><br /></td></tr>
 <tr class="separator:ab3465fd987df4683d57a42c662dddbb7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae4ff24490681de69a8809d3a1a433b52"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFood.html#ae4ff24490681de69a8809d3a1a433b52">GetPrice</a> () const</td></tr>
+<tr class="memdesc:ae4ff24490681de69a8809d3a1a433b52"><td class="mdescLeft">&#160;</td><td class="mdescRight">Accessor: Get price of food object.  <a href="classFood.html#ae4ff24490681de69a8809d3a1a433b52">More...</a><br /></td></tr>
 <tr class="separator:ae4ff24490681de69a8809d3a1a433b52"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad2bf8bf1e5d01f51f354fa0881a68ef3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFood.html#ad2bf8bf1e5d01f51f354fa0881a68ef3">SetPrice</a> (const float &amp;price)</td></tr>
-<tr class="separator:ad2bf8bf1e5d01f51f354fa0881a68ef3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a54001fe8c41b882536605f7d928fc300"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFood.html#a54001fe8c41b882536605f7d928fc300">SetPrice</a> (float price)</td></tr>
+<tr class="memdesc:a54001fe8c41b882536605f7d928fc300"><td class="mdescLeft">&#160;</td><td class="mdescRight">Mutator: Alter/set <a class="el" href="classFood.html" title="The Food class is an object that represents the traditional food items available in each city.">Food</a> object's price attribute.  <a href="classFood.html#a54001fe8c41b882536605f7d928fc300">More...</a><br /></td></tr>
+<tr class="separator:a54001fe8c41b882536605f7d928fc300"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aac5002335d9125d605ef61cfa70763be"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFood.html#aac5002335d9125d605ef61cfa70763be">GetQty</a> () const</td></tr>
+<tr class="memdesc:aac5002335d9125d605ef61cfa70763be"><td class="mdescLeft">&#160;</td><td class="mdescRight">Accessor: Get quantity of food object.  <a href="classFood.html#aac5002335d9125d605ef61cfa70763be">More...</a><br /></td></tr>
 <tr class="separator:aac5002335d9125d605ef61cfa70763be"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab21755141a86806bf2c834ef71fee1d8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFood.html#ab21755141a86806bf2c834ef71fee1d8">SetQty</a> (const int &amp;qty)</td></tr>
-<tr class="separator:ab21755141a86806bf2c834ef71fee1d8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8e9374a8a90cf773a85292ac325454a7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFood.html#a8e9374a8a90cf773a85292ac325454a7">SetQty</a> (int qty)</td></tr>
+<tr class="memdesc:a8e9374a8a90cf773a85292ac325454a7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Mutator: Alter/set <a class="el" href="classFood.html" title="The Food class is an object that represents the traditional food items available in each city.">Food</a> object's quantity attribute.  <a href="classFood.html#a8e9374a8a90cf773a85292ac325454a7">More...</a><br /></td></tr>
+<tr class="separator:a8e9374a8a90cf773a85292ac325454a7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a75d4d7f76fd495cc8133302ca9fdc485"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFood.html#a75d4d7f76fd495cc8133302ca9fdc485">Food</a> ()</td></tr>
+<tr class="memdesc:a75d4d7f76fd495cc8133302ca9fdc485"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default <a class="el" href="classFood.html" title="The Food class is an object that represents the traditional food items available in each city.">Food</a> object constructor.  <a href="classFood.html#a75d4d7f76fd495cc8133302ca9fdc485">More...</a><br /></td></tr>
 <tr class="separator:a75d4d7f76fd495cc8133302ca9fdc485"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae986b59e8bbb5b7bcd2a6273439c0edc"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFood.html#ae986b59e8bbb5b7bcd2a6273439c0edc">~Food</a> ()=default</td></tr>
+<tr class="memdesc:ae986b59e8bbb5b7bcd2a6273439c0edc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destructor.  <a href="classFood.html#ae986b59e8bbb5b7bcd2a6273439c0edc">More...</a><br /></td></tr>
+<tr class="separator:ae986b59e8bbb5b7bcd2a6273439c0edc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>The <a class="el" href="classFood.html" title="The Food class is an object that represents the traditional food items available in each city.">Food</a> class is an object that represents the traditional food items available in each city. </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a75d4d7f76fd495cc8133302ca9fdc485"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a75d4d7f76fd495cc8133302ca9fdc485">&#9670;&nbsp;</a></span>Food()</h2>
 
@@ -104,6 +149,35 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Default <a class="el" href="classFood.html" title="The Food class is an object that represents the traditional food items available in each city.">Food</a> object constructor. </p>
+
+</div>
+</div>
+<a id="ae986b59e8bbb5b7bcd2a6273439c0edc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae986b59e8bbb5b7bcd2a6273439c0edc">&#9670;&nbsp;</a></span>~Food()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Food::~Food </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">default</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Destructor. </p>
 
 </div>
 </div>
@@ -123,6 +197,9 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Accessor: Get name of food object. </p>
+<dl class="section return"><dt>Returns</dt><dd>Name attribute of <a class="el" href="classFood.html" title="The Food class is an object that represents the traditional food items available in each city.">Food</a> object </dd></dl>
+
 </div>
 </div>
 <a id="ae4ff24490681de69a8809d3a1a433b52"></a>
@@ -140,6 +217,9 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Accessor: Get price of food object. </p>
+<dl class="section return"><dt>Returns</dt><dd>Price attribute of <a class="el" href="classFood.html" title="The Food class is an object that represents the traditional food items available in each city.">Food</a> object </dd></dl>
+
 </div>
 </div>
 <a id="aac5002335d9125d605ef61cfa70763be"></a>
@@ -156,6 +236,9 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Accessor: Get quantity of food object. </p>
+<dl class="section return"><dt>Returns</dt><dd>Quantity attribute of <a class="el" href="classFood.html" title="The Food class is an object that represents the traditional food items available in each city.">Food</a> object </dd></dl>
 
 </div>
 </div>
@@ -175,10 +258,18 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Mutator: Alter/set <a class="el" href="classFood.html" title="The Food class is an object that represents the traditional food items available in each city.">Food</a> object's name attribute. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">name;</td><td>Name to set </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
-<a id="ad2bf8bf1e5d01f51f354fa0881a68ef3"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad2bf8bf1e5d01f51f354fa0881a68ef3">&#9670;&nbsp;</a></span>SetPrice()</h2>
+<a id="a54001fe8c41b882536605f7d928fc300"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a54001fe8c41b882536605f7d928fc300">&#9670;&nbsp;</a></span>SetPrice()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -186,17 +277,25 @@ Public Member Functions</h2></td></tr>
         <tr>
           <td class="memname">void Food::SetPrice </td>
           <td>(</td>
-          <td class="paramtype">const float &amp;&#160;</td>
+          <td class="paramtype">float&#160;</td>
           <td class="paramname"><em>price</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
+<p>Mutator: Alter/set <a class="el" href="classFood.html" title="The Food class is an object that represents the traditional food items available in each city.">Food</a> object's price attribute. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">price;</td><td>Price to set </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
-<a id="ab21755141a86806bf2c834ef71fee1d8"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab21755141a86806bf2c834ef71fee1d8">&#9670;&nbsp;</a></span>SetQty()</h2>
+<a id="a8e9374a8a90cf773a85292ac325454a7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8e9374a8a90cf773a85292ac325454a7">&#9670;&nbsp;</a></span>SetQty()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -204,25 +303,33 @@ Public Member Functions</h2></td></tr>
         <tr>
           <td class="memname">void Food::SetQty </td>
           <td>(</td>
-          <td class="paramtype">const int &amp;&#160;</td>
+          <td class="paramtype">int&#160;</td>
           <td class="paramname"><em>qty</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
+<p>Mutator: Alter/set <a class="el" href="classFood.html" title="The Food class is an object that represents the traditional food items available in each city.">Food</a> object's quantity attribute. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">qty;</td><td>Quantity to set </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
-<hr/>The documentation for this class was generated from the following files:<ul>
-<li>/home/kord/Documents/source/cs1d/european-vacation/qt/app/<a class="el" href="food_8h_source.html">food.h</a></li>
-<li>/home/kord/Documents/source/cs1d/european-vacation/qt/app/<a class="el" href="food_8cpp.html">food.cpp</a></li>
-</ul>
 </div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated by &#160;<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/>
-</a> 1.8.17
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="classFood.html">Food</a></li>
+    <li class="footer">Generated by
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.17 </li>
+  </ul>
+</div>
 </body>
 </html>

@@ -9,9 +9,18 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+  $(document).ready(function() { init_search(); });
+/* @license-end */
+</script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
@@ -22,9 +31,24 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">European Vacation
-   &#160;<span id="projectnumber">0.1</span>
+   &#160;<span id="projectnumber">v1.0</span>
    </div>
   </td>
+   <td>        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.png"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Search" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.png" alt=""/></a>
+          </span>
+        </div>
+</td>
  </tr>
  </tbody>
 </table>
@@ -36,16 +60,23 @@
 var searchBox = new SearchBox("searchBox", "search",false,'Search');
 /* @license-end */
 </script>
-<script type="text/javascript" src="menudata.js"></script>
-<script type="text/javascript" src="menu.js"></script>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
 <script type="text/javascript">
 /* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
-$(function() {
-  initMenu('',true,false,'search.php','Search');
-  $(document).ready(function() { init_search(); });
-});
-/* @license-end */</script>
-<div id="main-nav"></div>
+$(document).ready(function(){initNavTree('classCity.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -60,7 +91,6 @@ $(function() {
 </iframe>
 </div>
 
-</div><!-- top -->
 <div class="header">
   <div class="headertitle">
 <div class="title">City Member List</div>  </div>
@@ -69,19 +99,28 @@ $(function() {
 
 <p>This is the complete list of members for <a class="el" href="classCity.html">City</a>, including all inherited members.</p>
 <table class="directory">
-  <tr class="even"><td class="entry"><a class="el" href="classCity.html#a1b1f549430f0a7ecd0ec7b1605415193">City</a>()</td><td class="entry"><a class="el" href="classCity.html">City</a></td><td class="entry"></td></tr>
-  <tr><td class="entry"><a class="el" href="classCity.html#a0ded3c3b00e85344fb03d40772e8e1d7">DestroyCity</a>()</td><td class="entry"><a class="el" href="classCity.html">City</a></td><td class="entry"></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="classCity.html#a9734f62c6b964db83157919c309f9d7d">GetFoods</a>() const</td><td class="entry"><a class="el" href="classCity.html">City</a></td><td class="entry"></td></tr>
-  <tr><td class="entry"><a class="el" href="classCity.html#a1af5eca022084cf3de17d3a29b5f4bba">GetName</a>() const</td><td class="entry"><a class="el" href="classCity.html">City</a></td><td class="entry"></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="classCity.html#af774197c07be5c074c56e646e28e6ede">SetFoods</a>(QVector&lt; Food &gt; *&amp;foodList)</td><td class="entry"><a class="el" href="classCity.html">City</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classCity.html#a7a42fbc400b868e77cb56631b1afbb87">AddFood</a>(const Food &amp;item)</td><td class="entry"><a class="el" href="classCity.html">City</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="classCity.html#a1b1f549430f0a7ecd0ec7b1605415193">City</a>()</td><td class="entry"><a class="el" href="classCity.html">City</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classCity.html#a3fdcda8e5b3963d3793ab5ac83c09f62">City</a>(QString city)</td><td class="entry"><a class="el" href="classCity.html">City</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="classCity.html#abf892e1412558a0605da8b1042de7176">GetFoodAt</a>(int index) const</td><td class="entry"><a class="el" href="classCity.html">City</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classCity.html#ad106341c5d40d6f7e0a60f1ede165b02">GetFoodListSize</a>() const</td><td class="entry"><a class="el" href="classCity.html">City</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="classCity.html#a9bb0f2c3c2db73fd49af6e0d097cb9fe">GetFoodNameAt</a>(int index) const</td><td class="entry"><a class="el" href="classCity.html">City</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classCity.html#a5058a864ce137659b9c1fcc917eb4bc8">GetFoodPriceAt</a>(int index) const</td><td class="entry"><a class="el" href="classCity.html">City</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="classCity.html#ad533e2c8b0de5ac1eab8c35b60bc843a">GetFoodQtyAt</a>(int index) const</td><td class="entry"><a class="el" href="classCity.html">City</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classCity.html#a1af5eca022084cf3de17d3a29b5f4bba">GetName</a>() const</td><td class="entry"><a class="el" href="classCity.html">City</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="classCity.html#af9b628ab7809e9c8aa927e67a2949a0e">RemoveFoodAt</a>(int index)</td><td class="entry"><a class="el" href="classCity.html">City</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classCity.html#ae0dd20b02baef04198c26a7423c6ec08">SetFoodQtyAt</a>(int index, int qty)</td><td class="entry"><a class="el" href="classCity.html">City</a></td><td class="entry"></td></tr>
   <tr><td class="entry"><a class="el" href="classCity.html#a9cc9fafc911c489a67158291044e7327">SetName</a>(const QString &amp;name)</td><td class="entry"><a class="el" href="classCity.html">City</a></td><td class="entry"></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="classCity.html#ae95feee8a1d4e1f14ea41ec89b47304f">~City</a>()</td><td class="entry"><a class="el" href="classCity.html">City</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classCity.html#a544278f540a8bdc39d6d712bc0b7e2cc">~City</a>()=default</td><td class="entry"><a class="el" href="classCity.html">City</a></td><td class="entry"></td></tr>
 </table></div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated by &#160;<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/>
-</a> 1.8.17
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="footer">Generated by
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.17 </li>
+  </ul>
+</div>
 </body>
 </html>
