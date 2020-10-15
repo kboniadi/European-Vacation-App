@@ -180,3 +180,5 @@ int DBManager::getDistances(const QString &city1, const QString &city2)
 	return -1;
 }
 
+
+

@@ -10,6 +10,7 @@
 #include <QVector>
 #include <QDebug>
 
+
 class DBManager: public QWidget, public QSqlDatabase {
 	Q_OBJECT;
 public:

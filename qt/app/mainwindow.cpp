@@ -1,5 +1,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include "dbmanager.h"
+#include "usermanager.h"
 
 MainWindow::MainWindow(QWidget *parent)
 	: QMainWindow(parent)
@@ -19,6 +21,14 @@ MainWindow::MainWindow(QWidget *parent)
 
 	DBManager::instance();
     TableManager::instance();
+    if (!(checkUserTable()))
+    {
+        qDebug() << "User table not found!\nCreating user table.\n";
+        createUserTable();
+        addUser(1,"admin","password");
+        addUser(2,"user","user");
+        addUser(3,"admin2","cheese");
+    }
 }
 
 MainWindow::~MainWindow()
@@ -106,7 +116,8 @@ void MainWindow::on_pushButton_receipt_back_clicked()
 
 void MainWindow::on_pushButton_login_continue_clicked()
 {
-    if (ui->lineEdit_login_username->text() == "admin" && ui->lineEdit_username_password->text() == "admin")
+
+    if (checkPassword(ui->lineEdit_login_username->text(), ui->lineEdit_username_password->text()))
     {
         ui->stackedWidget_pages->setCurrentIndex(ADMIN);
         ui->label_incorrect->hide();

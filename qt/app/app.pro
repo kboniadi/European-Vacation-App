@@ -21,13 +21,15 @@ SOURCES += \
     dbmanager.cpp \
     main.cpp \
     mainwindow.cpp \
-    tablemanager.cpp
+    tablemanager.cpp \
+    usermanager.cpp
 
 HEADERS += \
     City.h \
     dbmanager.h \
     mainwindow.h \
-    tablemanager.h
+    tablemanager.h \
+    usermanager.h
 
 FORMS += \
     mainwindow.ui
