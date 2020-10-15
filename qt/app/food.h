@@ -18,7 +18,7 @@ public:
     QString GetName() const;
 
     /*!
-     * @brief Mutator: Alter/set Food object name attribute
+     * @brief Mutator: Alter/set Food object's name attribute
      * @param name; Name to set
      */
     void SetName(const QString &name);
@@ -29,18 +29,32 @@ public:
      */
     float GetPrice() const;
 
-    // Mutator: Alter/set food item name
+    /*!
+     * @brief Mutator: Alter/set Food object's price attribute
+     * @param price; Price to set
+     */
 	void SetPrice(float price);
 
-    // Accessor: Get quantity of purchased food item
+    /*!
+     * @brief Accessor: Get quantity of food object
+     * @return Quantity attribute of Food object
+     */
     int GetQty() const;
 
-    // Mutator: Alter/set quantity of purchased food item
+    /*!
+     * @brief Mutator: Alter/set Food object's quantity attribute
+     * @param qty; Quantity to set
+     */
 	void SetQty(int qty);
 
-    // Constructor
+    /*!
+     * @brief Default Food object constructor
+     */
     Food();
 
+    /*!
+     * @brief Destructor
+     */
 	~Food() = default;
 private:
     QString _name; /// Name of food object

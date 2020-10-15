@@ -2,12 +2,14 @@
 #include "City.h"
 #include <QHeaderView>
 
+// Constructor
 TableManager::TableManager()
     : parisTripSpinBoxMax{0}, purchaseTableSpinBoxes{nullptr}
 {
     purchaseTableSpinBoxes = new QVector<QSpinBox*>;
 }
 
+// Reference to instance
 TableManager* TableManager::instance()
 {
 	static TableManager instance;
@@ -16,21 +18,20 @@ TableManager* TableManager::instance()
 
 // *********************** Cities Table Methods ****************************
 
-    // Initializes cities table to blank
+// Initializes cities table to blank
 void TableManager::InitializeCitiesTable(QTableWidget* citiesTable, const int &citiesCols, const QStringList &citiesHeaders)
 {
     citiesTable->clearContents();
     citiesTable->setColumnCount(citiesCols);
     citiesTable->setHorizontalHeaderLabels(citiesHeaders);
 	citiesTable->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
-    // TODO - Might be a good idea to set column widths here
     citiesTable->setEditTriggers(QTableView::NoEditTriggers);
     citiesTable->verticalHeader()->hide();
 
     DeleteAllTableRows(citiesTable);
 }
 
-    // Populates cities table with relevant information
+// Populates cities table with relevant information
 void TableManager::PopulateCitiesTable(QTableWidget* cityTable, QStringList* cityNames, QVector<int>* distancesFromBerlin)
 {
     // Create distance item
@@ -55,14 +56,13 @@ void TableManager::PopulateCitiesTable(QTableWidget* cityTable, QStringList* cit
 
 // ************************* Food Table Methods ****************************
 
-    // Initializes foods table to blank
+// Initializes foods table to blank
 void TableManager::InitializeFoodTable(QTableWidget* foodTable, const int &foodCols, const QStringList &foodHeaders)
 {
     foodTable->clearContents();
     foodTable->setColumnCount(foodCols);
     foodTable->setHorizontalHeaderLabels(foodHeaders);
 	foodTable->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
-    // TODO - Might be a good idea to set column widths here
     foodTable->setEditTriggers(QTableView::NoEditTriggers);
     foodTable->hideColumn(F_KEY);
     foodTable->verticalHeader()->hide();
@@ -70,7 +70,7 @@ void TableManager::InitializeFoodTable(QTableWidget* foodTable, const int &foodC
     DeleteAllTableRows(foodTable);
 }
 
-    // Populates food table with relevant information
+// Populates food table with relevant information
 void TableManager::PopulateFoodTable(QTableWidget* foodTable, QVector<City>* cities)
 {
     QTableWidgetItem* priceItem;
@@ -129,18 +129,11 @@ void TableManager::PopulateFoodTable(QTableWidget* foodTable, QVector<City>* cit
 
         } // END for iterate through food list
     } // END for iterate through city list for iterate through city list
-
 }
 
 // **************** Trip Planning Table Methods ****************************
 
-    // Initializes trip planning table to blank. Used for all types of trips
-//void TableManager::InitializeTripTable(QTableWidget* table, const int &cols, const QStringList &headers)
-//{
-
-//}
-
-    // Populates trip planning table with relevant information
+// Populates trip planning table with relevant information
 void TableManager::PopulateTripTable(QTableView* table, const QStringList& cities)
 {
 	QStringListModel *model = new QStringListModel;
@@ -163,7 +156,6 @@ void TableManager::InitializePurchaseTable(QTableWidget* purchaseTable, const in
     purchaseTable->setColumnCount(cols);
     purchaseTable->setHorizontalHeaderLabels(headers);
 	purchaseTable->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
-    // TODO - Might be a good idea to set column widths here
     purchaseTable->setEditTriggers(QTableView::NoEditTriggers);
     purchaseTable->hideColumn(P_KEY);
     purchaseTable->verticalHeader()->hide();
@@ -171,7 +163,7 @@ void TableManager::InitializePurchaseTable(QTableWidget* purchaseTable, const in
     DeleteAllTableRows(purchaseTable);
 }
 
-    // Populates purchase table with relevant information
+// Populates purchase table with relevant information
 void TableManager::PopulatePurchaseTable(QTableWidget* purchaseTable, QVector<City>* cities)
 {
     QTableWidgetItem* priceItem;
@@ -232,7 +224,7 @@ void TableManager::PopulatePurchaseTable(QTableWidget* purchaseTable, QVector<Ci
     } // END for iterate through city list
 }
 
-    // Inserts a dynamic spinbox in table at specific column
+// Inserts a dynamic spinbox in table at specific column
 void TableManager::InsertSpinBoxCol(QTableWidget* table, const int min, const int max, const int col)
 {
     QSpinBox *sBox;
@@ -249,14 +241,14 @@ void TableManager::InsertSpinBoxCol(QTableWidget* table, const int min, const in
 }
 
 // ********************** Receipt Table Methods ****************************
-    // Initializes receipt table to blank
+
+// Initializes receipt table to blank
 void TableManager::InitializeReceiptTable(QTableWidget* receiptTable, const int &cols, const QStringList &headers)
 {
     receiptTable->clearContents();
     receiptTable->setColumnCount(cols);
     receiptTable->setHorizontalHeaderLabels(headers);
 	receiptTable->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
-    // TODO - Might be a good idea to set column widths here
     receiptTable->setEditTriggers(QTableView::NoEditTriggers);
     receiptTable->hideColumn(P_KEY);
     receiptTable->verticalHeader()->hide();
@@ -264,7 +256,7 @@ void TableManager::InitializeReceiptTable(QTableWidget* receiptTable, const int 
     DeleteAllTableRows(receiptTable);
 }
 
-    // Populates receipt table with relevant information
+// Populates receipt table with relevant information
 void TableManager::PopulateReceiptTable(QTableWidget* receiptTable, QVector<City>* cities)
 {
     QTableWidgetItem* priceItem;
@@ -288,6 +280,7 @@ void TableManager::PopulateReceiptTable(QTableWidget* receiptTable, QVector<City
             }
         }
     }
+
     // For the length of the city list
     for(int cityIndex = 0; cityIndex < cities->size(); cityIndex++)
     {
@@ -350,11 +343,11 @@ void TableManager::PopulateReceiptTable(QTableWidget* receiptTable, QVector<City
 
         } // END for iterate through food list
     } // END for iterate through city list
-
 }
 
 // ****************** Admin Table Table Methods ****************************
-	// Intializes admin table using model for city distance list
+
+// Intializes admin table using model for city distance list
 void TableManager::InitializeAdminTable(QTableView* table)
 {
 	QSqlQueryModel *model = new QSqlQueryModel;
@@ -374,6 +367,7 @@ void TableManager::InitializeAdminTable(QTableView* table)
 	table->setModel(model);
 }
 
+// Initializes admin table to blank
 void TableManager::InitializeAdminTable(QTableWidget* adminTable, const int &cols, const QStringList &headers)
 {
 	adminTable->clearContents();
@@ -387,7 +381,7 @@ void TableManager::InitializeAdminTable(QTableWidget* adminTable, const int &col
 
 	DeleteAllTableRows(adminTable);
 }
-    // Populates admin table with relevant information
+// Populates admin table with relevant information
 void TableManager::PopulateAdminTable(QTableWidget* table, QVector<City>* cities)
 {
 	QTableWidgetItem* priceItem;
@@ -448,9 +442,7 @@ void TableManager::PopulateAdminTable(QTableWidget* table, QVector<City>* cities
 	} // END for iterate through city list
 }
 
-// *************************************************************************************
-// Deletes entire contents of passed in table
-// *************************************************************************************
+// Deletes contents of passed in table
 void TableManager::DeleteAllTableRows(QTableWidget *table)
 {
     const int ROW_COUNT = table->rowCount();
@@ -460,6 +452,3 @@ void TableManager::DeleteAllTableRows(QTableWidget *table)
         table->removeRow(0);
     }
 }
-
-    // TODO copy/paste contents of one table to another
-// void CopyXTableToOther(QTableWidget* origin, QTableWidget* destination);
