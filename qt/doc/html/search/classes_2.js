@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['dbmanager_116',['DBManager',['../classDBManager.html',1,'']]]
+  ['dbmanager_115',['DBManager',['../classDBManager.html',1,'']]]
 ];

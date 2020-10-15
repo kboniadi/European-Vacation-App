@@ -9,9 +9,18 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+  $(document).ready(function() { init_search(); });
+/* @license-end */
+</script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
@@ -22,9 +31,24 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">European Vacation
-   &#160;<span id="projectnumber">0.1</span>
+   &#160;<span id="projectnumber">v1.0</span>
    </div>
   </td>
+   <td>        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.png"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Search" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.png" alt=""/></a>
+          </span>
+        </div>
+</td>
  </tr>
  </tbody>
 </table>
@@ -36,16 +60,23 @@
 var searchBox = new SearchBox("searchBox", "search",false,'Search');
 /* @license-end */
 </script>
-<script type="text/javascript" src="menudata.js"></script>
-<script type="text/javascript" src="menu.js"></script>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
 <script type="text/javascript">
 /* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
-$(function() {
-  initMenu('',true,false,'search.php','Search');
-  $(document).ready(function() { init_search(); });
-});
-/* @license-end */</script>
-<div id="main-nav"></div>
+$(document).ready(function(){initNavTree('classDBManager.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -60,7 +91,6 @@ $(function() {
 </iframe>
 </div>
 
-</div><!-- top -->
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
@@ -71,7 +101,7 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
-<p>The <a class="el" href="classDBManager.html" title="The DBManager class manages core methods used to access the data stored in the data base.">DBManager</a> class manages core methods used to access the data stored in the data base.  
+<p>The <a class="el" href="classDBManager.html" title="The DBManager class manages core methods used to access the data stored in the database.">DBManager</a> class manages core methods used to access the data stored in the database.  
  <a href="classDBManager.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="dbmanager_8h_source.html">dbmanager.h</a>&gt;</code></p>
@@ -79,54 +109,63 @@ $(function() {
 Inheritance diagram for DBManager:</div>
 <div class="dyncontent">
 <div class="center"><img src="classDBManager__inherit__graph.png" border="0" usemap="#DBManager_inherit__map" alt="Inheritance graph"/></div>
-<center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
+<center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
 <div class="dynheader">
 Collaboration diagram for DBManager:</div>
 <div class="dyncontent">
 <div class="center"><img src="classDBManager__coll__graph.png" border="0" usemap="#DBManager_coll__map" alt="Collaboration graph"/></div>
-<center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
+<center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a14fa55f5fc5808730566dbc7724dbc99"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDBManager.html#a14fa55f5fc5808730566dbc7724dbc99">DBManager</a> (const <a class="el" href="classDBManager.html">DBManager</a> &amp;)=delete</td></tr>
-<tr class="memdesc:a14fa55f5fc5808730566dbc7724dbc99"><td class="mdescLeft">&#160;</td><td class="mdescRight">deleted copy constructor  <a href="classDBManager.html#a14fa55f5fc5808730566dbc7724dbc99">More...</a><br /></td></tr>
+<tr class="memdesc:a14fa55f5fc5808730566dbc7724dbc99"><td class="mdescLeft">&#160;</td><td class="mdescRight">Deleted copy constructor.  <a href="classDBManager.html#a14fa55f5fc5808730566dbc7724dbc99">More...</a><br /></td></tr>
 <tr class="separator:a14fa55f5fc5808730566dbc7724dbc99"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a24f1bb309ebd4f01f503b872e289247e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classDBManager.html">DBManager</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDBManager.html#a24f1bb309ebd4f01f503b872e289247e">operator=</a> (const <a class="el" href="classDBManager.html">DBManager</a> &amp;)=delete</td></tr>
-<tr class="memdesc:a24f1bb309ebd4f01f503b872e289247e"><td class="mdescLeft">&#160;</td><td class="mdescRight">deleted copy assignment  <a href="classDBManager.html#a24f1bb309ebd4f01f503b872e289247e">More...</a><br /></td></tr>
+<tr class="memdesc:a24f1bb309ebd4f01f503b872e289247e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Deleted copy assignment.  <a href="classDBManager.html#a24f1bb309ebd4f01f503b872e289247e">More...</a><br /></td></tr>
 <tr class="separator:a24f1bb309ebd4f01f503b872e289247e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3ad6311a32be52afb2de568db69c4e6a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDBManager.html#a3ad6311a32be52afb2de568db69c4e6a">AddFood</a> (const QString &amp;city, const QString &amp;food, const QString &amp;price)</td></tr>
-<tr class="memdesc:a3ad6311a32be52afb2de568db69c4e6a"><td class="mdescLeft">&#160;</td><td class="mdescRight">AddFood items to the DB.  <a href="classDBManager.html#a3ad6311a32be52afb2de568db69c4e6a">More...</a><br /></td></tr>
+<tr class="memdesc:a3ad6311a32be52afb2de568db69c4e6a"><td class="mdescLeft">&#160;</td><td class="mdescRight">AddFood items to the database.  <a href="classDBManager.html#a3ad6311a32be52afb2de568db69c4e6a">More...</a><br /></td></tr>
 <tr class="separator:a3ad6311a32be52afb2de568db69c4e6a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a39a2342750b0151d52d47fe26ad5f988"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDBManager.html#a39a2342750b0151d52d47fe26ad5f988">ImportCities</a> (QWidget *parent=nullptr)</td></tr>
-<tr class="memdesc:a39a2342750b0151d52d47fe26ad5f988"><td class="mdescLeft">&#160;</td><td class="mdescRight">ImportCities.  <a href="classDBManager.html#a39a2342750b0151d52d47fe26ad5f988">More...</a><br /></td></tr>
+<tr class="memdesc:a39a2342750b0151d52d47fe26ad5f988"><td class="mdescLeft">&#160;</td><td class="mdescRight">Imports list of new cities from file.  <a href="classDBManager.html#a39a2342750b0151d52d47fe26ad5f988">More...</a><br /></td></tr>
 <tr class="separator:a39a2342750b0151d52d47fe26ad5f988"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2670bd382ff0aaf354c9657a9a6d3626"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDBManager.html#a2670bd382ff0aaf354c9657a9a6d3626">UpdateFoodPrice</a> (const QString &amp;foodName, const QString &amp;price)</td></tr>
-<tr class="memdesc:a2670bd382ff0aaf354c9657a9a6d3626"><td class="mdescLeft">&#160;</td><td class="mdescRight">UpdateFoodPrice.  <a href="classDBManager.html#a2670bd382ff0aaf354c9657a9a6d3626">More...</a><br /></td></tr>
+<tr class="memdesc:a2670bd382ff0aaf354c9657a9a6d3626"><td class="mdescLeft">&#160;</td><td class="mdescRight">Updates food price in database.  <a href="classDBManager.html#a2670bd382ff0aaf354c9657a9a6d3626">More...</a><br /></td></tr>
 <tr class="separator:a2670bd382ff0aaf354c9657a9a6d3626"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa154a40744ce1236d79d14410f6f911e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDBManager.html#aa154a40744ce1236d79d14410f6f911e">DeleteFood</a> (const QString &amp;foodName)</td></tr>
-<tr class="memdesc:aa154a40744ce1236d79d14410f6f911e"><td class="mdescLeft">&#160;</td><td class="mdescRight">DeleteFood.  <a href="classDBManager.html#aa154a40744ce1236d79d14410f6f911e">More...</a><br /></td></tr>
+<tr class="memdesc:aa154a40744ce1236d79d14410f6f911e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Deletes food listing from database.  <a href="classDBManager.html#aa154a40744ce1236d79d14410f6f911e">More...</a><br /></td></tr>
 <tr class="separator:aa154a40744ce1236d79d14410f6f911e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af1f6c3c304713a6197b7a4fa28325eb2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDBManager.html#af1f6c3c304713a6197b7a4fa28325eb2">CityToFoodNames</a> (const QString &amp;city, QStringList &amp;foods)</td></tr>
-<tr class="memdesc:af1f6c3c304713a6197b7a4fa28325eb2"><td class="mdescLeft">&#160;</td><td class="mdescRight">CityToFoodNames populates QStringList type with food items for a particular city.  <a href="classDBManager.html#af1f6c3c304713a6197b7a4fa28325eb2">More...</a><br /></td></tr>
+<tr class="memdesc:af1f6c3c304713a6197b7a4fa28325eb2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Populates QStringList with food items for a particular city.  <a href="classDBManager.html#af1f6c3c304713a6197b7a4fa28325eb2">More...</a><br /></td></tr>
 <tr class="separator:af1f6c3c304713a6197b7a4fa28325eb2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab5b0385d630c4f551fc146370614e786"><td class="memItemLeft" align="right" valign="top">QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDBManager.html#ab5b0385d630c4f551fc146370614e786">FoodNameToPrice</a> (const QString &amp;food)</td></tr>
-<tr class="memdesc:ab5b0385d630c4f551fc146370614e786"><td class="mdescLeft">&#160;</td><td class="mdescRight">FoodNameToPrice.  <a href="classDBManager.html#ab5b0385d630c4f551fc146370614e786">More...</a><br /></td></tr>
+<tr class="memdesc:ab5b0385d630c4f551fc146370614e786"><td class="mdescLeft">&#160;</td><td class="mdescRight">Will return price values for food item input.  <a href="classDBManager.html#ab5b0385d630c4f551fc146370614e786">More...</a><br /></td></tr>
 <tr class="separator:ab5b0385d630c4f551fc146370614e786"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad5f5f2c1557b3bea74d62c689df0fa9f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDBManager.html#ad5f5f2c1557b3bea74d62c689df0fa9f">GetCities</a> (QStringList &amp;cities)</td></tr>
-<tr class="memdesc:ad5f5f2c1557b3bea74d62c689df0fa9f"><td class="mdescLeft">&#160;</td><td class="mdescRight">GetCities.  <a href="classDBManager.html#ad5f5f2c1557b3bea74d62c689df0fa9f">More...</a><br /></td></tr>
+<tr class="memdesc:ad5f5f2c1557b3bea74d62c689df0fa9f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Will return all cities in database.  <a href="classDBManager.html#ad5f5f2c1557b3bea74d62c689df0fa9f">More...</a><br /></td></tr>
 <tr class="separator:ad5f5f2c1557b3bea74d62c689df0fa9f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8f76544187e006f4c25ae18d0e79bc49"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDBManager.html#a8f76544187e006f4c25ae18d0e79bc49">GetDistances</a> (const QString &amp;city1, const QString &amp;city2)</td></tr>
-<tr class="memdesc:a8f76544187e006f4c25ae18d0e79bc49"><td class="mdescLeft">&#160;</td><td class="mdescRight">GetDistances.  <a href="classDBManager.html#a8f76544187e006f4c25ae18d0e79bc49">More...</a><br /></td></tr>
+<tr class="memdesc:a8f76544187e006f4c25ae18d0e79bc49"><td class="mdescLeft">&#160;</td><td class="mdescRight">Will return distance between two cities.  <a href="classDBManager.html#a8f76544187e006f4c25ae18d0e79bc49">More...</a><br /></td></tr>
 <tr class="separator:a8f76544187e006f4c25ae18d0e79bc49"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a80d5a3853525f43bc55d687a97d483c6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDBManager.html#a80d5a3853525f43bc55d687a97d483c6">CreateShoppingList</a> (QVector&lt; <a class="el" href="classCity.html">City</a> &gt; *cities)</td></tr>
+<tr class="memdesc:a80d5a3853525f43bc55d687a97d483c6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Populates <a class="el" href="classFood.html" title="The Food class is an object that represents the traditional food items available in each city.">Food</a> items for list of given cities.  <a href="classDBManager.html#a80d5a3853525f43bc55d687a97d483c6">More...</a><br /></td></tr>
+<tr class="separator:a80d5a3853525f43bc55d687a97d483c6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2d1ebf8b90eddbf8bdc1f457bcdde29e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDBManager.html#a2d1ebf8b90eddbf8bdc1f457bcdde29e">GetCitiesTable</a> (QStringList *cityNames, QVector&lt; int &gt; *distancesFromBerlin)</td></tr>
+<tr class="memdesc:a2d1ebf8b90eddbf8bdc1f457bcdde29e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Populates data necessary for cities table to show cities and distances from Berlin.  <a href="classDBManager.html#a2d1ebf8b90eddbf8bdc1f457bcdde29e">More...</a><br /></td></tr>
+<tr class="separator:a2d1ebf8b90eddbf8bdc1f457bcdde29e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7fcac0e8521a06eb647b7120cda13052"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDBManager.html#a7fcac0e8521a06eb647b7120cda13052">LogIn</a> (const QString &amp;username, const QString &amp;password)</td></tr>
+<tr class="memdesc:a7fcac0e8521a06eb647b7120cda13052"><td class="mdescLeft">&#160;</td><td class="mdescRight">Will validate login credentials for administrator access.  <a href="classDBManager.html#a7fcac0e8521a06eb647b7120cda13052">More...</a><br /></td></tr>
+<tr class="separator:a7fcac0e8521a06eb647b7120cda13052"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
 <tr class="memitem:a80f0e49840019b8aaae65759a781f8bd"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="classDBManager.html">DBManager</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDBManager.html#a80f0e49840019b8aaae65759a781f8bd">instance</a> ()</td></tr>
-<tr class="memdesc:a80f0e49840019b8aaae65759a781f8bd"><td class="mdescLeft">&#160;</td><td class="mdescRight">creats one instance of the data base  <a href="classDBManager.html#a80f0e49840019b8aaae65759a781f8bd">More...</a><br /></td></tr>
+<tr class="memdesc:a80f0e49840019b8aaae65759a781f8bd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates one instance of the database.  <a href="classDBManager.html#a80f0e49840019b8aaae65759a781f8bd">More...</a><br /></td></tr>
 <tr class="separator:a80f0e49840019b8aaae65759a781f8bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>The <a class="el" href="classDBManager.html" title="The DBManager class manages core methods used to access the data stored in the data base.">DBManager</a> class manages core methods used to access the data stored in the data base. </p>
+<div class="textblock"><p>The <a class="el" href="classDBManager.html" title="The DBManager class manages core methods used to access the data stored in the database.">DBManager</a> class manages core methods used to access the data stored in the database. </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a14fa55f5fc5808730566dbc7724dbc99"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a14fa55f5fc5808730566dbc7724dbc99">&#9670;&nbsp;</a></span>DBManager()</h2>
@@ -152,7 +191,7 @@ Static Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>deleted copy constructor </p>
+<p>Deleted copy constructor. </p>
 
 </div>
 </div>
@@ -189,12 +228,12 @@ Static Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>AddFood items to the DB. </p>
+<p>AddFood items to the database. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">city;</td><td>name of city your adding a food item to </td></tr>
-    <tr><td class="paramname">food;</td><td>name of the item </td></tr>
-    <tr><td class="paramname">price;</td><td>items cost </td></tr>
+    <tr><td class="paramname">city;</td><td>Name of <a class="el" href="classCity.html" title="The City class is an object meant to represent city destinations.">City</a> in which <a class="el" href="classFood.html" title="The Food class is an object that represents the traditional food items available in each city.">Food</a> will be added </td></tr>
+    <tr><td class="paramname">food;</td><td>Name of the <a class="el" href="classFood.html" title="The Food class is an object that represents the traditional food items available in each city.">Food</a> item to be added </td></tr>
+    <tr><td class="paramname">price;</td><td>Price of <a class="el" href="classFood.html" title="The Food class is an object that represents the traditional food items available in each city.">Food</a> item to be added </td></tr>
   </table>
   </dd>
 </dl>
@@ -227,11 +266,37 @@ Static Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>CityToFoodNames populates QStringList type with food items for a particular city. </p>
+<p>Populates QStringList with food items for a particular city. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">city;</td><td>city name </td></tr>
-    <tr><td class="paramname">foods;</td><td>food name </td></tr>
+    <tr><td class="paramname">city;</td><td>Name of city containing traditional food items </td></tr>
+    <tr><td class="paramname">foods;</td><td>List of food items to be added </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a80d5a3853525f43bc55d687a97d483c6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a80d5a3853525f43bc55d687a97d483c6">&#9670;&nbsp;</a></span>CreateShoppingList()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void DBManager::CreateShoppingList </td>
+          <td>(</td>
+          <td class="paramtype">QVector&lt; <a class="el" href="classCity.html">City</a> &gt; *&#160;</td>
+          <td class="paramname"><em>cities</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Populates <a class="el" href="classFood.html" title="The Food class is an object that represents the traditional food items available in each city.">Food</a> items for list of given cities. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">cities;</td><td>List of Cities that requires population of food items </td></tr>
   </table>
   </dd>
 </dl>
@@ -254,10 +319,10 @@ Static Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>DeleteFood. </p>
+<p>Deletes food listing from database. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">foodName</td><td></td></tr>
+    <tr><td class="paramname">foodName;</td><td>Name of food to be deleted </td></tr>
   </table>
   </dd>
 </dl>
@@ -280,14 +345,14 @@ Static Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>FoodNameToPrice. </p>
+<p>Will return price values for food item input. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">food;</td><td>name of item </td></tr>
+    <tr><td class="paramname">food;</td><td>Name of food whos price is desired </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>price for the passed in food item </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>Price for the passed in food item </dd></dl>
 
 </div>
 </div>
@@ -307,10 +372,47 @@ Static Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>GetCities. </p>
+<p>Will return all cities in database. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">cities;</td><td>container that holds all the cities in DB </td></tr>
+    <tr><td class="paramname">cities;</td><td>Container that holds all the cities in database </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a2d1ebf8b90eddbf8bdc1f457bcdde29e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2d1ebf8b90eddbf8bdc1f457bcdde29e">&#9670;&nbsp;</a></span>GetCitiesTable()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void DBManager::GetCitiesTable </td>
+          <td>(</td>
+          <td class="paramtype">QStringList *&#160;</td>
+          <td class="paramname"><em>cityNames</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">QVector&lt; int &gt; *&#160;</td>
+          <td class="paramname"><em>distancesFromBerlin</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Populates data necessary for cities table to show cities and distances from Berlin. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">cityNames;</td><td>List of city names to be populated </td></tr>
+    <tr><td class="paramname">distancesFromBerlin;</td><td>List of distances from Berlin </td></tr>
   </table>
   </dd>
 </dl>
@@ -343,15 +445,15 @@ Static Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>GetDistances. </p>
+<p>Will return distance between two cities. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">city1;</td><td>name </td></tr>
-    <tr><td class="paramname">city2;</td><td>name </td></tr>
+    <tr><td class="paramname">city1;</td><td>Name of origin city </td></tr>
+    <tr><td class="paramname">city2;</td><td>Name of destination city </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>distance between two cities </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>Distance between two cities </dd></dl>
 
 </div>
 </div>
@@ -371,10 +473,10 @@ Static Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>ImportCities. </p>
+<p>Imports list of new cities from file. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">parent;</td><td>access to QWidget class </td></tr>
+    <tr><td class="paramname">parent;</td><td>Access to QWidget class </td></tr>
   </table>
   </dd>
 </dl>
@@ -404,8 +506,46 @@ Static Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>creats one instance of the data base </p>
-<dl class="section return"><dt>Returns</dt><dd>pointer the the instance of the data base class </dd></dl>
+<p>Creates one instance of the database. </p>
+<dl class="section return"><dt>Returns</dt><dd>Pointer the the instance of the database class </dd></dl>
+
+</div>
+</div>
+<a id="a7fcac0e8521a06eb647b7120cda13052"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7fcac0e8521a06eb647b7120cda13052">&#9670;&nbsp;</a></span>LogIn()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool DBManager::LogIn </td>
+          <td>(</td>
+          <td class="paramtype">const QString &amp;&#160;</td>
+          <td class="paramname"><em>username</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const QString &amp;&#160;</td>
+          <td class="paramname"><em>password</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Will validate login credentials for administrator access. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">username;</td><td>User's username inputs </td></tr>
+    <tr><td class="paramname">password;</td><td>User's password input </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Success or failure of login </dd></dl>
 
 </div>
 </div>
@@ -433,7 +573,7 @@ Static Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>deleted copy assignment </p>
+<p>Deleted copy assignment. </p>
 
 </div>
 </div>
@@ -463,27 +603,27 @@ Static Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>UpdateFoodPrice. </p>
+<p>Updates food price in database. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">foodName;</td><td></td></tr>
-    <tr><td class="paramname">price;</td><td></td></tr>
+    <tr><td class="paramname">foodName;</td><td>Name of food to be updated </td></tr>
+    <tr><td class="paramname">price;</td><td>New price of food item </td></tr>
   </table>
   </dd>
 </dl>
 
 </div>
 </div>
-<hr/>The documentation for this class was generated from the following files:<ul>
-<li>/home/kord/Documents/source/cs1d/european-vacation/qt/app/<a class="el" href="dbmanager_8h_source.html">dbmanager.h</a></li>
-<li>/home/kord/Documents/source/cs1d/european-vacation/qt/app/<a class="el" href="dbmanager_8cpp.html">dbmanager.cpp</a></li>
-</ul>
 </div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated by &#160;<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/>
-</a> 1.8.17
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="classDBManager.html">DBManager</a></li>
+    <li class="footer">Generated by
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.17 </li>
+  </ul>
+</div>
 </body>
 </html>

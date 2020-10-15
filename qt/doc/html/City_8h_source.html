@@ -9,9 +9,18 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+  $(document).ready(function() { init_search(); });
+/* @license-end */
+</script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
@@ -22,9 +31,24 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">European Vacation
-   &#160;<span id="projectnumber">0.1</span>
+   &#160;<span id="projectnumber">v1.0</span>
    </div>
   </td>
+   <td>        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.png"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Search" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.png" alt=""/></a>
+          </span>
+        </div>
+</td>
  </tr>
  </tbody>
 </table>
@@ -36,16 +60,23 @@
 var searchBox = new SearchBox("searchBox", "search",false,'Search');
 /* @license-end */
 </script>
-<script type="text/javascript" src="menudata.js"></script>
-<script type="text/javascript" src="menu.js"></script>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
 <script type="text/javascript">
 /* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
-$(function() {
-  initMenu('',true,false,'search.php','Search');
-  $(document).ready(function() { init_search(); });
-});
-/* @license-end */</script>
-<div id="main-nav"></div>
+$(document).ready(function(){initNavTree('City_8h_source.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -60,11 +91,6 @@ $(function() {
 </iframe>
 </div>
 
-<div id="nav-path" class="navpath">
-  <ul>
-<li class="navelem"><a class="el" href="dir_d422163b96683743ed3963d4aac17747.html">app</a></li>  </ul>
-</div>
-</div><!-- top -->
 <div class="header">
   <div class="headertitle">
 <div class="title">City.h</div>  </div>
@@ -74,52 +100,70 @@ $(function() {
 <div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#define CITY_H</span></div>
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor">#include &lt;QString&gt;</span></div>
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &lt;QStringList&gt;</span></div>
-<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160; </div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="keyword">class </span><a class="code" href="classFood.html">Food</a>;</div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#include &lt;QVector&gt;</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="food_8h.html">food.h</a>&quot;</span></div>
 <div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160; </div>
-<div class="line"><a name="l00008"></a><span class="lineno"><a class="line" href="classCity.html">    8</a></span>&#160;<span class="keyword">class </span><a class="code" href="classCity.html">City</a></div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;{</div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;    <span class="comment">// Constructor - Note: will set _foods to nullptr</span></div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;    <a class="code" href="classCity.html#a1b1f549430f0a7ecd0ec7b1605415193">City</a>();</div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160; </div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;    <span class="comment">// Accessor: Get name of city</span></div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;    QString <a class="code" href="classCity.html#a1af5eca022084cf3de17d3a29b5f4bba">GetName</a>() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;    <span class="comment">// Mutator: Alter/set city name</span></div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classCity.html#a9cc9fafc911c489a67158291044e7327">SetName</a>(<span class="keyword">const</span> QString &amp;name);</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160; </div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    <span class="comment">// Accessor: Get food list associated with city</span></div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    QVector&lt;Food&gt;* <a class="code" href="classCity.html#a9734f62c6b964db83157919c309f9d7d">GetFoods</a>() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    <span class="comment">// Mutator: Alter/set food list</span></div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classCity.html#af774197c07be5c074c56e646e28e6ede">SetFoods</a>(QVector&lt;Food&gt;* &amp;foodList);</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160; </div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    <span class="comment">// Destroy City Object</span></div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classCity.html#a0ded3c3b00e85344fb03d40772e8e1d7">DestroyCity</a>();</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160; </div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    <span class="comment">// Destructor</span></div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    <a class="code" href="classCity.html#ae95feee8a1d4e1f14ea41ec89b47304f">~City</a>();</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160; </div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    QString _name;          <span class="comment">// Name of city</span></div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    QVector&lt;Food&gt;* _foods;  <span class="comment">// List of foods associated with city</span></div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;};</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160; </div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="preprocessor">#endif // CITY_H</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno"><a class="line" href="classCity.html">   12</a></span>&#160;<span class="keyword">class </span><a class="code" href="classCity.html">City</a></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;{</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    <a class="code" href="classCity.html#a1b1f549430f0a7ecd0ec7b1605415193">City</a>();</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160; </div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    <a class="code" href="classCity.html#a1b1f549430f0a7ecd0ec7b1605415193">City</a>(QString city);</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160; </div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    QString <a class="code" href="classCity.html#a1af5eca022084cf3de17d3a29b5f4bba">GetName</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160; </div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classCity.html#a9cc9fafc911c489a67158291044e7327">SetName</a>(<span class="keyword">const</span> QString &amp;name);</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160; </div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    <a class="code" href="classFood.html">Food</a> <a class="code" href="classCity.html#abf892e1412558a0605da8b1042de7176">GetFoodAt</a>(<span class="keywordtype">int</span> index) <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160; </div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    QString <a class="code" href="classCity.html#a9bb0f2c3c2db73fd49af6e0d097cb9fe">GetFoodNameAt</a>(<span class="keywordtype">int</span> index) <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160; </div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    <span class="keywordtype">float</span> <a class="code" href="classCity.html#a5058a864ce137659b9c1fcc917eb4bc8">GetFoodPriceAt</a>(<span class="keywordtype">int</span> index) <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160; </div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    <span class="keywordtype">int</span> <a class="code" href="classCity.html#ad533e2c8b0de5ac1eab8c35b60bc843a">GetFoodQtyAt</a>(<span class="keywordtype">int</span> index) <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160; </div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classCity.html#ae0dd20b02baef04198c26a7423c6ec08">SetFoodQtyAt</a>(<span class="keywordtype">int</span> index, <span class="keywordtype">int</span> qty);</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160; </div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    <span class="keywordtype">int</span> <a class="code" href="classCity.html#ad106341c5d40d6f7e0a60f1ede165b02">GetFoodListSize</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160; </div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classCity.html#a7a42fbc400b868e77cb56631b1afbb87">AddFood</a>(<span class="keyword">const</span> <a class="code" href="classFood.html">Food</a> &amp;item);</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160; </div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classCity.html#af9b628ab7809e9c8aa927e67a2949a0e">RemoveFoodAt</a>(<span class="keywordtype">int</span> index);</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160; </div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160; </div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;    <a class="code" href="classCity.html#a544278f540a8bdc39d6d712bc0b7e2cc">~City</a>() = <span class="keywordflow">default</span>;</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160; </div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;    QString _name;          </div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;    QVector&lt;Food&gt; _foods;   </div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;};</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160; </div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;<span class="preprocessor">#endif // CITY_H</span></div>
 </div><!-- fragment --></div><!-- contents -->
-<div class="ttc" id="aclassCity_html_af774197c07be5c074c56e646e28e6ede"><div class="ttname"><a href="classCity.html#af774197c07be5c074c56e646e28e6ede">City::SetFoods</a></div><div class="ttdeci">void SetFoods(QVector&lt; Food &gt; *&amp;foodList)</div><div class="ttdef"><b>Definition:</b> City.cpp:36</div></div>
-<div class="ttc" id="aclassCity_html_a9734f62c6b964db83157919c309f9d7d"><div class="ttname"><a href="classCity.html#a9734f62c6b964db83157919c309f9d7d">City::GetFoods</a></div><div class="ttdeci">QVector&lt; Food &gt; * GetFoods() const</div><div class="ttdef"><b>Definition:</b> City.cpp:30</div></div>
-<div class="ttc" id="aclassCity_html"><div class="ttname"><a href="classCity.html">City</a></div><div class="ttdef"><b>Definition:</b> City.h:8</div></div>
-<div class="ttc" id="aclassCity_html_a0ded3c3b00e85344fb03d40772e8e1d7"><div class="ttname"><a href="classCity.html#a0ded3c3b00e85344fb03d40772e8e1d7">City::DestroyCity</a></div><div class="ttdeci">void DestroyCity()</div><div class="ttdef"><b>Definition:</b> City.cpp:41</div></div>
-<div class="ttc" id="aclassFood_html"><div class="ttname"><a href="classFood.html">Food</a></div><div class="ttdef"><b>Definition:</b> food.h:6</div></div>
-<div class="ttc" id="aclassCity_html_a9cc9fafc911c489a67158291044e7327"><div class="ttname"><a href="classCity.html#a9cc9fafc911c489a67158291044e7327">City::SetName</a></div><div class="ttdeci">void SetName(const QString &amp;name)</div><div class="ttdef"><b>Definition:</b> City.cpp:24</div></div>
-<div class="ttc" id="aclassCity_html_a1b1f549430f0a7ecd0ec7b1605415193"><div class="ttname"><a href="classCity.html#a1b1f549430f0a7ecd0ec7b1605415193">City::City</a></div><div class="ttdeci">City()</div><div class="ttdef"><b>Definition:</b> City.cpp:5</div></div>
-<div class="ttc" id="aclassCity_html_ae95feee8a1d4e1f14ea41ec89b47304f"><div class="ttname"><a href="classCity.html#ae95feee8a1d4e1f14ea41ec89b47304f">City::~City</a></div><div class="ttdeci">~City()</div><div class="ttdef"><b>Definition:</b> City.cpp:12</div></div>
-<div class="ttc" id="aclassCity_html_a1af5eca022084cf3de17d3a29b5f4bba"><div class="ttname"><a href="classCity.html#a1af5eca022084cf3de17d3a29b5f4bba">City::GetName</a></div><div class="ttdeci">QString GetName() const</div><div class="ttdef"><b>Definition:</b> City.cpp:18</div></div>
+</div><!-- doc-content -->
+<div class="ttc" id="aclassCity_html_abf892e1412558a0605da8b1042de7176"><div class="ttname"><a href="classCity.html#abf892e1412558a0605da8b1042de7176">City::GetFoodAt</a></div><div class="ttdeci">Food GetFoodAt(int index) const</div><div class="ttdoc">Accessor: Return Food object at index in associated city.</div><div class="ttdef"><b>Definition:</b> City.cpp:28</div></div>
+<div class="ttc" id="aclassCity_html_a5058a864ce137659b9c1fcc917eb4bc8"><div class="ttname"><a href="classCity.html#a5058a864ce137659b9c1fcc917eb4bc8">City::GetFoodPriceAt</a></div><div class="ttdeci">float GetFoodPriceAt(int index) const</div><div class="ttdoc">Accessor: Get Food object price at index in associated city.</div><div class="ttdef"><b>Definition:</b> City.cpp:40</div></div>
+<div class="ttc" id="aclassCity_html_a7a42fbc400b868e77cb56631b1afbb87"><div class="ttname"><a href="classCity.html#a7a42fbc400b868e77cb56631b1afbb87">City::AddFood</a></div><div class="ttdeci">void AddFood(const Food &amp;item)</div><div class="ttdoc">Mutator: Add Food object to City object's food list.</div><div class="ttdef"><b>Definition:</b> City.cpp:58</div></div>
+<div class="ttc" id="aclassCity_html_ad106341c5d40d6f7e0a60f1ede165b02"><div class="ttname"><a href="classCity.html#ad106341c5d40d6f7e0a60f1ede165b02">City::GetFoodListSize</a></div><div class="ttdeci">int GetFoodListSize() const</div><div class="ttdoc">Accessor: Get size of city's Food object list.</div><div class="ttdef"><b>Definition:</b> City.cpp:69</div></div>
+<div class="ttc" id="aclassCity_html_ad533e2c8b0de5ac1eab8c35b60bc843a"><div class="ttname"><a href="classCity.html#ad533e2c8b0de5ac1eab8c35b60bc843a">City::GetFoodQtyAt</a></div><div class="ttdeci">int GetFoodQtyAt(int index) const</div><div class="ttdoc">Accessor: Get Food object quantity at index in associated city.</div><div class="ttdef"><b>Definition:</b> City.cpp:46</div></div>
+<div class="ttc" id="afood_8h_html"><div class="ttname"><a href="food_8h.html">food.h</a></div></div>
+<div class="ttc" id="aclassCity_html"><div class="ttname"><a href="classCity.html">City</a></div><div class="ttdoc">The City class is an object meant to represent city destinations.</div><div class="ttdef"><b>Definition:</b> City.h:12</div></div>
+<div class="ttc" id="aclassFood_html"><div class="ttname"><a href="classFood.html">Food</a></div><div class="ttdoc">The Food class is an object that represents the traditional food items available in each city.</div><div class="ttdef"><b>Definition:</b> food.h:11</div></div>
+<div class="ttc" id="aclassCity_html_ae0dd20b02baef04198c26a7423c6ec08"><div class="ttname"><a href="classCity.html#ae0dd20b02baef04198c26a7423c6ec08">City::SetFoodQtyAt</a></div><div class="ttdeci">void SetFoodQtyAt(int index, int qty)</div><div class="ttdoc">Mutator: Alter/set Food object quantity at this index in City list.</div><div class="ttdef"><b>Definition:</b> City.cpp:52</div></div>
+<div class="ttc" id="aclassCity_html_a9cc9fafc911c489a67158291044e7327"><div class="ttname"><a href="classCity.html#a9cc9fafc911c489a67158291044e7327">City::SetName</a></div><div class="ttdeci">void SetName(const QString &amp;name)</div><div class="ttdoc">Mutator: Alter/set city name.</div><div class="ttdef"><b>Definition:</b> City.cpp:22</div></div>
+<div class="ttc" id="aclassCity_html_a1b1f549430f0a7ecd0ec7b1605415193"><div class="ttname"><a href="classCity.html#a1b1f549430f0a7ecd0ec7b1605415193">City::City</a></div><div class="ttdeci">City()</div><div class="ttdoc">Default City object constructor.</div><div class="ttdef"><b>Definition:</b> City.cpp:4</div></div>
+<div class="ttc" id="aclassCity_html_a1af5eca022084cf3de17d3a29b5f4bba"><div class="ttname"><a href="classCity.html#a1af5eca022084cf3de17d3a29b5f4bba">City::GetName</a></div><div class="ttdeci">QString GetName() const</div><div class="ttdoc">Accessor: Get name of city object.</div><div class="ttdef"><b>Definition:</b> City.cpp:16</div></div>
+<div class="ttc" id="aclassCity_html_a544278f540a8bdc39d6d712bc0b7e2cc"><div class="ttname"><a href="classCity.html#a544278f540a8bdc39d6d712bc0b7e2cc">City::~City</a></div><div class="ttdeci">~City()=default</div><div class="ttdoc">Destructor.</div></div>
+<div class="ttc" id="aclassCity_html_a9bb0f2c3c2db73fd49af6e0d097cb9fe"><div class="ttname"><a href="classCity.html#a9bb0f2c3c2db73fd49af6e0d097cb9fe">City::GetFoodNameAt</a></div><div class="ttdeci">QString GetFoodNameAt(int index) const</div><div class="ttdoc">Accessor: Get Food object's name at index in associated city.</div><div class="ttdef"><b>Definition:</b> City.cpp:34</div></div>
+<div class="ttc" id="aclassCity_html_af9b628ab7809e9c8aa927e67a2949a0e"><div class="ttname"><a href="classCity.html#af9b628ab7809e9c8aa927e67a2949a0e">City::RemoveFoodAt</a></div><div class="ttdeci">void RemoveFoodAt(int index)</div><div class="ttdoc">Mutator: Remove Food object from City object's food list.</div><div class="ttdef"><b>Definition:</b> City.cpp:64</div></div>
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated by &#160;<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/>
-</a> 1.8.17
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_d422163b96683743ed3963d4aac17747.html">app</a></li><li class="navelem"><a class="el" href="City_8h.html">City.h</a></li>
+    <li class="footer">Generated by
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.17 </li>
+  </ul>
+</div>
 </body>
 </html>

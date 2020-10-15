@@ -14,7 +14,7 @@
 /*!
  * @class DBManager
  * @brief The DBManager class manages core methods used to access the data
- * stored in the data base
+ * stored in the database
  */
 class City;
 
@@ -22,96 +22,109 @@ class DBManager: public QWidget, public QSqlDatabase {
 	Q_OBJECT;
 public:
 	/*!
-	 * @brief creats one instance of the data base
-	 * @return pointer the the instance of the data base class
+     * @brief Creates one instance of the database
+     * @return Pointer the the instance of the database class
 	 */
 	static DBManager* instance();
 
 	/*!
-	 * @brief deleted copy constructor
+     * @brief Deleted copy constructor
 	 */
 	DBManager(const DBManager&) = delete;
 
 	/*!
-	 * @brief deleted copy assignment
+     * @brief Deleted copy assignment
 	 */
 	DBManager& operator=(const DBManager&) = delete;
 
 	/*!
-	 * @brief AddFood items to the DB
-	 * @param city; name of city your adding a food item to
-	 * @param food; name of the item
-	 * @param price; items cost
+     * @brief AddFood items to the database
+     * @param city; Name of City in which Food will be added
+     * @param food; Name of the Food item to be added
+     * @param price; Price of Food item to be added
 	 */
-	void AddFood(const QString &city,
-				 const QString &food,
-				 const QString &price);
+    void AddFood(const QString &city, const QString &food, const QString &price);
 
 	/*!
-	 * @brief ImportCities
-	 * @param parent; access to QWidget class
+     * @brief Imports list of new cities from file
+     * @param parent; Access to QWidget class
 	 */
 	void ImportCities(QWidget *parent = nullptr);
 
 	/*!
-	 * @brief UpdateFoodPrice
-	 * @param foodName;
-	 * @param price;
+     * @brief Updates food price in database
+     * @param foodName; Name of food to be updated
+     * @param price; New price of food item
 	 */
 	void UpdateFoodPrice(const QString &foodName, const QString &price);
 
 	/*!
-	 * @brief DeleteFood
-	 * @param foodName
+     * @brief Deletes food listing from database
+     * @param foodName; Name of food to be deleted
 	 */
 	void DeleteFood(const QString &foodName);
 
 	/*!
-	 * @brief CityToFoodNames populates QStringList type with food items for
-	 * a particular city
-	 * @param city; city name
-	 * @param foods; food name
+     * @brief Populates QStringList with food items for a particular city
+     * @param city; Name of city containing traditional food items
+     * @param foods; List of food items to be added
 	 */
 	void CityToFoodNames(const QString &city, QStringList &foods);
 
 	/*!
-	 * @brief FoodNameToPrice
-	 * @param food; name of item
-	 * @return price for the passed in food item
+     * @brief Will return price values for food item input
+     * @param food; Name of food whos price is desired
+     * @return Price for the passed in food item
 	 */
 	QString FoodNameToPrice(const QString &food);
 
 	/*!
-	 * @brief GetCities
-	 * @param cities; container that holds all the cities in DB
+     * @brief Will return all cities in database
+     * @param cities; Container that holds all the cities in database
 	 */
 	void GetCities(QStringList &cities);
 
 	/*!
-	 * @brief GetDistances
-	 * @param city1; name
-	 * @param city2; name
-	 * @return distance between two cities
+     * @brief Will return distance between two cities
+     * @param city1; Name of origin city
+     * @param city2; Name of destination city
+     * @return Distance between two cities
 	 */
 	int GetDistances(const QString &city1, const QString &city2);
 
+    /*!
+     * @brief Populates Food items for list of given cities
+     * @param cities; List of Cities that requires population of food items
+     */
 	void CreateShoppingList(QVector<City>* cities);
 
+    /*!
+     * @brief Populates data necessary for cities table to show cities and
+     * distances from Berlin
+     * @param cityNames; List of city names to be populated
+     * @param distancesFromBerlin; List of distances from Berlin
+     */
 	void GetCitiesTable(QStringList *cityNames, QVector<int>* distancesFromBerlin);
 
-  bool LogIn(const QString &username, const QString &password);
+    /*!
+     * @brief Will validate login credentials for administrator access
+     * @param username; User's username inputs
+     * @param password; User's password input
+     * @return Success or failure of login
+     */
+    bool LogIn(const QString &username, const QString &password);
 
 private:
-	QSqlQuery query;	//!< used to query the database
+    QSqlQuery query;	/// Generic reusable query
 
 	/*!
 	 * @brief DBManager (private)
-	 * @param parent; linked to QWidget class
+     * @param parent; Linked to QWidget class
 	 */
 	explicit DBManager(QWidget *parent = nullptr);
 
 	/*!
-	 * @brief deallocates any allocated memory
+     * @brief Destructor
 	 */
 	~DBManager();
 };

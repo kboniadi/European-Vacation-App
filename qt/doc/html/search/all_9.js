@@ -1,4 +1,22 @@
 var searchData=
 [
-  ['operator_3d_64',['operator=',['../classDBManager.html#a24f1bb309ebd4f01f503b872e289247e',1,'DBManager::operator=()'],['../classTableManager.html#a77eaeab1e65ec5071d0f403dbc038eb2',1,'TableManager::operator=()']]]
+  ['p_5fcityname_64',['P_CITYNAME',['../classTableManager.html#ace034d05052d33a1d0861fb05fb87512add764ffc16e6407d1cc65917dcb1da50',1,'TableManager']]],
+  ['p_5ffood_65',['P_FOOD',['../classTableManager.html#ace034d05052d33a1d0861fb05fb87512a1d14b3cd2ccfd69102ce23cd3007a74c',1,'TableManager']]],
+  ['p_5fkey_66',['P_KEY',['../classTableManager.html#ace034d05052d33a1d0861fb05fb87512a07a4a4c1c78677812d1bf54eec98f03b',1,'TableManager']]],
+  ['p_5fprice_67',['P_PRICE',['../classTableManager.html#ace034d05052d33a1d0861fb05fb87512a12146521606c683c1d43c8fedd6a1107',1,'TableManager']]],
+  ['p_5fqty_68',['P_QTY',['../classTableManager.html#ace034d05052d33a1d0861fb05fb87512a27f368eb64e1e6a7471ee127df143dad',1,'TableManager']]],
+  ['paris_5ftrip_5fspinbox_5fmin_69',['PARIS_TRIP_SPINBOX_MIN',['../classTableManager.html#ab993c32b3c54799b926ec87a1624eec7',1,'TableManager']]],
+  ['paristripspinboxmax_70',['parisTripSpinBoxMax',['../classTableManager.html#a239f93a69495f30a117fcc5933c4b87f',1,'TableManager']]],
+  ['populateadmintable_71',['PopulateAdminTable',['../classTableManager.html#af55113a843a8aadc813788dbb5d9d2b7',1,'TableManager']]],
+  ['populatecitiestable_72',['PopulateCitiesTable',['../classTableManager.html#aa4763036434000f43d0eae8ffbbfa3b5',1,'TableManager']]],
+  ['populatefoodtable_73',['PopulateFoodTable',['../classTableManager.html#aba7ccc46fc66102002579bd8e2d68295',1,'TableManager']]],
+  ['populatepurchasetable_74',['PopulatePurchaseTable',['../classTableManager.html#ab741f045d5ddfaff67009ab4ad62f669',1,'TableManager']]],
+  ['populatereceipttable_75',['PopulateReceiptTable',['../classTableManager.html#a8d0f7fe6fefb9438b18c8735ef625167',1,'TableManager']]],
+  ['populatetriptable_76',['PopulateTripTable',['../classTableManager.html#a56b4c3297e188e4656b9b745950eeddf',1,'TableManager']]],
+  ['purchase_5fspinbox_5fmax_77',['PURCHASE_SPINBOX_MAX',['../classTableManager.html#a50361e2fa9f1ddfd405aca7af21903a0',1,'TableManager']]],
+  ['purchase_5fspinbox_5fmin_78',['PURCHASE_SPINBOX_MIN',['../classTableManager.html#ab142efca8d939e578ab4828b48c75f1c',1,'TableManager']]],
+  ['purchase_5ftable_5fcol_5fcount_79',['PURCHASE_TABLE_COL_COUNT',['../classTableManager.html#af371cab19fe0b1fd536eaa3f3762a99c',1,'TableManager']]],
+  ['purchasetablecolnames_80',['purchaseTableColNames',['../classTableManager.html#a3e28b67bb1ca1d2287284ed355c45e5e',1,'TableManager']]],
+  ['purchasetablecolpositions_81',['PurchaseTableColPositions',['../classTableManager.html#ace034d05052d33a1d0861fb05fb87512',1,'TableManager']]],
+  ['purchasetablespinboxes_82',['purchaseTableSpinBoxes',['../classTableManager.html#ac437bab4b611ca7052cd2defbf39d084',1,'TableManager']]]
 ];

@@ -6,6 +6,7 @@ City::City(): _name{QString{}}
 	_foods.clear();
 }
 
+// Parameterized constructor
 City::City(QString city): _name{city}
 {
 	_foods.clear();
@@ -58,7 +59,6 @@ void City::AddFood(const Food &item)
 {
 	_foods.push_back(item);
 }
-
 
 // Mutator: Alter/set food list
 void City::RemoveFoodAt(int index)

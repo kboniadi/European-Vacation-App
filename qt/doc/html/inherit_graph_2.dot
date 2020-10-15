@@ -6,7 +6,7 @@ digraph "Graphical Class Hierarchy"
   rankdir="LR";
   Node4 [label="QSqlDatabase",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled",tooltip=" "];
   Node4 -> Node0 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node0 [label="DBManager",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classDBManager.html",tooltip="The DBManager class manages core methods used to access the data stored in the data base."];
+  Node0 [label="DBManager",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classDBManager.html",tooltip="The DBManager class manages core methods used to access the data stored in the database."];
   Node2 [label="QWidget",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled",tooltip=" "];
   Node2 -> Node0 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
 }

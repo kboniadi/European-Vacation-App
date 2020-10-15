@@ -50,10 +50,6 @@ void MainWindow::on_pushButton_home_berlin_clicked()
     algorithm::sort(unsorted, sorted);
     TableManager::instance()->PopulateTripTable(ui->tableView_berlin_cities, sorted);
 
-
-    // TODO This is where 'delete _foods' in the city constructor will break the program.
-    // Dunno how to resolve
-
     // Populate city objects
     for(int index = 0; index < sorted.size(); index++)
     {
@@ -70,6 +66,7 @@ void MainWindow::on_pushButton_home_berlin_clicked()
 
     ui->label_berlin_total_distance->setText("Total Distance(km): " + QString::number(total));
     ui->label_berlin_total_distance->adjustSize();
+
     // Display distance on receipt page
     ui->label_receipt_distance->setText("Total Distance(km): " + QString::number(total));
     ui->label_receipt_distance->adjustSize();
@@ -211,6 +208,7 @@ void MainWindow::on_spinBox_paris_select_valueChanged(int citiesToVisit)
 
     ui->label_paris_total_distance->setText("Total Distance(km): " + QString::number(total));
     ui->label_paris_total_distance->adjustSize();
+
     // Display distance on receipt page
     ui->label_receipt_distance->setText("Total Distance(km): " + QString::number(total));
     ui->label_receipt_distance->adjustSize();
@@ -327,7 +325,7 @@ void MainWindow::on_pushButton_purchase_continue_clicked()
     // Populate table with data
     TableManager::instance()->PopulateReceiptTable(ui->tableWidget_receipt_view, &cities);
 
-    // get total cost
+    // Get total cost
     double totalCost = 0;
     QTableWidgetItem *item;
     for (int i = 0; i < ui->tableWidget_receipt_view->rowCount(); i++)
@@ -395,18 +393,24 @@ void MainWindow::on_pushButton_admin_add_clicked()
 	QString price = ui->lineEdit_admin_price->text();
 
 	QStringList list;
+
+    // Get cities list
 	DBManager::instance()->GetCities(list);
 
+
+    // If city input does not exist on list, output error
 	bool ok;
 	price.toDouble(&ok);
 
 	if (!list.contains(city) || !ok || food.isEmpty()) {
+
 		QMessageBox::warning(this, tr("Notice"),
 		tr("There was an error with your query.\nPlease try again."));
-	} else {
+    } else { // If city requested is present, add traditional food to its listing
 		DBManager::instance()->AddFood(city, food, price);
 		UpdateAdminFoodTable();
 	}
+
 	ClearFields();
 }
 
@@ -418,6 +422,8 @@ void MainWindow::on_pushButton_admin_delete_clicked()
 
 	QSqlQuery query;
 	bool valid = false;
+
+    // Attempt to find foodname in db from input
 	query.prepare("SELECT foodNames FROM food");
 	if (query.exec()) {
 		while (query.next()) {
@@ -428,13 +434,15 @@ void MainWindow::on_pushButton_admin_delete_clicked()
 		}
 	}
 
+    // If food not found, print error
 	if (!valid) {
 		QMessageBox::warning(this, tr("Notice"),
 		tr("Could not find that food item in the DataBase.\nPlease try again."));
-	} else {
+    } else { // If food found, delete it
 		DBManager::instance()->DeleteFood(food);
 		UpdateAdminFoodTable();
 	}
+
 	ClearFields();
 }
 
@@ -444,6 +452,7 @@ void MainWindow::on_pushButton_admin_edit_clicked()
 	QString food = ui->lineEdit_admin_food->text();
 	QString price = ui->lineEdit_admin_price->text();
 
+    // Find food in db from input
 	QSqlQuery query;
 	bool valid = false;
 	query.prepare("SELECT foodNames FROM food");
@@ -459,18 +468,23 @@ void MainWindow::on_pushButton_admin_edit_clicked()
 	bool ok;
 	price.toDouble(&ok);
 
+    // If user input is not valid or food is not found, print error
 	if (!valid || !ok) {
 		QMessageBox::warning(this, tr("Notice"),
+
 		tr("There was an error with your query.\nPlease try again."));
-	} else {
+	} else {// If valid input and found, update new price in db
+
 		DBManager::instance()->UpdateFoodPrice(food, price);
 		UpdateAdminFoodTable();
 	}
+
 	ClearFields();
 }
 
 void MainWindow::on_tabWidget_admin_pages_currentChanged(int index)
 {
+    // Update table if food page is visited
 	if (index == FOODTAB)
 		UpdateAdminFoodTable();
 }
@@ -541,6 +555,7 @@ void MainWindow::on_pushButton_custom_finalize_clicked()
     // Display distance
     ui->label_custom_distance->setText("Total Distance(km): " + QString::number(total));
     ui->label_custom_distance->adjustSize();
+
     // Display distance on receipt page
     ui->label_receipt_distance->setText("Total Distance(km): " + QString::number(total));
     ui->label_receipt_distance->adjustSize();
@@ -561,7 +576,6 @@ void MainWindow::on_tabWidget_home_pages_currentChanged(int index)
 
 		// Get table data from db
 		DBManager::instance()->GetCitiesTable(&cityNames, &distancesFromBerlin);
-
 
 		// Populate table
 		TableManager::instance()->PopulateCitiesTable(ui->tableWidget_cities_view, &cityNames, &distancesFromBerlin);
@@ -595,14 +609,13 @@ void MainWindow::on_tabWidget_home_pages_currentChanged(int index)
             cities.push_back(temp);
             qDebug() << cities.at(index).GetName();
         }
+
         DBManager::instance()->CreateShoppingList(&cities);
+
         // Populate table
         TableManager::instance()->PopulateFoodTable(ui->tableWidget_food_view, &cities);
     }
 }
-
-
-
 
 /*----END NAVIGATION----*/
 
@@ -644,6 +657,7 @@ void MainWindow::CreateReceipt(QVector<City>* cities)
     }
 }
 
+// Update admin food table
 void MainWindow::UpdateAdminFoodTable()
 {
 	QVector<City> cityVec;

@@ -5,45 +5,94 @@
 #include <QVector>
 #include "food.h"
 
+/*!
+ * @class City
+ * @brief The City class is an object meant to represent city destinations
+ */
 class City
 {
 public:
-    // Constructor - Note: will set _foods to nullptr
+    /*!
+     * @brief Default City object constructor
+     */
     City();
+
+    /*!
+     * @brief Parameterized City object constructor
+     * @param city; name of city for object's name
+     */
 	City(QString city);
 
-    // Accessor: Get name of city
+    /*!
+     * @brief Accessor: Get name of city object
+     * @return Name of city object
+     */
     QString GetName() const;
-    // Mutator: Alter/set city name
+
+    /*!
+     * @brief Mutator: Alter/set city name
+     * @param name; Name of city
+     */
     void SetName(const QString &name);
 
-    // Accessor: Get food at index in associated with city
+    /*!
+     * @brief Accessor: Return Food object at index in associated city
+     * @param index; Position of item in vector
+     * @return Food object at position desired
+     */
 	Food GetFoodAt(int index) const;
 
-    // Get food name at this index
+    /*!
+     * @brief Accessor: Get Food object's name at index in associated city
+     * @param index; Position of item in vector
+     * @return Food object name at position desired
+     */
 	QString GetFoodNameAt(int index) const;
 
-    // Get food price at this index
+    /*!
+     * @brief Accessor: Get Food object price at index in associated city
+     * @param index; Position of item in vector
+     * @return Food object price at position desired
+     */
 	float GetFoodPriceAt(int index) const;
 
-    // Get food qty at this index
+    /*!
+     * @brief Accessor: Get Food object quantity at index in associated city
+     * @param index; Position of item in vector
+     */
 	int GetFoodQtyAt(int index) const;
 
-    // Set food qty at this index
+    /*!
+     * @brief Mutator: Alter/set Food object quantity at this index in City list
+     * @param index; Position of Food object in list
+     * @param qty; Quantity of Food object to set.
+     */
 	void SetFoodQtyAt(int index, int qty);
 
-    // Accessor: Get size of food list
+    /*!
+     * @brief Accessor: Get size of city's Food object list
+     * @return Size of Food object list
+     */
     int GetFoodListSize() const;
 
-    // Mutator: Alter/set food list
+    /*!
+     * @brief Mutator: Add Food object to City object's food list.
+     * @param item; Food object to add
+     */
 	void AddFood(const Food &item);
 
+    /*!
+     * @brief Mutator: Remove Food object from City object's food list.
+     * @param index; Position of Food object in list to remove
+     */
     void RemoveFoodAt(int index);
-    // Mutator: Alter/set food list
-    // Destructor
+
+
+    /*!
+     * @brief Destructor
+     */
 	~City() = default;
 
-private:
     QString _name;          // Name of city
 	QList<Food> _foods;  // List of foods associated with city
 };

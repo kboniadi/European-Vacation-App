@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['tablemanager_173',['TableManager',['../classTableManager.html#a4a13c2487fc53bb6f3272210a6f0a1a4',1,'TableManager']]]
+  ['removefoodat_171',['RemoveFoodAt',['../classCity.html#af9b628ab7809e9c8aa927e67a2949a0e',1,'City']]]
 ];

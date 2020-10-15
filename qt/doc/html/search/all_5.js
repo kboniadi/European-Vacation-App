@@ -1,9 +1,11 @@
 var searchData=
 [
-  ['getcities_43',['GetCities',['../classDBManager.html#ad5f5f2c1557b3bea74d62c689df0fa9f',1,'DBManager']]],
-  ['getdistances_44',['GetDistances',['../classDBManager.html#a8f76544187e006f4c25ae18d0e79bc49',1,'DBManager']]],
-  ['getfoods_45',['GetFoods',['../classCity.html#a9734f62c6b964db83157919c309f9d7d',1,'City']]],
-  ['getname_46',['GetName',['../classCity.html#a1af5eca022084cf3de17d3a29b5f4bba',1,'City::GetName()'],['../classFood.html#a4abe02df46c8aff176125547b7c10930',1,'Food::GetName()']]],
-  ['getprice_47',['GetPrice',['../classFood.html#ae4ff24490681de69a8809d3a1a433b52',1,'Food']]],
-  ['getqty_48',['GetQty',['../classFood.html#aac5002335d9125d605ef61cfa70763be',1,'Food']]]
+  ['importcities_49',['ImportCities',['../classDBManager.html#a39a2342750b0151d52d47fe26ad5f988',1,'DBManager']]],
+  ['initializeadmintable_50',['InitializeAdminTable',['../classTableManager.html#a2cd6e985412366b7a34fadc1d8167407',1,'TableManager::InitializeAdminTable(QTableView *table)'],['../classTableManager.html#a215efb961cdc82ffeff1529aa062ad1e',1,'TableManager::InitializeAdminTable(QTableWidget *adminTable, const int &amp;cols, const QStringList &amp;headers)']]],
+  ['initializecitiestable_51',['InitializeCitiesTable',['../classTableManager.html#adc0d09ed5ac57c4244901101277996da',1,'TableManager']]],
+  ['initializefoodtable_52',['InitializeFoodTable',['../classTableManager.html#af8749d592558b17d076486e03c8beb79',1,'TableManager']]],
+  ['initializepurchasetable_53',['InitializePurchaseTable',['../classTableManager.html#a43a694d9ff069281faaf2d73da261ce6',1,'TableManager']]],
+  ['initializereceipttable_54',['InitializeReceiptTable',['../classTableManager.html#a10f8daa85160eb349e685b6fa95035cc',1,'TableManager']]],
+  ['insertspinboxcol_55',['InsertSpinBoxCol',['../classTableManager.html#ad6c1ec8dc5d2dfcce0a7d220924462b5',1,'TableManager']]],
+  ['instance_56',['instance',['../classDBManager.html#a80f0e49840019b8aaae65759a781f8bd',1,'DBManager::instance()'],['../classTableManager.html#a3df93afe84323dabb032ab09eb472e4d',1,'TableManager::instance()']]]
 ];

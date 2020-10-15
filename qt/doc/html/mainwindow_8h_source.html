@@ -9,9 +9,18 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+  $(document).ready(function() { init_search(); });
+/* @license-end */
+</script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
@@ -22,9 +31,24 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">European Vacation
-   &#160;<span id="projectnumber">0.1</span>
+   &#160;<span id="projectnumber">v1.0</span>
    </div>
   </td>
+   <td>        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.png"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Search" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.png" alt=""/></a>
+          </span>
+        </div>
+</td>
  </tr>
  </tbody>
 </table>
@@ -36,16 +60,23 @@
 var searchBox = new SearchBox("searchBox", "search",false,'Search');
 /* @license-end */
 </script>
-<script type="text/javascript" src="menudata.js"></script>
-<script type="text/javascript" src="menu.js"></script>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
 <script type="text/javascript">
 /* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
-$(function() {
-  initMenu('',true,false,'search.php','Search');
-  $(document).ready(function() { init_search(); });
-});
-/* @license-end */</script>
-<div id="main-nav"></div>
+$(document).ready(function(){initNavTree('mainwindow_8h_source.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -60,11 +91,6 @@ $(function() {
 </iframe>
 </div>
 
-<div id="nav-path" class="navpath">
-  <ul>
-<li class="navelem"><a class="el" href="dir_d422163b96683743ed3963d4aac17747.html">app</a></li>  </ul>
-</div>
-</div><!-- top -->
 <div class="header">
   <div class="headertitle">
 <div class="title">mainwindow.h</div>  </div>
@@ -75,138 +101,149 @@ $(function() {
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160; </div>
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &lt;QMainWindow&gt;</span></div>
 <div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#include &lt;QStackedWidget&gt;</span></div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="sortalgorithm_8h.html">sortalgorithm.h</a>&quot;</span></div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160; </div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;QT_BEGIN_NAMESPACE</div>
-<div class="line"><a name="l00009"></a><span class="lineno"><a class="line" href="namespaceUi.html">    9</a></span>&#160;<span class="keyword">namespace </span><a class="code" href="namespaceUi.html">Ui</a> { <span class="keyword">class </span><a class="code" href="classMainWindow.html">MainWindow</a>; }</div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;QT_END_NAMESPACE</div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160; </div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="keyword">class </span><a class="code" href="classDBManager.html">DBManager</a>;</div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="keyword">class </span><a class="code" href="classTableManager.html">TableManager</a>;</div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="keyword">class </span><a class="code" href="classCity.html">City</a>;</div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160; </div>
-<div class="line"><a name="l00016"></a><span class="lineno"><a class="line" href="classMainWindow.html">   16</a></span>&#160;<span class="keyword">class </span><a class="code" href="classMainWindow.html">MainWindow</a> : <span class="keyword">public</span> QMainWindow</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;{</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    Q_OBJECT</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160; </div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    <a class="code" href="classMainWindow.html#a996c5a2b6f77944776856f08ec30858d">MainWindow</a>(QWidget *parent = <span class="keyword">nullptr</span>);</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    <a class="code" href="classMainWindow.html#ae98d00a93bc118200eeef9f9bba1dba7">~MainWindow</a>();</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160; </div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    <span class="comment">/*----FUNCTIONS----*/</span></div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    <span class="comment">// insert any functions for mainwindow into this block</span></div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160; </div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    <span class="comment">// function to reset all tables and user inputs</span></div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classMainWindow.html#a02811bb0130c4d97c2ff651d1ec6727d">ClearFields</a>();</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160; </div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    <span class="comment">// Destroy list of cities list used in purchasing and receipt</span></div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classMainWindow.html#aa7e5f2256fe4ab03f33c7a7079ca4401">DestroyCities</a>();</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160; </div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#include &lt;QMessageBox&gt;</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="sortalgorithm_8h.html">sortalgorithm.h</a>&quot;</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160; </div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;QT_BEGIN_NAMESPACE</div>
+<div class="line"><a name="l00010"></a><span class="lineno"><a class="line" href="namespaceUi.html">   10</a></span>&#160;<span class="keyword">namespace </span><a class="code" href="namespaceUi.html">Ui</a> { <span class="keyword">class </span><a class="code" href="classMainWindow.html">MainWindow</a>; }</div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;QT_END_NAMESPACE</div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160; </div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="keyword">class </span><a class="code" href="classDBManager.html">DBManager</a>;</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="keyword">class </span><a class="code" href="classTableManager.html">TableManager</a>;</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="keyword">class </span><a class="code" href="classCity.html">City</a>;</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160; </div>
+<div class="line"><a name="l00023"></a><span class="lineno"><a class="line" href="classMainWindow.html">   23</a></span>&#160;<span class="keyword">class </span><a class="code" href="classMainWindow.html">MainWindow</a> : <span class="keyword">public</span> QMainWindow</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;{</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    Q_OBJECT</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160; </div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    <a class="code" href="classMainWindow.html#a996c5a2b6f77944776856f08ec30858d">MainWindow</a>(QWidget *parent = <span class="keyword">nullptr</span>);</div>
 <div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160; </div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    <span class="comment">/*----END FUNCTIONS----*/</span></div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160; </div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    <span class="comment">/*----ENUMS----*/</span></div>
-<div class="line"><a name="l00037"></a><span class="lineno"><a class="line" href="classMainWindow.html#af5d752081dfb8d982535ab6ce57efedb">   37</a></span>&#160;    <span class="keyword">enum</span> <a class="code" href="classMainWindow.html#af5d752081dfb8d982535ab6ce57efedb">page</a> <span class="comment">// enums for navigation through stackedwidget</span></div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    {</div>
-<div class="line"><a name="l00039"></a><span class="lineno"><a class="line" href="classMainWindow.html#af5d752081dfb8d982535ab6ce57efedba53ec1e314814002bd385e2e0f1db0113">   39</a></span>&#160;        <a class="code" href="classMainWindow.html#af5d752081dfb8d982535ab6ce57efedba53ec1e314814002bd385e2e0f1db0113">HOME</a>,</div>
-<div class="line"><a name="l00040"></a><span class="lineno"><a class="line" href="classMainWindow.html#af5d752081dfb8d982535ab6ce57efedbac5e1dd0649e638931c8e3edd9348c656">   40</a></span>&#160;        <a class="code" href="classMainWindow.html#af5d752081dfb8d982535ab6ce57efedbac5e1dd0649e638931c8e3edd9348c656">BERLIN</a>,</div>
-<div class="line"><a name="l00041"></a><span class="lineno"><a class="line" href="classMainWindow.html#af5d752081dfb8d982535ab6ce57efedba45dbf444e5e77ca7511b918c9d334e12">   41</a></span>&#160;        <a class="code" href="classMainWindow.html#af5d752081dfb8d982535ab6ce57efedba45dbf444e5e77ca7511b918c9d334e12">PARIS</a>,</div>
-<div class="line"><a name="l00042"></a><span class="lineno"><a class="line" href="classMainWindow.html#af5d752081dfb8d982535ab6ce57efedba594a7335f3fa13a10a744d39b0f736e6">   42</a></span>&#160;        <a class="code" href="classMainWindow.html#af5d752081dfb8d982535ab6ce57efedba594a7335f3fa13a10a744d39b0f736e6">CUSTOM</a>,</div>
-<div class="line"><a name="l00043"></a><span class="lineno"><a class="line" href="classMainWindow.html#af5d752081dfb8d982535ab6ce57efedba8bfda4bc8ac76747b71fec688faf15af">   43</a></span>&#160;        <a class="code" href="classMainWindow.html#af5d752081dfb8d982535ab6ce57efedba8bfda4bc8ac76747b71fec688faf15af">PURCHASE</a>,</div>
-<div class="line"><a name="l00044"></a><span class="lineno"><a class="line" href="classMainWindow.html#af5d752081dfb8d982535ab6ce57efedbaf5e60fc0f40a928b2d91f17ab12e059a">   44</a></span>&#160;        <a class="code" href="classMainWindow.html#af5d752081dfb8d982535ab6ce57efedbaf5e60fc0f40a928b2d91f17ab12e059a">RECEIPT</a>,</div>
-<div class="line"><a name="l00045"></a><span class="lineno"><a class="line" href="classMainWindow.html#af5d752081dfb8d982535ab6ce57efedba231f1f30dfa388e65c96638e3d2bfabe">   45</a></span>&#160;        <a class="code" href="classMainWindow.html#af5d752081dfb8d982535ab6ce57efedba231f1f30dfa388e65c96638e3d2bfabe">ADMIN</a></div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    };</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160; </div>
-<div class="line"><a name="l00048"></a><span class="lineno"><a class="line" href="classMainWindow.html#aef0e6523d5c56fc25c5216bd22a567cd">   48</a></span>&#160;    <span class="keyword">enum</span> <a class="code" href="classMainWindow.html#aef0e6523d5c56fc25c5216bd22a567cd">adminPage</a> <span class="comment">// enums for navigation through admin tabs</span></div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    {</div>
-<div class="line"><a name="l00050"></a><span class="lineno"><a class="line" href="classMainWindow.html#aef0e6523d5c56fc25c5216bd22a567cdae6bce1f6f5a298ef6f99de1d2f5bf0df">   50</a></span>&#160;        <a class="code" href="classMainWindow.html#aef0e6523d5c56fc25c5216bd22a567cdae6bce1f6f5a298ef6f99de1d2f5bf0df">ADMINTAB</a>,</div>
-<div class="line"><a name="l00051"></a><span class="lineno"><a class="line" href="classMainWindow.html#aef0e6523d5c56fc25c5216bd22a567cda6efab0060fb307b750e5c1b4449f7493">   51</a></span>&#160;        <a class="code" href="classMainWindow.html#aef0e6523d5c56fc25c5216bd22a567cda6efab0060fb307b750e5c1b4449f7493">FOODTAB</a></div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    <a class="code" href="classMainWindow.html#ae98d00a93bc118200eeef9f9bba1dba7">~MainWindow</a>();</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160; </div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    <span class="comment">/*---- BEGIN ENUMS----*/</span></div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160; </div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    <span class="keyword">enum</span> page</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    {</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;        HOME,</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;        BERLIN,</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;        PARIS,</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;        CUSTOM,</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;        PURCHASE,</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;        RECEIPT,</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;        ADMIN</div>
 <div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    };</div>
 <div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160; </div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    <span class="comment">/*----END ENUMS----*/</span></div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160; </div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;<span class="keyword">private</span> slots:</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    <span class="comment">/*----NAVIGATION----*/</span></div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    <span class="keywordtype">void</span> on_pushButton_home_berlin_clicked(); <span class="comment">// home</span></div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160; </div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    <span class="keywordtype">void</span> on_pushButton_home_paris_clicked();</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160; </div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    <span class="keywordtype">void</span> on_pushButton_home_custom_clicked();</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160; </div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    <span class="keywordtype">void</span> on_pushButton_home_exit_clicked();</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160; </div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    <span class="keywordtype">void</span> on_pushButton_berlin_back_clicked(); <span class="comment">// berlin</span></div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160; </div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    <span class="keywordtype">void</span> on_pushButton_berin_continue_clicked();</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160; </div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    <span class="keywordtype">void</span> on_spinBox_paris_select_valueChanged(<span class="keywordtype">int</span> citiesToVisit); <span class="comment">// paris</span></div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160; </div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;    <span class="keywordtype">void</span> on_pushButton_paris_back_clicked();</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160; </div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    <span class="keywordtype">void</span> on_pushButton_paris_continue_clicked();</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160; </div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    <span class="keywordtype">void</span> on_pushButton_custom_back_clicked(); <span class="comment">// custom</span></div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    <span class="keyword">enum</span> adminPage</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    {</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;        ADMINTAB,</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;        FOODTAB</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    };</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160; </div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    <span class="keyword">enum</span> tabs</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    {</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;        T_HOME,</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;        T_CITIES,</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;        T_FOODS,</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;        T_ADMIN</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    };</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    <span class="comment">/*---- END ENUMS ----*/</span></div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160; </div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    <span class="comment">/*---- BEGIN HELPER FUNCTIONS ----*/</span></div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160; </div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    <span class="keywordtype">void</span> ClearFields();</div>
 <div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160; </div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    <span class="keywordtype">void</span> on_pushButton_custom_continue_clicked();</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160; </div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;    <span class="keywordtype">void</span> on_comboBox_custom_startingCity_activated(<span class="keywordtype">int</span> index);</div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160; </div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;    <span class="keywordtype">void</span> on_pushButton_purchase_back_clicked(); <span class="comment">// purchase</span></div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160; </div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;    <span class="keywordtype">void</span> on_pushButton_purchase_continue_clicked();</div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160; </div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;    <span class="keywordtype">void</span> on_pushButton_receipt_back_clicked(); <span class="comment">// receipt</span></div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160; </div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;    <span class="keywordtype">void</span> on_pushButton_login_continue_clicked(); <span class="comment">// login</span></div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160; </div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;    <span class="keywordtype">void</span> on_pushButton_admin_back_clicked(); <span class="comment">// admin</span></div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160; </div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;    <span class="keywordtype">void</span> on_pushButton_admin_food_back_clicked();</div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160; </div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;    <span class="keywordtype">void</span> on_pushButton_admin_import_clicked();</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;    <span class="keywordtype">void</span> DestroyCities();</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160; </div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;    <span class="keywordtype">void</span> CreateReceipt(QVector&lt;City&gt;* cities);</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160; </div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;    <span class="keywordtype">void</span> UpdateAdminFoodTable();</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;    <span class="comment">/*---- END HELPER FUNCTIONS ----*/</span></div>
 <div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160; </div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;    <span class="keywordtype">void</span> on_pushButton_custom_add_clicked();</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;<span class="keyword">private</span> slots:</div>
 <div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160; </div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;    <span class="keywordtype">void</span> on_pushButton_custom_finalize_clicked();</div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;    <span class="comment">/*----END NAVIGATION----*/</span></div>
-<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160; </div>
-<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160; </div>
-<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;    Ui::MainWindow *ui;</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;    <span class="comment">/*---- BEGIN NAVIGATION ----*/</span></div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160; </div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;    <span class="keywordtype">void</span> on_pushButton_home_berlin_clicked();</div>
 <div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160; </div>
-<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;    QVector&lt;City&gt;* cities;</div>
-<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;    QStringList customTripCities;</div>
-<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;    QStringList customTripComboBoxCities;</div>
-<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160; </div>
-<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;};</div>
-<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;<span class="preprocessor">#endif // MAINWINDOW_H</span></div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;    <span class="keywordtype">void</span> on_pushButton_home_paris_clicked();</div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160; </div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;    <span class="keywordtype">void</span> on_pushButton_home_custom_clicked();</div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160; </div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;    <span class="keywordtype">void</span> on_pushButton_home_exit_clicked();</div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160; </div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;    <span class="keywordtype">void</span> on_pushButton_berlin_back_clicked();</div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160; </div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;    <span class="keywordtype">void</span> on_pushButton_berin_continue_clicked();</div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160; </div>
+<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;    <span class="keywordtype">void</span> on_spinBox_paris_select_valueChanged(<span class="keywordtype">int</span> citiesToVisit);</div>
+<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160; </div>
+<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;    <span class="keywordtype">void</span> on_pushButton_paris_back_clicked();</div>
+<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160; </div>
+<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;    <span class="keywordtype">void</span> on_pushButton_paris_continue_clicked();</div>
+<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160; </div>
+<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;    <span class="keywordtype">void</span> on_pushButton_custom_back_clicked();</div>
+<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160; </div>
+<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;    <span class="keywordtype">void</span> on_pushButton_custom_continue_clicked();</div>
+<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160; </div>
+<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;    <span class="keywordtype">void</span> on_comboBox_custom_startingCity_activated(<span class="keywordtype">int</span> index);</div>
+<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160; </div>
+<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;    <span class="keywordtype">void</span> on_pushButton_purchase_back_clicked();</div>
+<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160; </div>
+<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;    <span class="keywordtype">void</span> on_pushButton_purchase_continue_clicked();</div>
+<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160; </div>
+<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;    <span class="keywordtype">void</span> on_pushButton_receipt_back_clicked(); <span class="comment">// receipt</span></div>
+<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160; </div>
+<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;    <span class="keywordtype">void</span> on_pushButton_login_continue_clicked();</div>
+<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160; </div>
+<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;    <span class="keywordtype">void</span> on_pushButton_admin_back_clicked();</div>
+<div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160; </div>
+<div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;    <span class="keywordtype">void</span> on_pushButton_admin_food_back_clicked();</div>
+<div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160; </div>
+<div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160;    <span class="keywordtype">void</span> on_pushButton_admin_import_clicked();</div>
+<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160; </div>
+<div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;    <span class="keywordtype">void</span> on_pushButton_admin_add_clicked();</div>
+<div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160; </div>
+<div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160;    <span class="keywordtype">void</span> on_pushButton_admin_delete_clicked();</div>
+<div class="line"><a name="l00204"></a><span class="lineno">  204</span>&#160; </div>
+<div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160;    <span class="keywordtype">void</span> on_pushButton_admin_edit_clicked();</div>
+<div class="line"><a name="l00209"></a><span class="lineno">  209</span>&#160; </div>
+<div class="line"><a name="l00213"></a><span class="lineno">  213</span>&#160;    <span class="keywordtype">void</span> on_tabWidget_admin_pages_currentChanged(<span class="keywordtype">int</span> index);</div>
+<div class="line"><a name="l00214"></a><span class="lineno">  214</span>&#160; </div>
+<div class="line"><a name="l00218"></a><span class="lineno">  218</span>&#160;    <span class="keywordtype">void</span> on_pushButton_custom_add_clicked();</div>
+<div class="line"><a name="l00219"></a><span class="lineno">  219</span>&#160; </div>
+<div class="line"><a name="l00223"></a><span class="lineno">  223</span>&#160;    <span class="keywordtype">void</span> on_pushButton_custom_finalize_clicked();</div>
+<div class="line"><a name="l00224"></a><span class="lineno">  224</span>&#160; </div>
+<div class="line"><a name="l00228"></a><span class="lineno">  228</span>&#160;    <span class="keywordtype">void</span> on_tabWidget_home_pages_currentChanged(<span class="keywordtype">int</span> index);</div>
+<div class="line"><a name="l00229"></a><span class="lineno">  229</span>&#160;    <span class="comment">/*----END NAVIGATION----*/</span></div>
+<div class="line"><a name="l00230"></a><span class="lineno">  230</span>&#160; </div>
+<div class="line"><a name="l00231"></a><span class="lineno">  231</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00232"></a><span class="lineno">  232</span>&#160;    Ui::MainWindow *ui;                     </div>
+<div class="line"><a name="l00233"></a><span class="lineno">  233</span>&#160;    QVector&lt;City&gt; cities;                   </div>
+<div class="line"><a name="l00234"></a><span class="lineno">  234</span>&#160;    QStringList customTripCities;           </div>
+<div class="line"><a name="l00235"></a><span class="lineno">  235</span>&#160;    QStringList customTripComboBoxCities;   </div>
+<div class="line"><a name="l00236"></a><span class="lineno">  236</span>&#160;    <span class="keywordtype">int</span> parisSpinBoxPreviousVal{0};         </div>
+<div class="line"><a name="l00237"></a><span class="lineno">  237</span>&#160;};</div>
+<div class="line"><a name="l00238"></a><span class="lineno">  238</span>&#160;<span class="preprocessor">#endif // MAINWINDOW_H</span></div>
 </div><!-- fragment --></div><!-- contents -->
-<div class="ttc" id="aclassMainWindow_html_aef0e6523d5c56fc25c5216bd22a567cd"><div class="ttname"><a href="classMainWindow.html#aef0e6523d5c56fc25c5216bd22a567cd">MainWindow::adminPage</a></div><div class="ttdeci">adminPage</div><div class="ttdef"><b>Definition:</b> mainwindow.h:48</div></div>
-<div class="ttc" id="aclassMainWindow_html_aef0e6523d5c56fc25c5216bd22a567cdae6bce1f6f5a298ef6f99de1d2f5bf0df"><div class="ttname"><a href="classMainWindow.html#aef0e6523d5c56fc25c5216bd22a567cdae6bce1f6f5a298ef6f99de1d2f5bf0df">MainWindow::ADMINTAB</a></div><div class="ttdeci">@ ADMINTAB</div><div class="ttdef"><b>Definition:</b> mainwindow.h:50</div></div>
-<div class="ttc" id="aclassMainWindow_html_af5d752081dfb8d982535ab6ce57efedba53ec1e314814002bd385e2e0f1db0113"><div class="ttname"><a href="classMainWindow.html#af5d752081dfb8d982535ab6ce57efedba53ec1e314814002bd385e2e0f1db0113">MainWindow::HOME</a></div><div class="ttdeci">@ HOME</div><div class="ttdef"><b>Definition:</b> mainwindow.h:39</div></div>
-<div class="ttc" id="aclassMainWindow_html_af5d752081dfb8d982535ab6ce57efedbac5e1dd0649e638931c8e3edd9348c656"><div class="ttname"><a href="classMainWindow.html#af5d752081dfb8d982535ab6ce57efedbac5e1dd0649e638931c8e3edd9348c656">MainWindow::BERLIN</a></div><div class="ttdeci">@ BERLIN</div><div class="ttdef"><b>Definition:</b> mainwindow.h:40</div></div>
+</div><!-- doc-content -->
 <div class="ttc" id="asortalgorithm_8h_html"><div class="ttname"><a href="sortalgorithm_8h.html">sortalgorithm.h</a></div></div>
-<div class="ttc" id="aclassMainWindow_html_af5d752081dfb8d982535ab6ce57efedba594a7335f3fa13a10a744d39b0f736e6"><div class="ttname"><a href="classMainWindow.html#af5d752081dfb8d982535ab6ce57efedba594a7335f3fa13a10a744d39b0f736e6">MainWindow::CUSTOM</a></div><div class="ttdeci">@ CUSTOM</div><div class="ttdef"><b>Definition:</b> mainwindow.h:42</div></div>
-<div class="ttc" id="aclassMainWindow_html_af5d752081dfb8d982535ab6ce57efedba8bfda4bc8ac76747b71fec688faf15af"><div class="ttname"><a href="classMainWindow.html#af5d752081dfb8d982535ab6ce57efedba8bfda4bc8ac76747b71fec688faf15af">MainWindow::PURCHASE</a></div><div class="ttdeci">@ PURCHASE</div><div class="ttdef"><b>Definition:</b> mainwindow.h:43</div></div>
-<div class="ttc" id="aclassMainWindow_html_ae98d00a93bc118200eeef9f9bba1dba7"><div class="ttname"><a href="classMainWindow.html#ae98d00a93bc118200eeef9f9bba1dba7">MainWindow::~MainWindow</a></div><div class="ttdeci">~MainWindow()</div><div class="ttdef"><b>Definition:</b> mainwindow.cpp:29</div></div>
-<div class="ttc" id="aclassTableManager_html"><div class="ttname"><a href="classTableManager.html">TableManager</a></div><div class="ttdef"><b>Definition:</b> tablemanager.h:15</div></div>
-<div class="ttc" id="aclassMainWindow_html_aef0e6523d5c56fc25c5216bd22a567cda6efab0060fb307b750e5c1b4449f7493"><div class="ttname"><a href="classMainWindow.html#aef0e6523d5c56fc25c5216bd22a567cda6efab0060fb307b750e5c1b4449f7493">MainWindow::FOODTAB</a></div><div class="ttdeci">@ FOODTAB</div><div class="ttdef"><b>Definition:</b> mainwindow.h:51</div></div>
-<div class="ttc" id="aclassMainWindow_html_af5d752081dfb8d982535ab6ce57efedba231f1f30dfa388e65c96638e3d2bfabe"><div class="ttname"><a href="classMainWindow.html#af5d752081dfb8d982535ab6ce57efedba231f1f30dfa388e65c96638e3d2bfabe">MainWindow::ADMIN</a></div><div class="ttdeci">@ ADMIN</div><div class="ttdef"><b>Definition:</b> mainwindow.h:45</div></div>
-<div class="ttc" id="anamespaceUi_html"><div class="ttname"><a href="namespaceUi.html">Ui</a></div><div class="ttdef"><b>Definition:</b> mainwindow.h:9</div></div>
-<div class="ttc" id="aclassMainWindow_html"><div class="ttname"><a href="classMainWindow.html">MainWindow</a></div><div class="ttdef"><b>Definition:</b> mainwindow.h:16</div></div>
-<div class="ttc" id="aclassMainWindow_html_af5d752081dfb8d982535ab6ce57efedba45dbf444e5e77ca7511b918c9d334e12"><div class="ttname"><a href="classMainWindow.html#af5d752081dfb8d982535ab6ce57efedba45dbf444e5e77ca7511b918c9d334e12">MainWindow::PARIS</a></div><div class="ttdeci">@ PARIS</div><div class="ttdef"><b>Definition:</b> mainwindow.h:41</div></div>
-<div class="ttc" id="aclassMainWindow_html_a996c5a2b6f77944776856f08ec30858d"><div class="ttname"><a href="classMainWindow.html#a996c5a2b6f77944776856f08ec30858d">MainWindow::MainWindow</a></div><div class="ttdeci">MainWindow(QWidget *parent=nullptr)</div><div class="ttdef"><b>Definition:</b> mainwindow.cpp:7</div></div>
-<div class="ttc" id="aclassMainWindow_html_a02811bb0130c4d97c2ff651d1ec6727d"><div class="ttname"><a href="classMainWindow.html#a02811bb0130c4d97c2ff651d1ec6727d">MainWindow::ClearFields</a></div><div class="ttdeci">void ClearFields()</div></div>
-<div class="ttc" id="aclassMainWindow_html_aa7e5f2256fe4ab03f33c7a7079ca4401"><div class="ttname"><a href="classMainWindow.html#aa7e5f2256fe4ab03f33c7a7079ca4401">MainWindow::DestroyCities</a></div><div class="ttdeci">void DestroyCities()</div><div class="ttdef"><b>Definition:</b> mainwindow.cpp:332</div></div>
-<div class="ttc" id="aclassCity_html"><div class="ttname"><a href="classCity.html">City</a></div><div class="ttdef"><b>Definition:</b> City.h:8</div></div>
-<div class="ttc" id="aclassMainWindow_html_af5d752081dfb8d982535ab6ce57efedb"><div class="ttname"><a href="classMainWindow.html#af5d752081dfb8d982535ab6ce57efedb">MainWindow::page</a></div><div class="ttdeci">page</div><div class="ttdef"><b>Definition:</b> mainwindow.h:37</div></div>
-<div class="ttc" id="aclassMainWindow_html_af5d752081dfb8d982535ab6ce57efedbaf5e60fc0f40a928b2d91f17ab12e059a"><div class="ttname"><a href="classMainWindow.html#af5d752081dfb8d982535ab6ce57efedbaf5e60fc0f40a928b2d91f17ab12e059a">MainWindow::RECEIPT</a></div><div class="ttdeci">@ RECEIPT</div><div class="ttdef"><b>Definition:</b> mainwindow.h:44</div></div>
-<div class="ttc" id="aclassDBManager_html"><div class="ttname"><a href="classDBManager.html">DBManager</a></div><div class="ttdoc">The DBManager class manages core methods used to access the data stored in the data base.</div><div class="ttdef"><b>Definition:</b> dbmanager.h:19</div></div>
+<div class="ttc" id="aclassMainWindow_html_ae98d00a93bc118200eeef9f9bba1dba7"><div class="ttname"><a href="classMainWindow.html#ae98d00a93bc118200eeef9f9bba1dba7">MainWindow::~MainWindow</a></div><div class="ttdeci">~MainWindow()</div><div class="ttdoc">Destructor.</div><div class="ttdef"><b>Definition:</b> mainwindow.cpp:32</div></div>
+<div class="ttc" id="aclassTableManager_html"><div class="ttname"><a href="classTableManager.html">TableManager</a></div><div class="ttdoc">The TableManager holds attributes for all tables, initializes them, and populates their contents....</div><div class="ttdef"><b>Definition:</b> tablemanager.h:20</div></div>
+<div class="ttc" id="anamespaceUi_html"><div class="ttname"><a href="namespaceUi.html">Ui</a></div><div class="ttdef"><b>Definition:</b> mainwindow.h:10</div></div>
+<div class="ttc" id="aclassMainWindow_html"><div class="ttname"><a href="classMainWindow.html">MainWindow</a></div><div class="ttdoc">The Mainwindow class is the primary view and interface for all program functionality,...</div><div class="ttdef"><b>Definition:</b> mainwindow.h:23</div></div>
+<div class="ttc" id="aclassMainWindow_html_a996c5a2b6f77944776856f08ec30858d"><div class="ttname"><a href="classMainWindow.html#a996c5a2b6f77944776856f08ec30858d">MainWindow::MainWindow</a></div><div class="ttdeci">MainWindow(QWidget *parent=nullptr)</div><div class="ttdoc">Default MainWindow object constructor.</div><div class="ttdef"><b>Definition:</b> mainwindow.cpp:7</div></div>
+<div class="ttc" id="aclassCity_html"><div class="ttname"><a href="classCity.html">City</a></div><div class="ttdoc">The City class is an object meant to represent city destinations.</div><div class="ttdef"><b>Definition:</b> City.h:12</div></div>
+<div class="ttc" id="aclassDBManager_html"><div class="ttname"><a href="classDBManager.html">DBManager</a></div><div class="ttdoc">The DBManager class manages core methods used to access the data stored in the database.</div><div class="ttdef"><b>Definition:</b> dbmanager.h:21</div></div>
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated by &#160;<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/>
-</a> 1.8.17
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_d422163b96683743ed3963d4aac17747.html">app</a></li><li class="navelem"><a class="el" href="mainwindow_8h.html">mainwindow.h</a></li>
+    <li class="footer">Generated by
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.17 </li>
+  </ul>
+</div>
 </body>
 </html>
