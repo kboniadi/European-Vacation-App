@@ -397,8 +397,13 @@ void MainWindow::on_pushButton_admin_add_clicked()
     // Get cities list
 	DBManager::instance()->GetCities(list);
 
+
     // If city input does not exist on list, output error
-	if (!list.contains(city)) {
+	bool ok;
+	price.toDouble(&ok);
+
+	if (!list.contains(city) || !ok || food.isEmpty()) {
+
 		QMessageBox::warning(this, tr("Notice"),
 		tr("There was an error with your query.\nPlease try again."));
     } else { // If city requested is present, add traditional food to its listing
@@ -466,8 +471,12 @@ void MainWindow::on_pushButton_admin_edit_clicked()
     // If user input is not valid or food is not found, print error
 	if (!valid || !ok) {
 		QMessageBox::warning(this, tr("Notice"),
+
 		tr("Could not find that food item in the DataBase.\nPlease try again."));
     } else {// If valid input and found, update new price in db
+		tr("There was an error with your query.\nPlease try again."));
+	} else {// If valid input and found, update new price in db
+
 		DBManager::instance()->UpdateFoodPrice(food, price);
 		UpdateAdminFoodTable();
 	}

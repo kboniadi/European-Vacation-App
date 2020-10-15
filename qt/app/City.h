@@ -93,9 +93,8 @@ public:
      */
 	~City() = default;
 
-private:
-    QString _name;          /// Name of city
-    QVector<Food> _foods;   /// List of foods associated with city
+    QString _name;          // Name of city
+	QList<Food> _foods;  // List of foods associated with city
 };
 
 #endif // CITY_H
