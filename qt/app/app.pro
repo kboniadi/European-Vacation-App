@@ -19,6 +19,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
     City.cpp \
     dbmanager.cpp \
+    food.cpp \
     main.cpp \
     mainwindow.cpp \
     tablemanager.cpp \
@@ -27,6 +28,7 @@ SOURCES += \
 HEADERS += \
     City.h \
     dbmanager.h \
+    food.h \
     mainwindow.h \
     tablemanager.h \
     usermanager.h
