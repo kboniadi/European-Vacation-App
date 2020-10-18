@@ -1,6 +1,7 @@
 var searchData=
 [
-  ['c_5fcityname_209',['C_CITYNAME',['../classTableManager.html#a26865512d0d5ed36f3de232dcc12b4d3a5c1405c3dced10ceaff184dd90448c98',1,'TableManager']]],
-  ['c_5fdistance_210',['C_DISTANCE',['../classTableManager.html#a26865512d0d5ed36f3de232dcc12b4d3ae4dd1650f76d791d9d508bda6c865223',1,'TableManager']]],
-  ['custom_211',['CUSTOM',['../classMainWindow.html#af5d752081dfb8d982535ab6ce57efedba594a7335f3fa13a10a744d39b0f736e6',1,'MainWindow']]]
+  ['f_5fcityname_212',['F_CITYNAME',['../classTableManager.html#a1da90f7d465c3dfafbc4fc671d2f9603a026a3a2ceb5f79a87c761622135c4043',1,'TableManager']]],
+  ['f_5ffoodname_213',['F_FOODNAME',['../classTableManager.html#a1da90f7d465c3dfafbc4fc671d2f9603a48e839beb1e9bb32d009bc18d326599b',1,'TableManager']]],
+  ['f_5fkey_214',['F_KEY',['../classTableManager.html#a1da90f7d465c3dfafbc4fc671d2f9603a2568d7a26fa75f320437f6a495ecaaf8',1,'TableManager']]],
+  ['f_5fprice_215',['F_PRICE',['../classTableManager.html#a1da90f7d465c3dfafbc4fc671d2f9603a2ea8ee77f644ef53bcdd25d7daaae59f',1,'TableManager']]]
 ];

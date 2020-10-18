@@ -9,9 +9,18 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+  $(document).ready(function() { init_search(); });
+/* @license-end */
+</script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
@@ -22,9 +31,24 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">European Vacation
-   &#160;<span id="projectnumber">0.1</span>
+   &#160;<span id="projectnumber">v1.0</span>
    </div>
   </td>
+   <td>        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.png"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Search" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.png" alt=""/></a>
+          </span>
+        </div>
+</td>
  </tr>
  </tbody>
 </table>
@@ -36,16 +60,23 @@
 var searchBox = new SearchBox("searchBox", "search",false,'Search');
 /* @license-end */
 </script>
-<script type="text/javascript" src="menudata.js"></script>
-<script type="text/javascript" src="menu.js"></script>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
 <script type="text/javascript">
 /* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
-$(function() {
-  initMenu('',true,false,'search.php','Search');
-  $(document).ready(function() { init_search(); });
-});
-/* @license-end */</script>
-<div id="main-nav"></div>
+$(document).ready(function(){initNavTree('classTableManager.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -60,7 +91,6 @@ $(function() {
 </iframe>
 </div>
 
-</div><!-- top -->
 <div class="header">
   <div class="headertitle">
 <div class="title">TableManager Member List</div>  </div>
@@ -71,69 +101,77 @@ $(function() {
 <table class="directory">
   <tr class="even"><td class="entry"><a class="el" href="classTableManager.html#ad031756899763e2833e0d3f721a650e8a71816387ad22e92508b221013c324fe9">A_CITYNAME</a> enum value</td><td class="entry"><a class="el" href="classTableManager.html">TableManager</a></td><td class="entry"></td></tr>
   <tr><td class="entry"><a class="el" href="classTableManager.html#ad031756899763e2833e0d3f721a650e8a9d59334d4e930b9b7e6e7b0e37f7ce3c">A_FOOD</a> enum value</td><td class="entry"><a class="el" href="classTableManager.html">TableManager</a></td><td class="entry"></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="classTableManager.html#ad031756899763e2833e0d3f721a650e8a3ab4ac8488e3ef28c2fb439645eba2f8">A_PRICE</a> enum value</td><td class="entry"><a class="el" href="classTableManager.html">TableManager</a></td><td class="entry"></td></tr>
-  <tr><td class="entry"><a class="el" href="classTableManager.html#aa2015cafad1ff25306a98f65447ba698">ADMIN_TABLE_COL_COUNT</a></td><td class="entry"><a class="el" href="classTableManager.html">TableManager</a></td><td class="entry"></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="classTableManager.html#a4387265258473b21b2f9ecf102e35b82">adminTableColNames</a></td><td class="entry"><a class="el" href="classTableManager.html">TableManager</a></td><td class="entry"></td></tr>
-  <tr><td class="entry"><a class="el" href="classTableManager.html#ad031756899763e2833e0d3f721a650e8">AdminTableColPositions</a> enum name</td><td class="entry"><a class="el" href="classTableManager.html">TableManager</a></td><td class="entry"></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="classTableManager.html#a26865512d0d5ed36f3de232dcc12b4d3a5c1405c3dced10ceaff184dd90448c98">C_CITYNAME</a> enum value</td><td class="entry"><a class="el" href="classTableManager.html">TableManager</a></td><td class="entry"></td></tr>
-  <tr><td class="entry"><a class="el" href="classTableManager.html#a26865512d0d5ed36f3de232dcc12b4d3ae4dd1650f76d791d9d508bda6c865223">C_DISTANCE</a> enum value</td><td class="entry"><a class="el" href="classTableManager.html">TableManager</a></td><td class="entry"></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="classTableManager.html#aa365d92fe05c83fc821d4632f83b1e43">CITIES_TABLE_COL_COUNT</a></td><td class="entry"><a class="el" href="classTableManager.html">TableManager</a></td><td class="entry"></td></tr>
-  <tr><td class="entry"><a class="el" href="classTableManager.html#a56d330ab49e6e14526b5db991ce2e325">citiesTableColNames</a></td><td class="entry"><a class="el" href="classTableManager.html">TableManager</a></td><td class="entry"></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="classTableManager.html#a26865512d0d5ed36f3de232dcc12b4d3">CitiesTableColPositions</a> enum name</td><td class="entry"><a class="el" href="classTableManager.html">TableManager</a></td><td class="entry"></td></tr>
-  <tr><td class="entry"><a class="el" href="classTableManager.html#acb4ee981042dd562b5d11a78ad20d9b2">CustomTripComboBoxLabels</a></td><td class="entry"><a class="el" href="classTableManager.html">TableManager</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classTableManager.html#ad031756899763e2833e0d3f721a650e8a5ef20d7cae5b6b4da493253eb06eb181">A_Key</a> enum value</td><td class="entry"><a class="el" href="classTableManager.html">TableManager</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="classTableManager.html#ad031756899763e2833e0d3f721a650e8a3ab4ac8488e3ef28c2fb439645eba2f8">A_PRICE</a> enum value</td><td class="entry"><a class="el" href="classTableManager.html">TableManager</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classTableManager.html#aa2015cafad1ff25306a98f65447ba698">ADMIN_TABLE_COL_COUNT</a></td><td class="entry"><a class="el" href="classTableManager.html">TableManager</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="classTableManager.html#a4387265258473b21b2f9ecf102e35b82">adminTableColNames</a></td><td class="entry"><a class="el" href="classTableManager.html">TableManager</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classTableManager.html#ad031756899763e2833e0d3f721a650e8">AdminTableColPositions</a> enum name</td><td class="entry"><a class="el" href="classTableManager.html">TableManager</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="classTableManager.html#a26865512d0d5ed36f3de232dcc12b4d3a5c1405c3dced10ceaff184dd90448c98">C_CITYNAME</a> enum value</td><td class="entry"><a class="el" href="classTableManager.html">TableManager</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classTableManager.html#a26865512d0d5ed36f3de232dcc12b4d3ae4dd1650f76d791d9d508bda6c865223">C_DISTANCE</a> enum value</td><td class="entry"><a class="el" href="classTableManager.html">TableManager</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="classTableManager.html#aa365d92fe05c83fc821d4632f83b1e43">CITIES_TABLE_COL_COUNT</a></td><td class="entry"><a class="el" href="classTableManager.html">TableManager</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classTableManager.html#a56d330ab49e6e14526b5db991ce2e325">citiesTableColNames</a></td><td class="entry"><a class="el" href="classTableManager.html">TableManager</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="classTableManager.html#a26865512d0d5ed36f3de232dcc12b4d3">CitiesTableColPositions</a> enum name</td><td class="entry"><a class="el" href="classTableManager.html">TableManager</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classTableManager.html#acb4ee981042dd562b5d11a78ad20d9b2">CustomTripComboBoxLabels</a></td><td class="entry"><a class="el" href="classTableManager.html">TableManager</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="classTableManager.html#aeb507923891fb90cc7fe0c8c80b3867a">DeleteAllTableRows</a>(QTableWidget *table)</td><td class="entry"><a class="el" href="classTableManager.html">TableManager</a></td><td class="entry"></td></tr>
   <tr class="even"><td class="entry"><a class="el" href="classTableManager.html#a1da90f7d465c3dfafbc4fc671d2f9603a026a3a2ceb5f79a87c761622135c4043">F_CITYNAME</a> enum value</td><td class="entry"><a class="el" href="classTableManager.html">TableManager</a></td><td class="entry"></td></tr>
   <tr><td class="entry"><a class="el" href="classTableManager.html#a1da90f7d465c3dfafbc4fc671d2f9603a48e839beb1e9bb32d009bc18d326599b">F_FOODNAME</a> enum value</td><td class="entry"><a class="el" href="classTableManager.html">TableManager</a></td><td class="entry"></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="classTableManager.html#a1da90f7d465c3dfafbc4fc671d2f9603a2ea8ee77f644ef53bcdd25d7daaae59f">F_PRICE</a> enum value</td><td class="entry"><a class="el" href="classTableManager.html">TableManager</a></td><td class="entry"></td></tr>
-  <tr><td class="entry"><a class="el" href="classTableManager.html#a0ecf0ce77449bd58fc072793614f2cb1">FOOD_TABLE_COL_COUNT</a></td><td class="entry"><a class="el" href="classTableManager.html">TableManager</a></td><td class="entry"></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="classTableManager.html#a26e41d279eef22cc85f9107ae12e5fd5">foodTableColNames</a></td><td class="entry"><a class="el" href="classTableManager.html">TableManager</a></td><td class="entry"></td></tr>
-  <tr><td class="entry"><a class="el" href="classTableManager.html#a1da90f7d465c3dfafbc4fc671d2f9603">FoodTableColPositions</a> enum name</td><td class="entry"><a class="el" href="classTableManager.html">TableManager</a></td><td class="entry"></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="classTableManager.html#a2cd6e985412366b7a34fadc1d8167407">InitializeAdminTable</a>(QTableView *table)</td><td class="entry"><a class="el" href="classTableManager.html">TableManager</a></td><td class="entry"></td></tr>
-  <tr><td class="entry"><a class="el" href="classTableManager.html#a66557aad96c29cb7ef79cde5a05f1253">InitializeCitiesTable</a>(QTableWidget *table, const int &amp;cols, const QStringList &amp;headers)</td><td class="entry"><a class="el" href="classTableManager.html">TableManager</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classTableManager.html#a1da90f7d465c3dfafbc4fc671d2f9603a2568d7a26fa75f320437f6a495ecaaf8">F_KEY</a> enum value</td><td class="entry"><a class="el" href="classTableManager.html">TableManager</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="classTableManager.html#a1da90f7d465c3dfafbc4fc671d2f9603a2ea8ee77f644ef53bcdd25d7daaae59f">F_PRICE</a> enum value</td><td class="entry"><a class="el" href="classTableManager.html">TableManager</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classTableManager.html#a0ecf0ce77449bd58fc072793614f2cb1">FOOD_TABLE_COL_COUNT</a></td><td class="entry"><a class="el" href="classTableManager.html">TableManager</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="classTableManager.html#a26e41d279eef22cc85f9107ae12e5fd5">foodTableColNames</a></td><td class="entry"><a class="el" href="classTableManager.html">TableManager</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classTableManager.html#a1da90f7d465c3dfafbc4fc671d2f9603">FoodTableColPositions</a> enum name</td><td class="entry"><a class="el" href="classTableManager.html">TableManager</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="classTableManager.html#a2cd6e985412366b7a34fadc1d8167407">InitializeAdminTable</a>(QTableView *table)</td><td class="entry"><a class="el" href="classTableManager.html">TableManager</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classTableManager.html#a215efb961cdc82ffeff1529aa062ad1e">InitializeAdminTable</a>(QTableWidget *adminTable, const int &amp;cols, const QStringList &amp;headers)</td><td class="entry"><a class="el" href="classTableManager.html">TableManager</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="classTableManager.html#adc0d09ed5ac57c4244901101277996da">InitializeCitiesTable</a>(QTableWidget *citiesTable, const int &amp;cityTablecols, const QStringList &amp;cityTableHeaders)</td><td class="entry"><a class="el" href="classTableManager.html">TableManager</a></td><td class="entry"></td></tr>
   <tr class="even"><td class="entry"><a class="el" href="classTableManager.html#af8749d592558b17d076486e03c8beb79">InitializeFoodTable</a>(QTableWidget *table, const int &amp;cols, const QStringList &amp;headers)</td><td class="entry"><a class="el" href="classTableManager.html">TableManager</a></td><td class="entry"></td></tr>
   <tr><td class="entry"><a class="el" href="classTableManager.html#a43a694d9ff069281faaf2d73da261ce6">InitializePurchaseTable</a>(QTableWidget *table, const int &amp;cols, const QStringList &amp;headers)</td><td class="entry"><a class="el" href="classTableManager.html">TableManager</a></td><td class="entry"></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="classTableManager.html#a853b47c14246706b88b3f0c5a8518926">InitializeReceiptTable</a>(QTableWidget *table, const int &amp;cols, const QStringList &amp;headers)</td><td class="entry"><a class="el" href="classTableManager.html">TableManager</a></td><td class="entry"></td></tr>
-  <tr><td class="entry"><a class="el" href="classTableManager.html#ae1dd32d4461d5f98ed88deddabb59047">InitializeTripTable</a>(QTableWidget *table, const int &amp;cols, const QStringList &amp;headers)</td><td class="entry"><a class="el" href="classTableManager.html">TableManager</a></td><td class="entry"></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="classTableManager.html#ad6c1ec8dc5d2dfcce0a7d220924462b5">InsertSpinBoxCol</a>(QTableWidget *table, const int min, const int max, const int col)</td><td class="entry"><a class="el" href="classTableManager.html">TableManager</a></td><td class="entry"></td></tr>
-  <tr><td class="entry"><a class="el" href="classTableManager.html#a3df93afe84323dabb032ab09eb472e4d">instance</a>()</td><td class="entry"><a class="el" href="classTableManager.html">TableManager</a></td><td class="entry"><span class="mlabel">static</span></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="classTableManager.html#a77eaeab1e65ec5071d0f403dbc038eb2">operator=</a>(const TableManager &amp;)=delete</td><td class="entry"><a class="el" href="classTableManager.html">TableManager</a></td><td class="entry"></td></tr>
-  <tr><td class="entry"><a class="el" href="classTableManager.html#ace034d05052d33a1d0861fb05fb87512add764ffc16e6407d1cc65917dcb1da50">P_CITYNAME</a> enum value</td><td class="entry"><a class="el" href="classTableManager.html">TableManager</a></td><td class="entry"></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="classTableManager.html#ace034d05052d33a1d0861fb05fb87512a1d14b3cd2ccfd69102ce23cd3007a74c">P_FOOD</a> enum value</td><td class="entry"><a class="el" href="classTableManager.html">TableManager</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classTableManager.html#a10f8daa85160eb349e685b6fa95035cc">InitializeReceiptTable</a>(QTableWidget *receiptTable, const int &amp;cols, const QStringList &amp;headers)</td><td class="entry"><a class="el" href="classTableManager.html">TableManager</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="classTableManager.html#ad6c1ec8dc5d2dfcce0a7d220924462b5">InsertSpinBoxCol</a>(QTableWidget *table, const int min, const int max, const int col)</td><td class="entry"><a class="el" href="classTableManager.html">TableManager</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classTableManager.html#a3df93afe84323dabb032ab09eb472e4d">instance</a>()</td><td class="entry"><a class="el" href="classTableManager.html">TableManager</a></td><td class="entry"><span class="mlabel">static</span></td></tr>
+  <tr><td class="entry"><a class="el" href="classTableManager.html#a77eaeab1e65ec5071d0f403dbc038eb2">operator=</a>(const TableManager &amp;)=delete</td><td class="entry"><a class="el" href="classTableManager.html">TableManager</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classTableManager.html#ace034d05052d33a1d0861fb05fb87512add764ffc16e6407d1cc65917dcb1da50">P_CITYNAME</a> enum value</td><td class="entry"><a class="el" href="classTableManager.html">TableManager</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="classTableManager.html#ace034d05052d33a1d0861fb05fb87512a1d14b3cd2ccfd69102ce23cd3007a74c">P_FOOD</a> enum value</td><td class="entry"><a class="el" href="classTableManager.html">TableManager</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classTableManager.html#ace034d05052d33a1d0861fb05fb87512a07a4a4c1c78677812d1bf54eec98f03b">P_KEY</a> enum value</td><td class="entry"><a class="el" href="classTableManager.html">TableManager</a></td><td class="entry"></td></tr>
   <tr><td class="entry"><a class="el" href="classTableManager.html#ace034d05052d33a1d0861fb05fb87512a12146521606c683c1d43c8fedd6a1107">P_PRICE</a> enum value</td><td class="entry"><a class="el" href="classTableManager.html">TableManager</a></td><td class="entry"></td></tr>
   <tr class="even"><td class="entry"><a class="el" href="classTableManager.html#ace034d05052d33a1d0861fb05fb87512a27f368eb64e1e6a7471ee127df143dad">P_QTY</a> enum value</td><td class="entry"><a class="el" href="classTableManager.html">TableManager</a></td><td class="entry"></td></tr>
   <tr><td class="entry"><a class="el" href="classTableManager.html#ab993c32b3c54799b926ec87a1624eec7">PARIS_TRIP_SPINBOX_MIN</a></td><td class="entry"><a class="el" href="classTableManager.html">TableManager</a></td><td class="entry"></td></tr>
   <tr class="even"><td class="entry"><a class="el" href="classTableManager.html#a239f93a69495f30a117fcc5933c4b87f">parisTripSpinBoxMax</a></td><td class="entry"><a class="el" href="classTableManager.html">TableManager</a></td><td class="entry"></td></tr>
-  <tr><td class="entry"><a class="el" href="classTableManager.html#aa45dca3233786f49648f4bd5481b11c4">PopulateAdminTable</a>(QTableWidget *table, QVector&lt; City &gt; *cites)</td><td class="entry"><a class="el" href="classTableManager.html">TableManager</a></td><td class="entry"></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="classTableManager.html#a0acf0e5886a98bafd97cb6b9671d8677">PopulateCitiesTable</a>(QTableWidget *table, QVector&lt; City &gt; *cites)</td><td class="entry"><a class="el" href="classTableManager.html">TableManager</a></td><td class="entry"></td></tr>
-  <tr><td class="entry"><a class="el" href="classTableManager.html#ae8aca87d43186bcbe53603ef4df5c472">PopulateFoodTable</a>(QTableWidget *table, QVector&lt; City &gt; *cites)</td><td class="entry"><a class="el" href="classTableManager.html">TableManager</a></td><td class="entry"></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="classTableManager.html#a9a1e928af1fe287218d05e47b12008ba">PopulatePurchaseTable</a>(QTableWidget *table, QVector&lt; City &gt; *cites)</td><td class="entry"><a class="el" href="classTableManager.html">TableManager</a></td><td class="entry"></td></tr>
-  <tr><td class="entry"><a class="el" href="classTableManager.html#afbfe615730fa4e1b9556c8b3c0213a1e">PopulateReceiptTable</a>(QTableWidget *table, QVector&lt; City &gt; *cites)</td><td class="entry"><a class="el" href="classTableManager.html">TableManager</a></td><td class="entry"></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="classTableManager.html#a5af0701bdd9122a1f2813d0d70ced1a1">PopulateTripTable</a>(QTableView *table, const QStringList &amp;cites)</td><td class="entry"><a class="el" href="classTableManager.html">TableManager</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="classTableManager.html#af55113a843a8aadc813788dbb5d9d2b7">PopulateAdminTable</a>(QTableWidget *table, QVector&lt; City &gt; *cities)</td><td class="entry"><a class="el" href="classTableManager.html">TableManager</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classTableManager.html#aa4763036434000f43d0eae8ffbbfa3b5">PopulateCitiesTable</a>(QTableWidget *cityTable, QStringList *cityNames, QVector&lt; int &gt; *distancesFromBerlin)</td><td class="entry"><a class="el" href="classTableManager.html">TableManager</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="classTableManager.html#aba7ccc46fc66102002579bd8e2d68295">PopulateFoodTable</a>(QTableWidget *foodTable, QVector&lt; City &gt; *cities)</td><td class="entry"><a class="el" href="classTableManager.html">TableManager</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classTableManager.html#ab741f045d5ddfaff67009ab4ad62f669">PopulatePurchaseTable</a>(QTableWidget *purchaseTable, QVector&lt; City &gt; *cities)</td><td class="entry"><a class="el" href="classTableManager.html">TableManager</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="classTableManager.html#a8d0f7fe6fefb9438b18c8735ef625167">PopulateReceiptTable</a>(QTableWidget *receiptTable, QVector&lt; City &gt; *cities)</td><td class="entry"><a class="el" href="classTableManager.html">TableManager</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classTableManager.html#a56b4c3297e188e4656b9b745950eeddf">PopulateTripTable</a>(QTableView *table, const QStringList &amp;cities)</td><td class="entry"><a class="el" href="classTableManager.html">TableManager</a></td><td class="entry"></td></tr>
   <tr><td class="entry"><a class="el" href="classTableManager.html#a50361e2fa9f1ddfd405aca7af21903a0">PURCHASE_SPINBOX_MAX</a></td><td class="entry"><a class="el" href="classTableManager.html">TableManager</a></td><td class="entry"></td></tr>
   <tr class="even"><td class="entry"><a class="el" href="classTableManager.html#ab142efca8d939e578ab4828b48c75f1c">PURCHASE_SPINBOX_MIN</a></td><td class="entry"><a class="el" href="classTableManager.html">TableManager</a></td><td class="entry"></td></tr>
   <tr><td class="entry"><a class="el" href="classTableManager.html#af371cab19fe0b1fd536eaa3f3762a99c">PURCHASE_TABLE_COL_COUNT</a></td><td class="entry"><a class="el" href="classTableManager.html">TableManager</a></td><td class="entry"></td></tr>
   <tr class="even"><td class="entry"><a class="el" href="classTableManager.html#a3e28b67bb1ca1d2287284ed355c45e5e">purchaseTableColNames</a></td><td class="entry"><a class="el" href="classTableManager.html">TableManager</a></td><td class="entry"></td></tr>
   <tr><td class="entry"><a class="el" href="classTableManager.html#ace034d05052d33a1d0861fb05fb87512">PurchaseTableColPositions</a> enum name</td><td class="entry"><a class="el" href="classTableManager.html">TableManager</a></td><td class="entry"></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="classTableManager.html#a8902b637fccfc98e087dc08cf211bcfd">PurchaseTableSpinBoxes</a></td><td class="entry"><a class="el" href="classTableManager.html">TableManager</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classTableManager.html#ac437bab4b611ca7052cd2defbf39d084">purchaseTableSpinBoxes</a></td><td class="entry"><a class="el" href="classTableManager.html">TableManager</a></td><td class="entry"></td></tr>
   <tr><td class="entry"><a class="el" href="classTableManager.html#a16f46935958c6decd90343885baad597acff322086f933dbb1819cb6f15222a77">R_CITYNAME</a> enum value</td><td class="entry"><a class="el" href="classTableManager.html">TableManager</a></td><td class="entry"></td></tr>
   <tr class="even"><td class="entry"><a class="el" href="classTableManager.html#a16f46935958c6decd90343885baad597a1b7ced03bd937c2e9b2c2e3f224e4619">R_FOOD</a> enum value</td><td class="entry"><a class="el" href="classTableManager.html">TableManager</a></td><td class="entry"></td></tr>
-  <tr><td class="entry"><a class="el" href="classTableManager.html#a16f46935958c6decd90343885baad597aa70af1834dc4fca6d9c77b26dab363eb">R_PRICE</a> enum value</td><td class="entry"><a class="el" href="classTableManager.html">TableManager</a></td><td class="entry"></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="classTableManager.html#a16f46935958c6decd90343885baad597af3ab2977b6c97d02ce77824b4d37a422">R_QTY</a> enum value</td><td class="entry"><a class="el" href="classTableManager.html">TableManager</a></td><td class="entry"></td></tr>
-  <tr><td class="entry"><a class="el" href="classTableManager.html#a16f46935958c6decd90343885baad597a7171cd0075c6ab01be7316ee67607aa8">R_TOTAL</a> enum value</td><td class="entry"><a class="el" href="classTableManager.html">TableManager</a></td><td class="entry"></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="classTableManager.html#a3395f3e2c1f4de07aad8ed3bde10491e">RECEIPT_TABLE_COL_COUNT</a></td><td class="entry"><a class="el" href="classTableManager.html">TableManager</a></td><td class="entry"></td></tr>
-  <tr><td class="entry"><a class="el" href="classTableManager.html#a6bc59c51dcfc59b82f7825ad1fb179e4">receiptTableColNames</a></td><td class="entry"><a class="el" href="classTableManager.html">TableManager</a></td><td class="entry"></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="classTableManager.html#a16f46935958c6decd90343885baad597">ReceiptTableColPositions</a> enum name</td><td class="entry"><a class="el" href="classTableManager.html">TableManager</a></td><td class="entry"></td></tr>
-  <tr><td class="entry"><a class="el" href="classTableManager.html#af03daa5ab61418f8058a804cf5a63778acd13c3ff3a91d92faf39ff0eb442741f">T_CITYNAME</a> enum value</td><td class="entry"><a class="el" href="classTableManager.html">TableManager</a></td><td class="entry"></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="classTableManager.html#af03daa5ab61418f8058a804cf5a63778a29dee493d78214b996e261abfee92996">T_DISTANCE</a> enum value</td><td class="entry"><a class="el" href="classTableManager.html">TableManager</a></td><td class="entry"></td></tr>
-  <tr><td class="entry"><a class="el" href="classTableManager.html#a4a13c2487fc53bb6f3272210a6f0a1a4">TableManager</a>(const TableManager &amp;)=delete</td><td class="entry"><a class="el" href="classTableManager.html">TableManager</a></td><td class="entry"></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="classTableManager.html#a9b5ffe843cdd87c9b3f40c89724f63c4">TRIP_TABLE_COL_COUNT</a></td><td class="entry"><a class="el" href="classTableManager.html">TableManager</a></td><td class="entry"></td></tr>
-  <tr><td class="entry"><a class="el" href="classTableManager.html#a51786bffcb43d0e76ff067435e2737b5">tripTableColNames</a></td><td class="entry"><a class="el" href="classTableManager.html">TableManager</a></td><td class="entry"></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="classTableManager.html#af03daa5ab61418f8058a804cf5a63778">TripTableColPositions</a> enum name</td><td class="entry"><a class="el" href="classTableManager.html">TableManager</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="classTableManager.html#a16f46935958c6decd90343885baad597aff4906bdf13312f8cd9a0501730425d1">R_KEY</a> enum value</td><td class="entry"><a class="el" href="classTableManager.html">TableManager</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classTableManager.html#a16f46935958c6decd90343885baad597aa70af1834dc4fca6d9c77b26dab363eb">R_PRICE</a> enum value</td><td class="entry"><a class="el" href="classTableManager.html">TableManager</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="classTableManager.html#a16f46935958c6decd90343885baad597af3ab2977b6c97d02ce77824b4d37a422">R_QTY</a> enum value</td><td class="entry"><a class="el" href="classTableManager.html">TableManager</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classTableManager.html#a16f46935958c6decd90343885baad597a7171cd0075c6ab01be7316ee67607aa8">R_TOTAL</a> enum value</td><td class="entry"><a class="el" href="classTableManager.html">TableManager</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="classTableManager.html#a3395f3e2c1f4de07aad8ed3bde10491e">RECEIPT_TABLE_COL_COUNT</a></td><td class="entry"><a class="el" href="classTableManager.html">TableManager</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classTableManager.html#a6bc59c51dcfc59b82f7825ad1fb179e4">receiptTableColNames</a></td><td class="entry"><a class="el" href="classTableManager.html">TableManager</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="classTableManager.html#a16f46935958c6decd90343885baad597">ReceiptTableColPositions</a> enum name</td><td class="entry"><a class="el" href="classTableManager.html">TableManager</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classTableManager.html#af03daa5ab61418f8058a804cf5a63778acd13c3ff3a91d92faf39ff0eb442741f">T_CITYNAME</a> enum value</td><td class="entry"><a class="el" href="classTableManager.html">TableManager</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="classTableManager.html#af03daa5ab61418f8058a804cf5a63778a29dee493d78214b996e261abfee92996">T_DISTANCE</a> enum value</td><td class="entry"><a class="el" href="classTableManager.html">TableManager</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classTableManager.html#a4a13c2487fc53bb6f3272210a6f0a1a4">TableManager</a>(const TableManager &amp;)=delete</td><td class="entry"><a class="el" href="classTableManager.html">TableManager</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="classTableManager.html#a9b5ffe843cdd87c9b3f40c89724f63c4">TRIP_TABLE_COL_COUNT</a></td><td class="entry"><a class="el" href="classTableManager.html">TableManager</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classTableManager.html#a51786bffcb43d0e76ff067435e2737b5">tripTableColNames</a></td><td class="entry"><a class="el" href="classTableManager.html">TableManager</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="classTableManager.html#af03daa5ab61418f8058a804cf5a63778">TripTableColPositions</a> enum name</td><td class="entry"><a class="el" href="classTableManager.html">TableManager</a></td><td class="entry"></td></tr>
 </table></div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated by &#160;<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/>
-</a> 1.8.17
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="footer">Generated by
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.17 </li>
+  </ul>
+</div>
 </body>
 </html>

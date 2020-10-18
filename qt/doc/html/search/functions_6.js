@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['main_159',['main',['../main_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97',1,'main.cpp']]],
-  ['mainwindow_160',['MainWindow',['../classMainWindow.html#a996c5a2b6f77944776856f08ec30858d',1,'MainWindow']]]
+  ['login_161',['LogIn',['../classDBManager.html#a7fcac0e8521a06eb647b7120cda13052',1,'DBManager']]]
 ];

@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['operator_3d_161',['operator=',['../classDBManager.html#a24f1bb309ebd4f01f503b872e289247e',1,'DBManager::operator=()'],['../classTableManager.html#a77eaeab1e65ec5071d0f403dbc038eb2',1,'TableManager::operator=()']]]
+  ['main_162',['main',['../main_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97',1,'main.cpp']]],
+  ['mainwindow_163',['MainWindow',['../classMainWindow.html#a996c5a2b6f77944776856f08ec30858d',1,'MainWindow']]]
 ];

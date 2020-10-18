@@ -1,11 +1,7 @@
 #include "food.h"
 
-Food::Food()
-{
-    _name = "";
-    _price = 0;
-    _qty = 0;
-}
+// Constructor
+Food::Food():  _name{QString{}}, _price{0}, _qty{0} {}
 
 // Accessor: Get name of food item
 QString Food::GetName() const
@@ -26,7 +22,7 @@ float Food::GetPrice() const
 }
 
 // Mutator: Alter/set food item name
-void Food::SetPrice(const float &price)
+void Food::SetPrice(float price)
 {
     _price = price;
 }
@@ -38,7 +34,7 @@ int Food::GetQty() const
 }
 
 // Mutator: Alter/set quantity of purchased food item
-void Food::SetQty(const int &qty)
+void Food::SetQty(int qty)
 {
     _qty = qty;
 }
