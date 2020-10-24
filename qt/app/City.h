@@ -7,7 +7,7 @@
 
 /*!
  * @class City
- * @brief The City class is an object meant to represent city destinations
+ * @brief The City class is an objedfgdfxgct meant to represent city destinations
  */
 class City
 {
